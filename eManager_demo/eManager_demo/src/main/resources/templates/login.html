@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="../static/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="" th:href="@{/css/login.css}"/>
+    <title>Login</title>
+    <style>
+        button{
+            background-color: #f48324;
+            border:none;
+            font-size: 15px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+            <span class="title" style="font-size: 35px">Login</span>
+
+            <img src="eManager_LoginSeite_orange.png" th:src="@{eManager_LoginSeite_orange.png}"  width="160" height="70" alt="eManager" align="right" />
+
+            <form action="#">
+                <div class="input-field">
+                    <input type="text" placeholder="Name" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" class="password" placeholder="Passwort" required>
+                    <i class="uil uil-lock icon"></i>
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+
+                <div>
+                    <button id="Login" class="input-field button" onclick="getInfo()"><b>Login</b></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="login.js"></script>
+
+</body>
+</html>
