@@ -13,7 +13,6 @@ public class User {
     private String password;
     private String role;
 
-
     @Override
     public String toString() {
         return "User{" +
