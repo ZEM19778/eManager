@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Verwaltung</title>
+</head>
+<body>
+
+<div><h2>Mitarbeiter Verwalten</h2></div>
+
+
+
+<table class="table-bordered">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Password</th>
+    <th>Role</th>
+  </tr>
+
+  </thead>
+  <tbody>
+  <th:block th:each="User : ${listUsers} ">
+
+    <tr>
+      <td>[[${User.id}]]</td>
+      <td>[[${User.username}]]</td>
+      <td>[[${User.password}]]</td>
+      <td>[[${User.role}]]</td>
+    </tr>
+
+
+
+  </th:block>
+
+
+  </tbody>
+
+</table>
+</div>
+
+</body>
+</html>
