@@ -91,12 +91,12 @@
           <td>[[${User.password}]]</td>
 
           <td>[[${User.role}]]</td>
-          <td>
-            <a class="h4 mr-3" th:href="@{'/useredit' + ${User.id}}">Edit</a>
-            <a class="h4 mr-3" th:href="@{'/useredit' + ${User.id}}">Delete</a>
+          <td> <a th:href="@{/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            <a th:href="@{/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
           </td>
         </tr>
       </th:block>
+
 
 
       </tbody>
@@ -127,5 +127,9 @@
   </script>
 
 </div>
+</body>
+</html>
+
+
 </body>
 </html>

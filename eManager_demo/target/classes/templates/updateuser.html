@@ -40,6 +40,66 @@
     li a:hover {
       background-color: #df5308;
     }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1{
+      vertical-align: top;
+    }
+    h2{
+      font-size: 15px;
+    }
+
+    body{
+      height: 100vh;
+      align-items: normal;
+      justify-content: center;
+      background-color: white;
+    }
+
+    .container{
+      align-items: normal;
+      justify-content: center;
+      max-width: 90%;
+      width: 100%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin: 0 20px;
+    }
+    .container .forms{
+      display: flex;
+      align-items: center;
+      height: 440px;
+      width: 200%;
+      transition: height 0.2s ease;
+    }
+    .container .form{
+      width: 50%;
+      padding: 30px;
+      background-color: #fff;
+      transition: margin-left 0.18s ease;
+    }
+    .container.active .login{
+      margin-left: -50%;
+      opacity: 0;
+      transition: margin-left 0.18s ease, opacity 0.15s ease;
+    }
+    .container.active .forms{
+      height: 600px;
+    }
+    .container .form .title{
+      position: relative;
+      font-size: 27px;
+      font-weight: 600;
+    }
   </style>
 </head>
 
@@ -68,8 +128,7 @@
     <form action="#" th:action="@{/saveUser}" th:object="${user}"
           method="POST">
 
-      <!--<input type="text" th:field="*{id}"
-             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
+      <input type="text" th:field="*{id}" />
 
       <input type="text" th:field="*{username}"
              placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
@@ -85,8 +144,9 @@
       <button type="submit" class="btn btn primary">Save</button>
     </form>
 
+    <hr>
 
-
+    <a th:href = "@{/userverwaltung}"> Back to User List</a>
   </div>
   <br>
 </div>

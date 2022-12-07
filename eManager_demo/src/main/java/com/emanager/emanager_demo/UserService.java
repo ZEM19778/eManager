@@ -1,4 +1,5 @@
 package com.emanager.emanager_demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -31,6 +32,25 @@ public class UserService implements UserServiceIn {
         throw new UserNotFoundException("Konnte den User mit dier ID nicht finden" + id);
 
     }
+
+    @Override
+    public User getUserById(long id) {
+        Optional<User> optional = repo.findById(id);
+        User user = null;
+        if (optional.isPresent()) {
+            user = optional.get();
+        } else {
+            throw new RuntimeException(" User not found for id :: " + id);
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteUsereById(long id) {
+        this.repo.deleteById(id);
+    }
+
+
 
 }
 

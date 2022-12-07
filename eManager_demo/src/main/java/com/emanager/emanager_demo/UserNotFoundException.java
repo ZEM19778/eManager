@@ -5,3 +5,4 @@ public class UserNotFoundException extends Throwable {
         super(message);
     }
 }
+
