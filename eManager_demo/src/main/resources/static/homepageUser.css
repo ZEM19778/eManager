@@ -6,6 +6,28 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.responsive-width {
+    font-size: calc(15px + 0.390625vw);
+}
+
+button{
+    background-color: #f48324;
+    border:#f48324;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: "Calibri",sans-serif;
+    padding: 0.25em 5em;
+}
+button:hover{
+    background-color: #df5308
+}
+
+.blank_row{
+    height: 0.25vw !important;
+    background-color: white;
+}
 
 h1{
     vertical-align: top;
