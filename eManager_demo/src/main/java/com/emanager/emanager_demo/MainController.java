@@ -1,5 +1,9 @@
 package com.emanager.emanager_demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +39,8 @@ public class MainController {
         return "kalender";
     }
 
+
+
     @GetMapping("/admin")
     public String admin() {
 
@@ -48,5 +54,58 @@ public class MainController {
 
         return "userverwaltung";
     }
+
+
+    @GetMapping("/showNewUserForm")
+    public String showNewUserForm(Model model) {
+        // create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "newuser";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(User user) {
+        // save User to database
+        service.saveUser(user);
+
+        return "redirect:/userverwaltung";
+    }
+
+    //@GetMapping("/useredit/{id}")
+    //public String useredit(@PathVariable("id") Long id, Model model){
+    //    try {
+    //        User user = service.get(id);
+    //         model.addAttribute("user",user);
+    //       model.addAttribute("pageTitle","Edit User (ID: "+id +")");
+    //       return "newuser";
+
+    //   } catch (UserNotFoundException e) {
+    //       return "redirect:/userverwaltung";
+    //    }
+    //}
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
+
+        // get employee from the service
+        User user = service.getUserById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("user", user);
+        return "updateuser";
+    }
+
+
+    @GetMapping("/deleteuser/{id}")
+    public String deleteuser(@PathVariable (value = "id") long id) {
+
+
+        this.service.deleteUsereById(id);
+        return "redirect:/userverwaltung";
+    }
+
+
 
 }

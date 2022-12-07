@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mitarbeiter-Verwaltung</title>
+  <title>Mitarbeiter hinzufügen</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="homepageUser.css"/>
   <style>
@@ -46,7 +46,7 @@
 <body>
 <div align="center" style="background-color: #f48324">
   <h1 style="color: white">eManager</h1>
-  <h2 style="color: white">Verwaltung</h2>
+  <h2 style="color: white">Mitarbeiter hinzufügen</h2>
   <br>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -62,46 +62,29 @@
   </div>
 </nav>
 <div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
-  <h3 align="center">Kontrollzentrale</h3>
+  <h3 align="center">Bearbeiten</h3>
   <br>
-  <div style="width:900px;height:330px;border:1px solid #000; border-radius: 5px">
-    <a th:href = "@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Add User </a>
+  <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
+    <form action="#" th:action="@{/saveUser}" th:object="${user}"
+          method="POST">
 
-    <table class="table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
+      <!--<input type="text" th:field="*{id}"
+             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
 
-        <th scope="col">Name</th>
+      <input type="text" th:field="*{username}"
+             placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
 
-        <th scope="col">Password</th>
+      <input type="text" th:field="*{password}"
+             placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
 
-        <th scope="col">Role</th>
-      </tr>
+      <select th:field="*{role}">
+        <option th:value="'USER'" th:text="USER"></option>
+        <option th:value="'ADMIN'" th:text="ADMIN"></option>
+      </select>
 
-      </thead>
-      <tbody>
-      <th:block th:each="User : ${listUsers} ">
+      <button type="submit" class="btn btn primary">Save</button>
+    </form>
 
-        <tr>
-          <th scope="row">[[${User.id}]]</th>
-
-          <td>[[${User.username}]]</td>
-
-          <td>[[${User.password}]]</td>
-
-          <td>[[${User.role}]]</td>
-          <td> <a th:href="@{/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
-            <a th:href="@{/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
-          </td>
-        </tr>
-      </th:block>
-
-
-
-      </tbody>
-
-    </table>
 
 
   </div>
@@ -127,9 +110,5 @@
   </script>
 
 </div>
-</body>
-</html>
-
-
 </body>
 </html>

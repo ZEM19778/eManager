@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <br>
     <title>Dienste eintragen</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="homepageUser.css"/>
@@ -43,80 +44,95 @@
     </style>
 </head>
 
-<body>
-<div align="center" style="background-color: #f48324">
-    <h1 style="color: white">eManager</h1>
-    <h2 style="color: white">Dienste</h2>
-    <br>
-</div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="homepageUser">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="diensteEintragen"><b>Dienste</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="kalender">Kalender</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
-    <h3 align="center">Dienste eintragen</h3>
-    <br>
-    <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
-        <p>Datum eintragen: </p>
-        <label>
-            <input type="date" id="von">
-        </label>
-        <label>
-            <input type="date" id="bis">
-        </label>
-        <p style="line-height: 150%">Von - Bis</p>
-        <label>
-            <input type="time" name="uhrzeit">
-        </label>
-        <label>
-
-            <input type="time" name="uhrzeit">
-        </label>
-
-        <p style="line-height: 150%">Adresse</p>
-        <input type="text" name="" value="">
-
-        <p style="line-height: 150%"></p>
-        <button type="button">Speichern</button>
-
-    </div>
-
-    <br>
-</div>
-<div>
-    <br>
-    <br>
-    <br>
-    <div align="center">
-        <p style="position: absolute; left: 150px">Tragen Sie Ihre Dienste ein!</p>
-        <p style="position: absolute; right: 230px">Blicken Sie in den Kalender</p>
+    <body>
+    <div align="center" style="background-color: #f48324">
+        <h1 style="color: white">eManager</h1>
+        <h2 style="color: white">Dienste</h2>
         <br>
     </div>
-    <div class="button-group">
-        <button type="button" class="button" style="position: absolute; left: 150px; width: 250px; margin-right: 50px" id="Dienste">Dienste</button>
-        <button type="button" class="button" style="position: absolute; right: 192px; width: 250px" id="Kalender">Kalender</button>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="homepageUser">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="diensteEintragen"><b>Dienste</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kalender">Kalender</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
+        <h3 align="center">Dienste eintragen</h3>
+        <br>
+            <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
+                <p>Datum eintragen: </p>
+                <label>
+                    <input type="date" id="von">
+                </label>
+                <label>
+                    <input type="date" id="bis">
+                </label>
+                <br>
+                <br>
+                <p style="line-height: 150%">Von - Bis</p>
+                <label>
+                    <input type="time" name="uhrzeit">
+                </label>
+
+                <label>
+                    <input type="time" name="uhrzeit">
+                </label>
+                <br>
+                <br>
+
+                <p style="line-height: 150%">Adresse</p>
+                <input type="text" name="" value="">
+
+
+                <br>
+                <br>
+                <p style="line-height: 150%"></p>
+                <button type="button">Speichern</button>
+                <br>
+
+            </div>
+            <br>
+            <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
+                <p>Dein Dienste</p>
+            </div>
+
+        <br>
     </div>
-    <script type="text/javascript">
-        document.getElementById("Dienste").onclick = function () {
-            location.href = 'diensteEintragen'
-        }
-    </script>
-    <script type="text/javascript">
-        document.getElementById("Kalender").onclick = function () {
-            location.href = 'kalender'
-        }
-    </script>
-</div>
-</body>
+        <div>
+            <br>
+            <br>
+            <br>
+            <div align="center">
+                <p style="position: absolute; left: 150px">Tragen Sie Ihre Dienste ein!</p>
+                <p style="position: absolute; right: 230px">Blicken Sie in den Kalender</p>
+                <br>
+            </div>
+            <div class="button-group">
+                <button type="button" class="button" style="position: absolute; left: 150px; width: 250px; margin-right: 50px" id="Dienste">Dienste</button>
+
+                <button type="button" class="button" style="position: absolute; right: 192px; width: 250px" id="Kalender">Kalender</button>
+
+            </div>
+            <script type="text/javascript">
+                document.getElementById("Dienste").onclick = function () {
+                    location.href = 'diensteEintragen'
+                }
+            </script>
+            <script type="text/javascript">
+                document.getElementById("Kalender").onclick = function () {
+                    location.href = 'kalender'
+                }
+            </script>
+        </div>
+    </body>
 </html>
