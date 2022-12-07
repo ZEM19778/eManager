@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Admin-Hauptseite</title>
+  <title>Mitarbeiter hinzufügen</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="homepageUser.css"/>
   <style>
@@ -45,12 +45,8 @@
 
 <body>
 <div align="center" style="background-color: #f48324">
-
   <h1 style="color: white">eManager</h1>
-
-  <h1 style="color: white">eManager - ADMIN</h1>
-
-  <h2 style="color: white">Willkommen zur Hauptseite</h2>
+  <h2 style="color: white">Mitarbeiter hinzufügen</h2>
   <br>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -66,10 +62,31 @@
   </div>
 </nav>
 <div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
-  <h3 align="center">Benachrichtigungen</h3>
+  <h3 align="center">Bearbeiten</h3>
   <br>
   <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
-    <p>Hier können Sie  Nachrichten verschicken</p>
+    <form action="#" th:action="@{/saveUser}" th:object="${user}"
+          method="POST">
+
+      <!--<input type="text" th:field="*{id}"
+             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
+
+      <input type="text" th:field="*{username}"
+             placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
+
+      <input type="text" th:field="*{password}"
+             placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+
+      <select th:field="*{role}">
+        <option th:value="'USER'" th:text="USER"></option>
+        <option th:value="'ADMIN'" th:text="ADMIN"></option>
+      </select>
+
+      <button type="submit" class="btn btn primary">Save</button>
+    </form>
+
+
+
   </div>
   <br>
 </div>
@@ -94,6 +111,4 @@
 
 </div>
 </body>
-
 </html>
-

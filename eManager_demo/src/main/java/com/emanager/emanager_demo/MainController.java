@@ -1,5 +1,8 @@
 package com.emanager.emanager_demo;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +38,8 @@ public class MainController {
         return "kalender";
     }
 
+
+
     @GetMapping("/admin")
     public String admin() {
 
@@ -48,5 +53,25 @@ public class MainController {
 
         return "userverwaltung";
     }
+
+
+    @GetMapping("/showNewUserForm")
+    public String showNewUserForm(Model model) {
+        // create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "newuser";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(User user) {
+        // save User to database
+        service.saveUser(user);
+
+        return "redirect:/userverwaltung";
+    }
+
+
 
 }
