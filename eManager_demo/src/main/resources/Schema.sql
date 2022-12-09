@@ -18,5 +18,6 @@ CREATE TABLE dienste(
                         datumbis DATE NOT NULL,
                         addresse VARCHAR(50) NOT NULL,
                         zeit_von TIME,
-                        zeit_bis TIME
+                        zeit_bis TIME,
+                        userid int REFERENCES user(id)
 )
