@@ -1,10 +1,13 @@
-package com.emanager.emanager_demo;
+package com.emanager.emanager_demo.controller;
 
+import com.emanager.emanager_demo.model.Dienste;
+import com.emanager.emanager_demo.model.User;
+import com.emanager.emanager_demo.service.DiensteServiceIn;
+import com.emanager.emanager_demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Page;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +16,11 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired private UserService service;
+    @Autowired
+    private UserService service;
+
+    @Autowired
+    private DiensteServiceIn diensteService;
 
     @GetMapping("/")
     public String start(){
@@ -30,15 +37,11 @@ public class MainController {
         return "homepageUser";
     }
 
-    @GetMapping("/diensteEintragen")
-    public String dienste() {
-        return "diensteEintragen";
-    }
+
     @GetMapping("/kalender")
     public String kalender() {
         return "kalender";
     }
-
 
 
     @GetMapping("/admin")
@@ -73,18 +76,6 @@ public class MainController {
         return "redirect:/userverwaltung";
     }
 
-    //@GetMapping("/useredit/{id}")
-    //public String useredit(@PathVariable("id") Long id, Model model){
-    //    try {
-    //        User user = service.get(id);
-    //         model.addAttribute("user",user);
-    //       model.addAttribute("pageTitle","Edit User (ID: "+id +")");
-    //       return "newuser";
-
-    //   } catch (UserNotFoundException e) {
-    //       return "redirect:/userverwaltung";
-    //    }
-    //}
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
@@ -104,6 +95,33 @@ public class MainController {
 
         this.service.deleteUsereById(id);
         return "redirect:/userverwaltung";
+    }
+
+
+//////////////////////
+    
+    @GetMapping("/diensteEintragen")
+    public String diensteEintragen(Model model) {
+        List<Dienste> listDienste = diensteService.getAllDienste();
+        model.addAttribute("listDienste",listDienste);
+
+        return "diensteEintragen";
+    }
+
+
+    @GetMapping("/diensteerstellen")
+    public String diensteerstellen(Model model) {
+        // create model attribute to bind form data
+        Dienste dienste = new Dienste();
+        model.addAttribute("dienste", dienste);
+        return "diensteerstellen";
+    }
+
+    @PostMapping("/saveDienste")
+    public String saveDienste( Dienste dienste) {
+        diensteService.saveDienste(dienste);
+
+        return "redirect:/diensteEintragen";
     }
 
 

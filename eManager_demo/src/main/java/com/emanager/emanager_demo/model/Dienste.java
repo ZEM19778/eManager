@@ -1,6 +1,8 @@
-package com.emanager.emanager_demo;
+package com.emanager.emanager_demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Time;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.Date;
 public class Dienste {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date datum_von;
     private Date datum_bis;
