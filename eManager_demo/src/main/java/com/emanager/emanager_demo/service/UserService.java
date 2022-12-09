@@ -1,11 +1,10 @@
-package com.emanager.emanager_demo;
+package com.emanager.emanager_demo.service;
 
+import com.emanager.emanager_demo.model.User;
+import com.emanager.emanager_demo.UserNotFoundException;
+import com.emanager.emanager_demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +18,7 @@ public class UserService implements UserServiceIn {
     public List<User> listAll() {
         return (List<User>) repo.findAll();
     }
+
 
     public void saveUser(User user) {
         this.repo.save(user);
