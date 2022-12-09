@@ -1,30 +1,44 @@
 package com.emanager.emanager_demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
 @Entity
+@Table(name="dienste")
 public class Dienste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date datum_von;
-    private Date datum_bis;
+
+    @Column(name="datumvon")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datumvon;
+
+    @Column(name="datumbis")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datumbis;
+
+    @Column(name="addresse")
+
     private String addresse;
+
+    @Column(name="zeit_von")
     private Time zeit_von;
+
+    @Column(name="zeit_bis")
+
     private Time zeit_bis;
 
     @Override
     public String toString() {
         return "Dienste{" +
                 "id=" + id +
-                ", datum_von=" + datum_von +
-                ", datum_bis=" + datum_bis +
+                ", datum_von=" + datumvon +
+                ", datum_bis=" + datumbis +
                 ", addresse='" + addresse + '\'' +
                 ", zeit_von=" + zeit_von +
                 ", zeit_bis=" + zeit_bis +
@@ -39,20 +53,20 @@ public class Dienste {
         this.id = id;
     }
 
-    public Date getDatum_von() {
-        return datum_von;
+    public Date getDatumvon() {
+        return datumvon;
     }
 
-    public void setDatum_von(Date datum_von) {
-        this.datum_von = datum_von;
+    public void setDatumvon(Date datum_von) {
+        this.datumvon = datum_von;
     }
 
-    public Date getDatum_bis() {
-        return datum_bis;
+    public Date getDatumbis() {
+        return datumbis;
     }
 
-    public void setDatum_bis(Date datum_bis) {
-        this.datum_bis = datum_bis;
+    public void setDatumbis(Date datum_bis) {
+        this.datumbis = datum_bis;
     }
 
     public String getAddresse() {
