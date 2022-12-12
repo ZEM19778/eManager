@@ -7,6 +7,6 @@ import java.util.List;
 public interface DiensteServiceIn {
 
     List<Dienste> getAllDienste();
-    void saveDienste(Dienste employee);
+    void saveDienste(Dienste dienste);
     Dienste getDiensteById(long id);
 }
