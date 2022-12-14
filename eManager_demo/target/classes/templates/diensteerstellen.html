@@ -77,11 +77,8 @@
             <!--<input type="text" th:field="*{id}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
 
-            <input type="date" th:field="*{datumvon}"
-                   placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
-
-            <input type="date" th:field="*{datumbis}"
-                   placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+            <input type="date"  th:field="*{datumvon}"
+                   placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
 
             <select th:field="*{addresse}">
                 <option th:value="'Wienerberg'" th:text="Wienerberg"></option>
@@ -90,6 +87,12 @@
                 <option th:value="'Schellinggasse'" th:text="Schellinggasse"></option>
                 <option th:value="'Neilreichgasse'" th:text="Neilreichgasse"></option>
             </select>
+
+            <input type="time" th:field="*{zeitvon}"
+                   placeholder="Zeit-ab" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+
+            <input type="time" th:field="*{zeitbis}"
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
 
             <button type="submit" class="btn btn primary">Save</button>
         </form>
