@@ -1,9 +1,12 @@
 package com.emanager.emanager_demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -17,24 +20,23 @@ public class Dienste {
     @Column(name = "datumvon")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datumvon;
-    @Column(name = "datumbis")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date datumbis;
+
     @Column(name = "addresse")
     private String addresse;
 
     @Column(name = "zeitvon")
-    private Time zeitvon;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime zeitvon;
 
     @Column(name = "zeitbis")
-    private Time zeitbis;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime zeitbis;
 
     @Override
     public String toString() {
         return "Dienste{" +
                 "id=" + id +
                 ", datumvon=" + datumvon +
-                ", datumbis=" + datumbis +
                 ", addresse='" + addresse + '\'' +
                 ", zeitvon=" + zeitvon +
                 ", zeitbis=" + zeitbis +
@@ -57,13 +59,6 @@ public class Dienste {
         this.datumvon = datumvon;
     }
 
-    public Date getDatumbis() {
-        return datumbis;
-    }
-
-    public void setDatumbis(Date datumbis) {
-        this.datumbis = datumbis;
-    }
 
     public String getAddresse() {
         return addresse;
@@ -73,19 +68,19 @@ public class Dienste {
         this.addresse = addresse;
     }
 
-    public Time getZeitvon() {
+    public LocalTime getZeitvon() {
         return zeitvon;
     }
 
-    public void setZeitvon(Time zeitvon) {
+    public void setZeitvon(LocalTime zeitvon) {
         this.zeitvon = zeitvon;
     }
 
-    public Time getZeitbis() {
+    public LocalTime getZeitbis() {
         return zeitbis;
     }
 
-    public void setZeitbis(Time zeitbis) {
+    public void setZeitbis(LocalTime zeitbis) {
         this.zeitbis = zeitbis;
     }
 }
