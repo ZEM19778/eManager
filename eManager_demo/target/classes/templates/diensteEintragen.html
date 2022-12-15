@@ -45,7 +45,7 @@
 
     <body>
     <div align="center" style="background-color: #f48324">
-        <h1 style="color: white">eManager</h1>
+        <h1 style="color: white">eManager - User</h1>
         <h2 style="color: white">Dienste</h2>
         <br>
     </div>
@@ -65,11 +65,10 @@
             </ul>
         </div>
     </nav>
-    <div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
+    <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
         <h3 align="center">Dienste eintragen</h3>
         <br>
-            <br>
-            <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
+            <div style="width:700px;height:330px;border:1px solid #000; border-radius: 10px">
                 <p>Deine Dienste</p>
                 <a th:href = "@{/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
                 <table class="table-bordered">
@@ -84,7 +83,6 @@
                     </thead>
                     <tbody>
                     <th:block th:each="Dienste : ${listDienste} ">
-
                         <tr>
                             <th scope="row">[[${Dienste.id}]]</th>
                             <td>[[${Dienste.datumvon}]]</td>
@@ -103,11 +101,11 @@
     <table style="width: 100%">
         <tr>
             <td style="text-align: center">
-                <p style="font-size: calc(15px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
+                <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
             </td>
             <td></td>
             <td style="text-align: center">
-                <p style="font-size:calc(15px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
+                <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
             </td>
         </tr>
         <tr class="blank_row">
@@ -133,6 +131,5 @@
             location.href = 'kalender'
         }
     </script>
-    </div>
     </body>
 </html>

@@ -45,11 +45,7 @@
 
   <body>
     <div align="center" style="background-color: #f48324">
-
-      <h1 style="color: white">eManager</h1>
-
-      <h1 style="color: white">eManager - ADMIN</h1>
-
+      <h1 style="color: white">eManager - Admin</h1>
       <h2 style="color: white">Willkommen zur Hauptseite</h2>
       <br>
     </div>
@@ -60,12 +56,12 @@
             <a class="nav-link active" href="homepageAdmin"><b>Home</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userverwaltung">Mitarbeiter verwalten</a>
+            <a class="nav-link" href="userverwaltung">User verwalten</a>
           </li>
         </ul>
       </div>
     </nav>
-    <div style="box-shadow: 0 5px 10px #f48324; border-radius: 10px;" align="center">
+    <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
       <h3 align="center">Benachrichtigungen</h3>
       <br>
       <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
@@ -76,23 +72,29 @@
   <div>
     <br>
     <br>
-    <br>
-    <div align="center">
-      <p style="position: absolute; left: 150px">User verwalten</p>
+    <table style="width: 100%">
+      <tr>
+        <td style="text-align: center">
+          <p style="font-size: calc(13px + 0.390625vw); position: relative;">Verwalten Sie ihre User!</p>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">
+          <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="userverwaltung">User verwalten</button>
+        </td>
+      </tr>
+    </table>
 
-      <br>
-    </div>
-    <div class="button-group">
-      <button type="button" class="button" style="position: absolute; left: 150px; width: 250px; margin-right: 50px" id="userverwaltung">User verwalten</button>
 
-    </div>
+
+
+
     <script type="text/javascript">
       document.getElementById("userverwaltung").onclick = function () {
         location.href = 'userverwaltung'
       }
     </script>
-
   </div>
   </body>
-
 </html>

@@ -124,6 +124,9 @@ public class MainController {
         return "redirect:/diensteEintragen";
     }
 
-
+    @GetMapping("/homepageAdmin")
+    public String homepageAdmin() {
+        return "homepageAdmin";
+    }
 
 }
