@@ -3,44 +3,7 @@
 <head>
   <title>Mitarbeiter hinzufügen</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="homepageUser.css"/>
-  <style>
-    button{
-      background-color: #f48324;
-      border:#f48324;
-      font-size: 20px;
-      color: white;
-      cursor: pointer;
-      border-radius: 3px;
-      font-family: "Calibri",sans-serif;
-    }
-    button:hover{
-      background-color: #df5308
-    }
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: black;
-    }
-
-    li {
-      float: left;
-    }
-
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 16px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      background-color: #df5308;
-    }
-  </style>
+  <link rel="stylesheet" href="/homepageUser.css"/>
 </head>
 
 <body>
@@ -56,7 +19,7 @@
         <a class="nav-link active" href="homepageAdmin"><b>Home</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="userverwaltung">Mitarbeiter verwalten</a>
+        <a class="nav-link" href="userverwaltung">User verwalten</a>
       </li>
     </ul>
   </div>
@@ -73,14 +36,17 @@
 
       <input type="text" th:field="*{username}"
              placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
+      <br>
 
       <input type="text" th:field="*{password}"
              placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+      <br>
 
       <select th:field="*{role}">
         <option th:value="'USER'" th:text="USER"></option>
         <option th:value="'ADMIN'" th:text="ADMIN"></option>
       </select>
+      <br>
 
       <button type="submit" class="btn btn primary">Save</button>
     </form>

@@ -1,11 +1,14 @@
 package com.emanager.emanager_demo.controller;
 
 import com.emanager.emanager_demo.model.Dienste;
+import com.emanager.emanager_demo.model.Nachrichten;
 import com.emanager.emanager_demo.model.User;
 import com.emanager.emanager_demo.service.DiensteServiceIn;
+import com.emanager.emanager_demo.service.NachrichtenServiceIn;
 import com.emanager.emanager_demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -22,15 +25,8 @@ public class MainController {
     @Autowired
     private DiensteServiceIn diensteService;
 
-    @GetMapping("/")
-    public String start(){
-        return "homepageUser";
-    }
-
-    @GetMapping("/user")
-    public String user() {
-        return "homepageUser";
-    }
+    @Autowired
+    private NachrichtenServiceIn nachrichtenService;
 
     @GetMapping("/homepageUser")
     public String homepageUser() {
@@ -44,11 +40,6 @@ public class MainController {
     }
 
 
-    @GetMapping("/admin")
-    public String admin() {
-
-        return "homepageAdmin";
-    }
 
     @GetMapping("/userverwaltung")
     public String userverwaltung(Model model) {
@@ -124,9 +115,41 @@ public class MainController {
         return "redirect:/diensteEintragen";
     }
 
-    @GetMapping("/homepageAdmin")
-    public String homepageAdmin() {
+    @GetMapping("/admin")
+    public String homepageAdmin(Model model) {
+        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
+        model.addAttribute("listNachrichten",listNachrichten);
         return "homepageAdmin";
     }
+
+
+    @GetMapping("/nachrichtenerstellen")
+    public String nachrichtenerstellen(Model model) {
+        // create model attribute to bind form data
+        Nachrichten nachrichten = new Nachrichten();
+        model.addAttribute("nachrichten", nachrichten);
+        return "nachrichtenerstellen";
+    }
+
+
+    @PostMapping("/saveNachrichten")
+    public String saveNachrichten( Nachrichten nachrichten) {
+        nachrichtenService.saveNachrichten(nachrichten);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/user")
+    public String user(Model model) {
+        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
+        model.addAttribute("listNachrichten",listNachrichten);
+        return "homepageUser";
+    }
+
+    @GetMapping("/deletenachricht/{id}")
+    public String deletenachricht(@PathVariable (value = "id") long id) {
+        this.nachrichtenService.deleteNachrichtById(id);
+        return "redirect:/admin";
+    }
+
 
 }
