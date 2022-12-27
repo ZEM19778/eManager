@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="d_dienste")
@@ -42,6 +44,13 @@ public class Dienste {
                 ", zeitbis=" + zeitbis +
                 '}';
     }
+
+    @Column(name = "d_mitarbeiter")
+    private String mitarbeiter;
+
+    public String getMitarbeiter() {return mitarbeiter;}
+
+    public void setMitarbeiter(String mitarbeiter) {this.mitarbeiter=mitarbeiter;}
 
     public Long getId() {
         return id;

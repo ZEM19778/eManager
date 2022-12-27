@@ -20,9 +20,9 @@ public class User {
     @Column(name="m_rolle")
     private String role;
 
-    @OneToMany
-    @JoinColumn(name="d_m_id", referencedColumnName = "m_id")
-    private List<Dienste> dienste = new ArrayList<>();
+    //@OneToMany
+    //@JoinColumn(name="d_m_id", referencedColumnName = "m_id")
+    //private List<Dienste> dienste = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name="n_m_id", referencedColumnName = "m_id")
