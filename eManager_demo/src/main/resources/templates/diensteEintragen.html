@@ -48,8 +48,8 @@
                     <tbody>
                     <th:block th:each="Dienste : ${listDienste} ">
                         <tr>
-                            <th scope="row">[[${Dienste.id}]]</th>
-                            <td>[[${Dienste.datumvon}]]</td>
+                            <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
+                            <td th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
                             <td>[[${Dienste.addresse}]]</td>
                             <td>[[${Dienste.zeitvon}]]</td>
                             <td>[[${Dienste.zeitbis}]]</td>

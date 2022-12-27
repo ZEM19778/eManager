@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Dienste eintragen</title>
     <meta charset="utf-8">
@@ -42,16 +42,18 @@
                         <th scope="col">Addresse</th>
                         <th scope="col">Zeit von</th>
                         <th scope="col">Zeit bis</th>
+                        <th scope="col">Mitarbeiter</th>
                     </tr>
                     </thead>
                     <tbody>
                     <th:block th:each="Dienste : ${listDienste} ">
                         <tr>
-                            <th scope="row">[[${Dienste.id}]]</th>
-                            <td>[[${Dienste.datumvon}]]</td>
+                            <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
+                            <td th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
                             <td>[[${Dienste.addresse}]]</td>
                             <td>[[${Dienste.zeitvon}]]</td>
                             <td>[[${Dienste.zeitbis}]]</td>
+                            <td>[[${Dienste.mitarbeiter}]]</td>
                         </tr>
                     </th:block>
                     </tbody>

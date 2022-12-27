@@ -20,7 +20,7 @@ public class Dienste {
     private Long id;
 
     @Column(name = "d_datum")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date datumvon;
 
     @Column(name = "d_von")
@@ -34,6 +34,9 @@ public class Dienste {
     @Column(name = "d_adresse")
     private String addresse;
 
+    @Column(name = "d_mitarbeiter")
+    private String mitarbeiter;
+
     @Override
     public String toString() {
         return "Dienste{" +
@@ -44,9 +47,6 @@ public class Dienste {
                 ", zeitbis=" + zeitbis +
                 '}';
     }
-
-    @Column(name = "d_mitarbeiter")
-    private String mitarbeiter;
 
     public String getMitarbeiter() {return mitarbeiter;}
 
