@@ -1,19 +1,44 @@
 package com.emanager.emanager_demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name="m_mitarbeiter")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="m_id")
     private Long id;
+
+    @Column(name="m_benutzername")
     private String username;
+    @Column(name="m_passwort")
     private String password;
+    @Column(name="m_rolle")
     private String role;
+
+    @OneToMany
+    @JoinColumn(name="d_m_id", referencedColumnName = "m_id")
+    private List<Dienste> dienste = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name="n_m_id", referencedColumnName = "m_id")
+    private List<Nachrichten> nachrichten = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name="t_m_id", referencedColumnName = "m_id")
+    private List<Termin> termine = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name="u_m_id", referencedColumnName = "m_id")
+    private List<Urlaub> urlaube = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name="u_genehmigt_m_id", referencedColumnName = "m_id")
+    private List<Urlaub> genehmigt = new ArrayList<>();
 
     @Override
     public String toString() {

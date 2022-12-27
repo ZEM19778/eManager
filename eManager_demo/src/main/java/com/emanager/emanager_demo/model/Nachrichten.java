@@ -6,26 +6,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name="nachrichten")
+@Table(name="n_nachrichten")
 public class Nachrichten {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="n_id")
     private Long id;
 
-    @Column(name = "nachricht")
+    @Column(name = "n_nachricht")
     private String nachricht;
 
 
 
-    @Column(name = "datumzeit",nullable = false, updatable = false)
-    @CreationTimestamp
-    private LocalDateTime datumzeit;
+    @Column(name = "n_datumzeit",nullable = false, updatable = false)
+    private String datumzeit;
 
     @Override
     public String toString() {
@@ -52,11 +53,11 @@ public class Nachrichten {
         this.nachricht = nachricht;
     }
 
-    public LocalDateTime getDatumzeit() {
+    public String getDatumzeit() {
         return datumzeit;
     }
 
-    public void setDatumzeit(LocalDateTime datumzeit) {
+    public void setDatumzeit(String datumzeit) {
         this.datumzeit = datumzeit;
     }
 }

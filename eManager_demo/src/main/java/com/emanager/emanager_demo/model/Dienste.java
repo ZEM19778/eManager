@@ -9,27 +9,28 @@ import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
-@Table(name="dienste")
+@Table(name="d_dienste")
 public class Dienste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="d_id")
     private Long id;
 
-    @Column(name = "datumvon")
+    @Column(name = "d_datum")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datumvon;
 
-    @Column(name = "addresse")
-    private String addresse;
-
-    @Column(name = "zeitvon")
+    @Column(name = "d_von")
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime zeitvon;
 
-    @Column(name = "zeitbis")
+    @Column(name = "d_bis")
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime zeitbis;
+
+    @Column(name = "d_adresse")
+    private String addresse;
 
     @Override
     public String toString() {

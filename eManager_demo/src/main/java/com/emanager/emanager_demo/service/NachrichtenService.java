@@ -5,6 +5,10 @@ import com.emanager.emanager_demo.repository.NachrichtenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +25,8 @@ public class NachrichtenService implements NachrichtenServiceIn{
 
 
     public void saveNachrichten(Nachrichten nachrichten) {
+        String date=new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Timestamp(System.currentTimeMillis()));
+        nachrichten.setDatumzeit(date);
         this.nachrichtenRepository.save(nachrichten);
     }
 
