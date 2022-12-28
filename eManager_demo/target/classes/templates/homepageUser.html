@@ -56,14 +56,12 @@
   <h3 align="center">Benachrichtigungen</h3>
   <br>
   <div style="width:700px;height:330px;border:1px solid #000; border-radius: 10px">
-    <div class="table-responsive">
-      <<table width="60%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
-      <!--rules=rows; rules=cols-->
+    <table class="table-bordered">
       <thead class="thead-dark">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Nachricht</th>
-        <th scope="col">Datum & Uhrzeit</th>
+        <th scope="col">Datum-Zeit</th>
       </tr>
       </thead>
       <tbody>
@@ -71,13 +69,12 @@
       <th:block th:each="Nachrichten : ${listNachrichten} ">
         <tr>
           <th scope="row">[[${Nachrichten.id}]]</th>
-          <td align=center>[[${Nachrichten.nachricht}]]</td>
-          <td align=center>[[${Nachrichten.datumzeit}]]</td>
+          <td>[[${Nachrichten.nachricht}]]</td>
+          <td>[[${Nachrichten.datumzeit}]]</td>
         </tr>
       </th:block>
       </tbody>
     </table>
-    </div>
   </div>
   <br>
 </div>

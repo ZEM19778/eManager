@@ -4,6 +4,17 @@
   <title>Mitarbeiter-Verwaltung</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/homepageUser.css"/>
+  <style>
+    .container {
+      height: 265px;
+      overflow-y: scroll;
+    }
+    .data, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 4px;
+    }
+  </style>
 </head>
 
 <body>
@@ -26,14 +37,14 @@
 </nav>
 
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
-  <h3 align="center">Kontrollzentrale</h3>
+  <h3 align="center">Mitarbeiterliste</h3>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 5px">
     <a th:href = "@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Add User </a>
     <br>
     <br>
-    <div class="table-responsive">
-      <table width="60%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+    <div class="container">
+      <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
         <tr>
