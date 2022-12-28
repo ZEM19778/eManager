@@ -31,33 +31,36 @@
     <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
         <h3 align="center">Dienste eintragen</h3>
         <br>
-            <div style="width:700px;height:330px;border:1px solid #000; border-radius: 10px">
+            <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
                 <p>Deine Dienste</p>
                 <a th:href = "@{/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
-                <table class="table-bordered">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">User ID</th>
-                        <th scope="col">Datum von</th>
-                        <th scope="col">Addresse</th>
-                        <th scope="col">Zeit von</th>
-                        <th scope="col">Zeit bis</th>
-                        <th scope="col">Mitarbeiter</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <th:block th:each="Dienste : ${listDienste} ">
+                <div class="table-responsive">
+                    <table width="60%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+                        <!--rules=rows; rules=cols-->
+                        <thead class="thead-dark">
                         <tr>
-                            <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
-                            <td th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
-                            <td>[[${Dienste.addresse}]]</td>
-                            <td>[[${Dienste.zeitvon}]]</td>
-                            <td>[[${Dienste.zeitbis}]]</td>
-                            <td>[[${Dienste.mitarbeiter}]]</td>
+                            <th scope="col">User ID</th>
+                            <th scope="col">Datum von</th>
+                            <th scope="col">Addresse</th>
+                            <th scope="col">Zeit von</th>
+                            <th scope="col">Zeit bis</th>
+                            <th scope="col">Mitarbeiter</th>
                         </tr>
-                    </th:block>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="Dienste : ${listDienste} ">
+                            <tr>
+                                <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
+                                <td align=center th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
+                                <td align=center>[[${Dienste.addresse}]]</td>
+                                <td align=center>[[${Dienste.zeitvon}]]</td>
+                                <td align=center>[[${Dienste.zeitbis}]]</td>
+                                <td align=center>[[${Dienste.mitarbeiter}]]</td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         <br>
     </div>
