@@ -32,30 +32,34 @@
     <a th:href = "@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Add User </a>
     <br>
     <br>
-    <table class="table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Password</th>
-        <th scope="col">Role</th>
-      </tr>
-      </thead>
-      <tbody>
-      <th:block th:each="User : ${listUsers} ">
-
+    <div class="table-responsive">
+      <table width="60%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+        <!--rules=rows; rules=cols-->
+        <thead class="thead-dark">
         <tr>
-          <th scope="row">[[${User.id}]]</th>
-          <td>[[${User.username}]]</td>
-          <td>[[${User.password}]]</td>
-          <td>[[${User.role}]]</td>
-          <td> <a th:href="@{/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
-            <a th:href="@{/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
-          </td>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Anpassen</th>
+          <th scope="col">Löschen</th>
         </tr>
-      </th:block>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <th:block th:each="User : ${listUsers} ">
+
+          <tr>
+            <th scope="row" align=center>[[${User.id}]]</th>
+            <td align=center>[[${User.username}]]</td>
+            <td align=center>[[${User.role}]]</td>
+            <td align="center"> <a th:href="@{/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            </td>
+            <td align="center"> <a th:href="@{/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
 
   </div>
   <br>

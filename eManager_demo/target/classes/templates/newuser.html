@@ -28,6 +28,9 @@
   <h3 align="center">Bearbeiten</h3>
   <br>
   <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
+    <u>Legen Sie einen neuen User an!</u>
+    <br>
+    <br>
     <form action="#" th:action="@{/saveUser}" th:object="${user}"
           method="POST">
 
@@ -35,7 +38,7 @@
              placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
 
       <input type="text" th:field="*{username}"
-             placeholder="User  Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
+             placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
       <br>
 
       <input type="text" th:field="*{password}"
