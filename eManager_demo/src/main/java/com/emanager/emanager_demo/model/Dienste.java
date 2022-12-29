@@ -20,7 +20,7 @@ public class Dienste {
     private Long id;
 
     @Column(name = "d_datum")
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datumvon;
 
     @Column(name = "d_von")

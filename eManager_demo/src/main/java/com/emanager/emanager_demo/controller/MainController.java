@@ -37,8 +37,17 @@ public class MainController {
     private NachrichtenServiceIn nachrichtenService;
 
     @GetMapping("/homepageUser")
-    public String homepageUser() {
+    public String homepageUser(Model model) {
+        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
+        model.addAttribute("listNachrichten",listNachrichten);
         return "homepageUser";
+    }
+
+    @GetMapping("/homepageAdmin")
+    public String hauptseiteAdmin(Model model) {
+        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
+        model.addAttribute("listNachrichten",listNachrichten);
+        return "homepageAdmin";
     }
 
 
@@ -53,7 +62,6 @@ public class MainController {
     public String userverwaltung(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers",listUsers);
-
         return "userverwaltung";
     }
 

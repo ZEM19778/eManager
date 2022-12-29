@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <title>User-Hauptseite</title>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,9 +32,9 @@
 </head>
 
 <body>
-<div align="center" style="background-color: #f48324">
+<div align="center" style="background-color: #f48324" sec:authorize="isAuthenticated()">
   <h1 style="color: white">eManager - User</h1>
-  <h2 style="color: white">Willkommen zur Hauptseite</h2>
+  <h2 style="color: white">Willkommen <span sec:authentication="name"></span></h2>
   <br>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
