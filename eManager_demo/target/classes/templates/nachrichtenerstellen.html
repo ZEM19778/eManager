@@ -5,6 +5,14 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="homepageUser.css"/>
   <style>
+    textarea{
+      width: 45em;
+      height: 15em;
+      border: 1px solid #cccccc;
+      resize:vertical; max-height:100px; min-height:130px;
+      padding: 0.5em;
+      font-family: Calibri, sans-serif;
+    }
     button{
       background-color: #f48324;
       border:#f48324;
@@ -72,16 +80,17 @@
       <!--<input type="text" th:field="*{id}"
              placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
 
-      <input type="text"  th:field="*{nachricht}"
-             placeholder="Nachricht" class="form-control mb-4 col-4" required minlength="1" >
 
+      <textarea  th:field="*{nachricht}"
+                 placeholder="Nachricht" class="form-control mb-4 col-4" required minlength="1" ></textarea>
+
+      <br>
       <button type="submit" class="btn btn primary">Save</button>
     </form>
   </div>
   <br>
 </div>
 <div>
-  <br>
   <br>
   <br>
   <table style="width: 100%">
