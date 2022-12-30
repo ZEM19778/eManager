@@ -3,7 +3,7 @@
 <head>
   <title>Mitarbeiter hinzufügen</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/homepageUser.css"/>
+  <link rel="stylesheet" href='/homepageUser.css'/>
 </head>
 
 <body>
@@ -21,6 +21,9 @@
       <li class="nav-item">
         <a class="nav-link" th:href = "@{/userverwaltung}">User verwalten</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="passwortAendern">Passwort ändern</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -33,9 +36,6 @@
       <u>Hier können Sie Ihren ausgwählten User bearbeiten</u>
       <br>
       <br>
-
-        <p>ID-Nummer: <input type="text" th:field="*{id}" /> </p>
-
 
         <p>Name ändern: <input type="text" th:field="*{username}"
                placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
@@ -51,16 +51,16 @@
         </select> </p>
       <hr>
         <br>
-
+      <br>
       <table border="3">
         <tr>
           <th>
-            <a th:href = "@{/userverwaltung}"> Back to User List </a>
+            <a th:href = "@{/userverwaltung}"> Zurück zur Userliste </a>
           </th>
         </tr>
         <tr>
           <th>
-            <button type="submit" class="btn btn primary">Save</button>
+            <button type="submit" class="btn btn primary">Speichern</button>
           </th>
         </tr>
       </table>
