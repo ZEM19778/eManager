@@ -4,6 +4,12 @@
     <title>Dienste eintragen</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/homepageUser.css"/>
+    <style>
+        .container {
+            height: 270px;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 
     <body>
@@ -34,13 +40,13 @@
             <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
                 <p>Deine Dienste</p>
                 <a th:href = "@{/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
-                <div class="table-responsive">
-                    <table width="60%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+                <div class="container">
+                    <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
                         <!--rules=rows; rules=cols-->
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">User ID</th>
-                            <th scope="col">Datum von</th>
+                            <th scope="col">Datum</th>
                             <th scope="col">Addresse</th>
                             <th scope="col">Zeit von</th>
                             <th scope="col">Zeit bis</th>
