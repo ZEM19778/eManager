@@ -133,5 +133,8 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.7.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.7.4" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="evo-calendar" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
   </component>
 </module>

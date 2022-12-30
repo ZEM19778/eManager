@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +38,9 @@ public class Dienste {
     @Column(name = "d_mitarbeiter")
     private String mitarbeiter;
 
+    @Column(name = "d_dauer")
+    private float dauer;
+
     @Override
     public String toString() {
         return "Dienste{" +
@@ -47,6 +51,10 @@ public class Dienste {
                 ", zeitbis=" + zeitbis +
                 '}';
     }
+
+    public float getDauer() {return dauer;}
+
+    public void setDauer(float dauer) {this.dauer=dauer;}
 
     public String getMitarbeiter() {return mitarbeiter;}
 

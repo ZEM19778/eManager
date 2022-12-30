@@ -19,9 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -127,6 +131,8 @@ public class MainController {
     @PostMapping("/saveDienste")
     public String saveDienste( Dienste dienste) {
         String username;
+        LocalTime von = dienste.getZeitvon();
+        LocalTime bis = dienste.getZeitbis();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
@@ -135,6 +141,12 @@ public class MainController {
             username = principal.toString();
         }
         dienste.setMitarbeiter(username);
+        Duration diff = Duration.between(von, bis);
+        Long d = diff.toMinutes();
+        int stunde = 60;
+        double stunden = (double) d /  stunde;
+        float stundenzahl = (float) stunden;
+        dienste.setDauer(stundenzahl);
         diensteService.saveDienste(dienste);
 
         return "redirect:/diensteEintragen";
