@@ -5,6 +5,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="homepageUser.css"/>
   <style>
+    .container {
+      height: 285px;
+      overflow-y: scroll;
+    }
+
     button{
       background-color: #f48324;
       border:#f48324;
@@ -67,8 +72,8 @@
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
     <a th:href = "@{/nachrichtenerstellen}" class="btn btn-primary btn-sm mb-3"> Nachricht schreiben </a>
     <br>
-    <div class="table-responsive">
-      <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="table">
+    <div class="container">
+      <table width="90%" border=2 rules=rows cellpadding=15 cellspacing=15 class="table">
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
         <tr>

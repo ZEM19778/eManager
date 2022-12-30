@@ -5,6 +5,10 @@
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="homepageUser.css"/>
   <style>
+    .container {
+      height: 305px;
+      overflow-y: scroll;
+    }
     ul {
       list-style-type: none;
       margin: 0;
@@ -55,26 +59,29 @@
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
   <h3 align="center">Benachrichtigungen</h3>
   <br>
-  <div style="width:700px;height:330px;border:1px solid #000; border-radius: 10px">
-    <table class="table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nachricht</th>
-        <th scope="col">Datum-Zeit</th>
-      </tr>
-      </thead>
-      <tbody>
-      <p>Nachrichten vom Admin</p>
-      <th:block th:each="Nachrichten : ${listNachrichten} ">
+  <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
+    <div class="container">
+      <table width="70%" border=2 rules=rows cellpadding=15 cellspacing=15 class="table">
+        <!--rules=rows; rules=cols-->
+        <thead class="thead-dark">
         <tr>
-          <th scope="row">[[${Nachrichten.id}]]</th>
-          <td>[[${Nachrichten.nachricht}]]</td>
-          <td>[[${Nachrichten.datumzeit}]]</td>
+          <th scope="col">ID</th>
+          <th scope="col">Nachricht</th>
+          <th scope="col">Datum & Uhrzeit</th>
         </tr>
-      </th:block>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <p>Nachrichten vom Admin</p>
+        <th:block th:each="Nachrichten : ${listNachrichten} ">
+          <tr>
+            <th scope="row">[[${Nachrichten.id}]]</th>
+            <td align=center>[[${Nachrichten.nachricht}]]</td>
+            <td align=center>[[${Nachrichten.datumzeit}]]</td>
+          </tr>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
   </div>
   <br>
 </div>
