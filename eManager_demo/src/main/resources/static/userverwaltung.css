@@ -1,0 +1,9 @@
+.container {
+    height: 260px;
+    overflow-y: scroll;
+}
+.data, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 4px;
+}
