@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="55c22187-359f-467b-9b4f-376c61bbddb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/config/WebSecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/service/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/service/CustomUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emanager/emanager_demo/service/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/EManagerDemoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/EManagerDemoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/UserNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/UserNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/config/ResourceConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/config/ResourceConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/config/WebSecurityConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/Dienste.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/Dienste.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/Nachrichten.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/Nachrichten.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/CustomUserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/CustomUserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/DiensteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/DiensteService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/DiensteServiceIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/DiensteServiceIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/NachrichtenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/NachrichtenService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/NachrichtenServiceIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/NachrichtenServiceIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/UserServiceIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/emanager/emanager_demo/service/UserServiceIn.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\hargu\OneDrive - HTL Spengergasse\3AHBGM\MGIN\IntelliJ IDEA 2020.2.1\plugins\maven\lib\maven3" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JlbQsa8BMhp2sOURCxN1JaxQLh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/hargu/Desktop/eManager/eManager_demo/src/main/resources/templates",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "5e4bac9281e991c86a2de00be3f497ae"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hargu\Desktop\eManager\eManager_demo\src\main\resources\templates" />
+      <recent name="C:\Users\hargu\Desktop\eManager\eManager_demo\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="EManagerDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eManager_demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.emanager.emanager_demo.EManagerDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55c22187-359f-467b-9b4f-376c61bbddb3" name="Changes" comment="" />
+      <created>1672655605519</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672655605519</updated>
+      <workItem from="1672655606909" duration="43000" />
+      <workItem from="1672678953487" duration="2819000" />
+      <workItem from="1672774448115" duration="5160000" />
+      <workItem from="1672863569222" duration="390000" />
+      <workItem from="1672864042954" duration="11230000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
