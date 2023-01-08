@@ -17,38 +17,19 @@ public class User {
     private String username;
     @Column(name="m_passwort")
     private String password;
+
+    @Enumerated(EnumType.STRING)
     @Column(name="m_rolle")
-    private String role;
+    private Role role;
 
-    //@OneToMany
-    //@JoinColumn(name="d_m_id", referencedColumnName = "m_id")
-    //private List<Dienste> dienste = new ArrayList<>();
+    public User() {}
 
-    @OneToMany
-    @JoinColumn(name="n_m_id", referencedColumnName = "m_id")
-    private List<Nachrichten> nachrichten = new ArrayList<>();
-
-    @OneToMany
-    @JoinColumn(name="t_m_id", referencedColumnName = "m_id")
-    private List<Termin> termine = new ArrayList<>();
-
-    @OneToMany
-    @JoinColumn(name="u_m_id", referencedColumnName = "m_id")
-    private List<Urlaub> urlaube = new ArrayList<>();
-
-    @OneToMany
-    @JoinColumn(name="u_genehmigt_m_id", referencedColumnName = "m_id")
-    private List<Urlaub> genehmigt = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
+
 
     public Long getId() {
         return id;
@@ -74,11 +55,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
+

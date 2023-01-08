@@ -33,7 +33,7 @@
   <h3 align="center">Mitarbeiterliste</h3>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 5px">
-    <a th:href = "@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Mitarbeiter hinzufügen </a>
+    <a th:href = "@{/admin/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Mitarbeiter hinzufügen </a>
     <br>
     <br>
     <div class="container">
@@ -53,9 +53,9 @@
           <tr>
             <td align=center>[[${User.username}]]</td>
             <td align=center>[[${User.role}]]</td>
-            <td align="center"> <a th:href="@{/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            <td align="center"> <a th:href="@{/admin/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
             </td>
-            <td align="center"> <a th:href="@{/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
+            <td align="center"> <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
             </td>
           </tr>
         </th:block>

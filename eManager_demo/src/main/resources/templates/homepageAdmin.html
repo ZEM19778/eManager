@@ -32,7 +32,7 @@
   <h3 align="center">Benachrichtigungen</h3>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
-    <a th:href = "@{/nachrichtenerstellen}" class="btn btn-primary btn-sm mb-3"> Nachricht schreiben </a>
+    <a th:href = "@{/admin/nachrichtenerstellen}" class="btn btn-primary btn-sm mb-3"> Nachricht schreiben </a>
     <br>
     <div class="container">
       <table width="90%" border=2 rules=rows cellpadding=15 cellspacing=15 class="table">
@@ -52,7 +52,7 @@
             <th scope="row">[[${Nachrichten.id}]]</th>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
-            <td align="center"><a th:href="@{/deletenachricht/{id}(id=${Nachrichten.id})}" class="btn btn-danger">Löschen</a>
+            <td align="center"><a th:href="@{/admin/deletenachricht/{id}(id=${Nachrichten.id})}" class="btn btn-danger">Löschen</a>
             </td>
           </tr>
         </th:block>

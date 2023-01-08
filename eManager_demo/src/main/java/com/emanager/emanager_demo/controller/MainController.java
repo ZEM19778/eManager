@@ -40,29 +40,45 @@ public class MainController {
     @Autowired
     private NachrichtenServiceIn nachrichtenService;
 
-    @GetMapping("/homepageUser")
-    public String homepageUser(Model model) {
-        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
-        model.addAttribute("listNachrichten",listNachrichten);
-        return "homepageUser";
+    @GetMapping("")
+    public String viewHomePage() {
+        return "index";
     }
 
-    @GetMapping("/homepageAdmin")
-    public String hauptseiteAdmin(Model model) {
+    @GetMapping("/admin/login")
+    public String viewAdminLoginPage() {
+        return "admin_login";
+    }
+
+    @GetMapping("/admin/home")
+    public String homepageAdmin(Model model) {
         List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
         model.addAttribute("listNachrichten",listNachrichten);
         return "homepageAdmin";
     }
 
 
-    @GetMapping("/kalender")
+    @GetMapping("/user/login")
+    public String viewUserLoginPage() {
+        return "user_login";
+    }
+
+    @GetMapping("/user/home")
+    public String user(Model model) {
+        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
+        model.addAttribute("listNachrichten",listNachrichten);
+        return "homepageUser";
+    }
+
+
+    @GetMapping("user/kalender")
     public String kalender() {
         return "kalender";
     }
 
 
 
-    @GetMapping("/userverwaltung")
+    @GetMapping("admin/userverwaltung")
     public String userverwaltung(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers",listUsers);
@@ -70,7 +86,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/showNewUserForm")
+    @GetMapping("admin/showNewUserForm")
     public String showNewUserForm(Model model) {
         // create model attribute to bind form data
         User user = new User();
@@ -79,16 +95,16 @@ public class MainController {
         return "newuser";
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/admin/saveUser")
     public String saveUser(User user) {
         // save User to database
         service.saveUser(user);
 
-        return "redirect:/userverwaltung";
+        return "redirect:/admin/userverwaltung";
     }
 
 
-    @GetMapping("/showFormForUpdate/{id}")
+    @GetMapping("/admin/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
 
         // get employee from the service
@@ -100,18 +116,18 @@ public class MainController {
     }
 
 
-    @GetMapping("/deleteuser/{id}")
+    @GetMapping("/admin/deleteuser/{id}")
     public String deleteuser(@PathVariable (value = "id") long id) {
 
 
         this.service.deleteUsereById(id);
-        return "redirect:/userverwaltung";
+        return "redirect:/admin/userverwaltung";
     }
 
 
 //////////////////////
-    
-    @GetMapping("/diensteEintragen")
+
+    @GetMapping("user/diensteEintragen")
     public String diensteEintragen(Model model) {
         List<Dienste> listDienste = diensteService.getAllDienste();
         model.addAttribute("listDienste",listDienste);
@@ -120,7 +136,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/diensteerstellen")
+    @GetMapping("user/diensteerstellen")
     public String diensteerstellen(Model model) {
         // create model attribute to bind form data
         Dienste dienste = new Dienste();
@@ -128,7 +144,7 @@ public class MainController {
         return "diensteerstellen";
     }
 
-    @PostMapping("/saveDienste")
+    @PostMapping("/user/saveDienste")
     public String saveDienste( Dienste dienste) {
         String username;
         LocalTime von = dienste.getZeitvon();
@@ -149,18 +165,13 @@ public class MainController {
         dienste.setDauer(stundenzahl);
         diensteService.saveDienste(dienste);
 
-        return "redirect:/diensteEintragen";
-    }
-
-    @GetMapping("/admin")
-    public String homepageAdmin(Model model) {
-        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
-        model.addAttribute("listNachrichten",listNachrichten);
-        return "homepageAdmin";
+        return "redirect:/user/diensteEintragen";
     }
 
 
-    @GetMapping("/nachrichtenerstellen")
+
+
+    @GetMapping("/admin/nachrichtenerstellen")
     public String nachrichtenerstellen(Model model) {
         // create model attribute to bind form data
         Nachrichten nachrichten = new Nachrichten();
@@ -169,23 +180,18 @@ public class MainController {
     }
 
 
-    @PostMapping("/saveNachrichten")
+    @PostMapping("/admin/saveNachrichten")
     public String saveNachrichten( Nachrichten nachrichten) {
         nachrichtenService.saveNachrichten(nachrichten);
-        return "redirect:/admin";
+        return "redirect:/admin/home";
     }
 
-    @GetMapping("/user")
-    public String user(Model model) {
-        List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
-        model.addAttribute("listNachrichten",listNachrichten);
-        return "homepageUser";
-    }
 
-    @GetMapping("/deletenachricht/{id}")
+
+    @GetMapping("/admin/deletenachricht/{id}")
     public String deletenachricht(@PathVariable (value = "id") long id) {
         this.nachrichtenService.deleteNachrichtById(id);
-        return "redirect:/admin";
+        return "redirect:/admin/home";
     }
 
 
