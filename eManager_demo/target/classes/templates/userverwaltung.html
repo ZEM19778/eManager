@@ -12,18 +12,19 @@
   <h1 style="color: white">eManager - Admin</h1>
   <h2 style="color: white">Verwaltung</h2>
   <br>
+  <br>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="homepageAdmin">Home</a>
+        <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="userverwaltung"><b>User verwalten</b></a>
+        <a class="nav-link active" th:href = "@{/admin/userverwaltung}"><b>Mitarbeiter verwalten</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="passwortAendern">Passwort ändern</a>
+        <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
       </li>
     </ul>
   </div>

@@ -11,18 +11,19 @@
   <h1 style="color: white">eManager</h1>
   <h2 style="color: white">Mitarbeiter updaten</h2>
   <br>
+  <br>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/homepageAdmin}"><b>Home</b></a>
+        <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href = "@{/userverwaltung}">User verwalten</a>
+        <a class="nav-link active" th:href = "@{/admin/userverwaltung}"><b>Mitarbeiter verwalten</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="passwortAendern">Passwort ändern</a>
+        <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
       </li>
     </ul>
   </div>
@@ -37,25 +38,25 @@
       <br>
       <br>
 
-        <p>Name ändern: <input type="text" th:field="*{username}"
-               placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
+      <p>Name ändern: <input type="text" th:field="*{username}"
+                             placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
 
 
-        <p>Passwört ändern: <input type="text" th:field="*{password}"
-               placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45"> </p>
+      <p>Passwört ändern: <input type="text" th:field="*{password}"
+                                 placeholder="User Password" class="form-control mb-4 col-4" required minlength="2" maxlength="45"> </p>
 
 
-        <p>Rolle ändern: <select th:field="*{role}">
-          <option th:value="'USER'" th:text="USER"></option>
-          <option th:value="'ADMIN'" th:text="ADMIN"></option>
-        </select> </p>
+      <p>Rolle ändern: <select th:field="*{role}">
+        <option th:value="'USER'" th:text="USER"></option>
+        <option th:value="'ADMIN'" th:text="ADMIN"></option>
+      </select> </p>
       <hr>
-        <br>
+      <br>
       <br>
       <table border="3">
         <tr>
           <th>
-            <a th:href = "@{/userverwaltung}"> Zurück zur Userliste </a>
+            <a th:href = "@{/admin/userverwaltung}"> Zurück zur Userliste </a>
           </th>
         </tr>
         <tr>
@@ -72,11 +73,11 @@
   <br>
 </div>
 
-  <script type="text/javascript">
-    document.getElementById("userverwaltung").onclick = function () {
-      location.href = 'userverwaltung'
-    }
-  </script>
+<script type="text/javascript">
+  document.getElementById("userverwaltung").onclick = function () {
+    location.href = 'userverwaltung'
+  }
+</script>
 
 </div>
 </body>

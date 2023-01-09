@@ -6,103 +6,107 @@
     <link rel="stylesheet" href='/homepageUser.css'/>
     <link rel="stylesheet" href='/diensteEintragen.css'/>
 </head>
-    <body>
-    <div align="center" style="background-color: #f48324">
-        <h1 style="color: white">eManager - User</h1>
-        <h2 style="color: white">Dienste</h2>
-        <br>
-    </div>
+<body>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="homepageUser"><b>Home</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="diensteEintragen">Dienste</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="kalender">Kalender</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="passwortAendern">Passwort ändern</a>
-                </li>
-            </ul>
+
+<div align="center" style="background-color: #f48324">
+    <h1 style="color: white">eManager - User</h1>
+    <h2 style="color: white">Dienste</h2>
+    <br>
+    <br>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/home}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/diensteEintragen}"><b>Dienste</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/kalender}">Kalender</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/home}">Passwort ändern</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+    <h3 align="center">Dienste eintragen</h3>
+    <h2 style="color: orange">Dienste von: <span sec:authentication="name"></span></h2>
+    <br>
+    <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
+        <p>Deine Dienste</p>
+        <a th:href = "@{/user/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
+        <div class="container">
+            <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+                <!--rules=rows; rules=cols-->
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Addresse</th>
+                    <th scope="col">Zeit von</th>
+                    <th scope="col">Zeit bis</th>
+                    <th scope="col">Mitarbeiter</th>
+                    <th scope="col">Dauer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="Dienste : ${listDienste} ">
+                    <tr>
+                        <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
+                        <td align=center th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
+                        <td align=center>[[${Dienste.addresse}]]</td>
+                        <td align=center>[[${Dienste.zeitvon}]]</td>
+                        <td align=center>[[${Dienste.zeitbis}]]</td>
+                        <td align=center>[[${Dienste.mitarbeiter}]]</td>
+                        <td align=center>[[${Dienste.dauer}]]h</td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
         </div>
-    </nav>
-    <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
-        <h3 align="center">Dienste eintragen</h3>
-        <br>
-            <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
-                <p>Deine Dienste</p>
-                <a th:href = "@{/user/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
-                <div class="container">
-                    <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
-                        <!--rules=rows; rules=cols-->
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">User ID</th>
-                            <th scope="col">Datum</th>
-                            <th scope="col">Addresse</th>
-                            <th scope="col">Zeit von</th>
-                            <th scope="col">Zeit bis</th>
-                            <th scope="col">Mitarbeiter</th>
-                            <th scope="col">Dauer</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <th:block th:each="Dienste : ${listDienste} ">
-                            <tr>
-                                <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
-                                <td align=center th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
-                                <td align=center>[[${Dienste.addresse}]]</td>
-                                <td align=center>[[${Dienste.zeitvon}]]</td>
-                                <td align=center>[[${Dienste.zeitbis}]]</td>
-                                <td align=center>[[${Dienste.mitarbeiter}]]</td>
-                                <td align=center>[[${Dienste.dauer}]]h</td>
-                            </tr>
-                        </th:block>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        <br>
     </div>
     <br>
-    <br>
-    <table style="width: 100%">
-        <tr>
-            <td style="text-align: center">
-                <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
-            </td>
-            <td></td>
-            <td style="text-align: center">
-                <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
-            </td>
-        </tr>
-        <tr class="blank_row">
-            <td colspan="2"></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
-            </td>
-            <td></td>
-            <td style="text-align: center">
-                <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
-            </td>
-        </tr>
-    </table>
-    <script type="text/javascript">
-        document.getElementById("Dienste").onclick = function () {
-            location.href = 'diensteEintragen'
-        }
-    </script>
-    <script type="text/javascript">
-        document.getElementById("Kalender").onclick = function () {
-            location.href = 'kalender'
-        }
-    </script>
-    </body>
+</div>
+<br>
+<br>
+<table style="width: 100%">
+    <tr>
+        <td style="text-align: center">
+            <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
+        </td>
+        <td></td>
+        <td style="text-align: center">
+            <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
+        </td>
+    </tr>
+    <tr class="blank_row">
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td style="text-align: center">
+            <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
+        </td>
+        <td></td>
+        <td style="text-align: center">
+            <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    document.getElementById("Dienste").onclick = function () {
+        location.href = 'diensteEintragen'
+    }
+</script>
+<script type="text/javascript">
+    document.getElementById("Kalender").onclick = function () {
+        location.href = 'kalender'
+    }
+</script>
+</body>
 </html>
