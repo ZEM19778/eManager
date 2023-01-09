@@ -25,4 +25,9 @@ public class Urlaub {
     @Column(name="u_genehmigt")
     private Boolean genehmigt;
 
+    @Column(name = "u_beantragt_name")
+    private String beantragtMitarbeiter;
+
+    @Column(name = "u_genehmigt_name")
+    private String genehmigtMitarbeiter;
 }
