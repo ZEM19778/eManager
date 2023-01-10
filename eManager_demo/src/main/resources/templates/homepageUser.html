@@ -57,12 +57,16 @@
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/user/home}">Passwort ändern</a>
       </li>
+
     </ul>
   </div>
 </nav>
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
   <h3 align="center">Benachrichtigungen</h3>
   <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
+  <form th:action="@{/user/logout}" method="post">
+    <input type="submit" value="Ausloggen" />
+  </form>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
     <div class="container">
@@ -90,6 +94,10 @@
   </div>
   <br>
 </div>
+
+<form th:action="@{/user/logout}" method="post">
+  <input type="submit" value="Ausloggen" />
+</form>
 
 <div>
   <br>

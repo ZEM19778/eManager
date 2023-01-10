@@ -26,11 +26,18 @@
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/logout}">Ausloggen</a>
+      </li>
     </ul>
   </div>
 </nav>
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+  <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>
+  <form th:action="@{/admin/logout}" method="post">
+    <input type="submit" value="Ausloggen" />
+  </form>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
     <a th:href = "@{/admin/nachrichtenerstellen}" class="btn btn-primary btn-sm mb-3"> Nachricht schreiben </a>
@@ -60,6 +67,7 @@
         </tbody>
       </table>
     </div>
+
 
   </div>
   <br>

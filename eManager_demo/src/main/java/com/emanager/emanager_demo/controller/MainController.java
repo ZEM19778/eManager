@@ -129,7 +129,9 @@ public class MainController {
 
     @GetMapping("user/diensteEintragen")
     public String diensteEintragen(Model model) {
-        List<Dienste> listDienste = diensteService.getAllDienste();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String benutzername = authentication.getName();
+        List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(benutzername);
         model.addAttribute("listDienste",listDienste);
 
         return "diensteEintragen";

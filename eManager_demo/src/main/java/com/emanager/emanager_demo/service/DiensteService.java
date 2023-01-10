@@ -40,4 +40,10 @@ public class DiensteService implements DiensteServiceIn{
         return dienste;
     }
 
+
+    @Override
+    public List<Dienste> findDiensteByMitarbeiterLike(String nutzername) {
+        return diensteRepository.findDiensteByMitarbeiter(nutzername);
+    }
+
 }
