@@ -44,6 +44,7 @@ body{
     opacity: 0;
     transition: margin-left 0.18s ease, opacity 0.15s ease;
 }
+
 .container.active .forms{
     height: 600px;
 }

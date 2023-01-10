@@ -94,37 +94,31 @@
   </div>
   <br>
 </div>
-
-<form th:action="@{/user/logout}" method="post">
-  <input type="submit" value="Ausloggen" />
-</form>
-
-<div>
-  <br>
-  <br>
-  <table style="width: 100%">
-    <tr>
-      <td style="text-align: center">
-        <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
-      </td>
-      <td></td>
-      <td style="text-align: center">
-        <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
-      </td>
-    </tr>
-    <tr class="blank_row">
-      <td colspan="2"></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">
-        <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
-      </td>
-      <td></td>
-      <td style="text-align: center">
-        <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
-      </td>
-    </tr>
-  </table>
+<br>
+<br>
+<table style="width: 100%">
+  <tr>
+    <td style="text-align: center">
+      <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
+    </td>
+    <td></td>
+    <td style="text-align: center">
+      <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
+    </td>
+  </tr>
+  <tr class="blank_row">
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td style="text-align: center">
+      <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
+    </td>
+    <td></td>
+    <td style="text-align: center">
+      <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
+    </td>
+  </tr>
+</table>
   <script type="text/javascript">
     document.getElementById("Dienste").onclick = function () {
       location.href = 'diensteEintragen'
@@ -135,6 +129,5 @@
       location.href = 'kalender'
     }
   </script>
-</div>
 </body>
 </html>
