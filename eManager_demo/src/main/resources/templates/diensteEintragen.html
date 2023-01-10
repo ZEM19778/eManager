@@ -34,6 +34,7 @@
         </ul>
     </div>
 </nav>
+
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
     <h3 align="center">Dienste eintragen</h3>
     <h2 style="color: orange">Dienste von: <span sec:authentication="name"></span></h2>
@@ -59,7 +60,7 @@
                 <th:block th:each="Dienste : ${listDienste} ">
                     <tr>
                         <th scope="row" th:pattern="d">[[${Dienste.id}]]</th>
-                        <td align=center th:text="${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}"></td>
+
                         <td align=center>[[${Dienste.addresse}]]</td>
                         <td align=center>[[${Dienste.zeitvon}]]</td>
                         <td align=center>[[${Dienste.zeitbis}]]</td>

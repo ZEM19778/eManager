@@ -15,12 +15,12 @@ public class Urlaub {
     private Long id;
 
     @Column(name="u_beginn")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date beginn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate beginn;
 
     @Column(name="u_ende")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date ende;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate ende;
 
     @Column(name="u_genehmigt")
     private Boolean genehmigt;
@@ -28,6 +28,55 @@ public class Urlaub {
     @Column(name = "u_beantragt_name")
     private String beantragtMitarbeiter;
 
-    @Column(name = "u_genehmigt_name")
-    private String genehmigtMitarbeiter;
+
+    @Override
+    public String toString() {
+        return "Urlaub{" +
+                "id=" + id +
+                ", beginn=" + beginn +
+                ", ende=" + ende +
+                ", genehmigt=" + genehmigt +
+                ", beantragtMitarbeiter='" + beantragtMitarbeiter + '\'' +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getBeginn() {
+        return beginn;
+    }
+
+    public void setBeginn(LocalDate beginn) {
+        this.beginn = beginn;
+    }
+
+    public LocalDate getEnde() {
+        return ende;
+    }
+
+    public void setEnde(LocalDate ende) {
+        this.ende = ende;
+    }
+
+    public Boolean getGenehmigt() {
+        return genehmigt;
+    }
+
+    public void setGenehmigt(Boolean genehmigt) {
+        this.genehmigt = genehmigt;
+    }
+
+    public String getBeantragtMitarbeiter() {
+        return beantragtMitarbeiter;
+    }
+
+    public void setBeantragtMitarbeiter(String beantragtMitarbeiter) {
+        this.beantragtMitarbeiter = beantragtMitarbeiter;
+    }
 }

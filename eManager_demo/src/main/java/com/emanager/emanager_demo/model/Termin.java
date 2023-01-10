@@ -20,8 +20,8 @@ public class Termin {
     private String beschreibung;
 
     @Column(name="t_datum")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date datum;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate datum;
 
     @Column(name="t_beginn")
     @JsonFormat(pattern = "HH:mm:ss")
@@ -30,4 +30,81 @@ public class Termin {
     @Column(name="t_ende")
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime ende;
+
+    @Column(name = "t_betrifft")
+    private String betrifft;
+
+    @Column(name = "t_ganztags")
+    private boolean ganztags;
+
+
+    @Override
+    public String toString() {
+        return "Termin{" +
+                "id=" + id +
+                ", beschreibung='" + beschreibung + '\'' +
+                ", datum=" + datum +
+                ", beginn=" + beginn +
+                ", ende=" + ende +
+                ", betrifft='" + betrifft + '\'' +
+                ", ganztags=" + ganztags +
+                '}';
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
+    }
+
+    public LocalDate getDatum() {
+        return datum;
+    }
+
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
+    }
+
+    public LocalTime getBeginn() {
+        return beginn;
+    }
+
+    public void setBeginn(LocalTime beginn) {
+        this.beginn = beginn;
+    }
+
+    public LocalTime getEnde() {
+        return ende;
+    }
+
+    public void setEnde(LocalTime ende) {
+        this.ende = ende;
+    }
+
+    public String getBetrifft() {
+        return betrifft;
+    }
+
+    public void setBetrifft(String betrifft) {
+        this.betrifft = betrifft;
+    }
+
+    public boolean isGanztags() {
+        return ganztags;
+    }
+
+    public void setGanztags(boolean ganztags) {
+        this.ganztags = ganztags;
+    }
 }

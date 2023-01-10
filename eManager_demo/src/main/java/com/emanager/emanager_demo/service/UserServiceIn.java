@@ -10,5 +10,7 @@ public interface UserServiceIn {
 
     void deleteUsereById(long id);
 
+    public abstract void updateUser(User user);
+
 }
 

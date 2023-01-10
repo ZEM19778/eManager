@@ -24,6 +24,13 @@ public class UserService implements UserServiceIn {
         this.repo.save(user);
     }
 
+    public void updateUser (User user){
+        repo.save(user);
+    }
+
+
+
+
     public User get(Long id) throws UserNotFoundException {
         Optional<User> result = repo.findById(id);
         if (result.isPresent()) {
@@ -49,6 +56,7 @@ public class UserService implements UserServiceIn {
     public void deleteUsereById(long id) {
         this.repo.deleteById(id);
     }
+
 
 
 

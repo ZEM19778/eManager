@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.responsive-width {
+    font-size: calc(15px + 0.390625vw);
+}
+
+button{
+    background-color: #f48324;
+    border:#f48324;
+    align-content: center;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: "Calibri",sans-serif;
+    padding: 0.25em 5em;
+}
+button:hover{
+    background-color: #df5308
+}
+
+.blank_row{
+    height: 0.25vw !important;
+    background-color: white;
+}
+
+h1{
+    vertical-align: top;
+}
+h2{
+    font-size: 15px;
+}
+
+
+body{
+    height: 100vh;
+    align-items: normal;
+    justify-content: center;
+    background-color: white;
+}
+
+.container{
+    align-items: normal;
+    justify-content: center;
+    max-width: 90%;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0 20px;
+}
+.container .forms{
+    display: flex;
+    align-items: center;
+    height: 440px;
+    width: 200%;
+    transition: height 0.2s ease;
+}
+.container .form{
+    width: 50%;
+    padding: 30px;
+    background-color: #fff;
+    transition: margin-left 0.18s ease;
+}
+.container.active .login{
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.18s ease, opacity 0.15s ease;
+}
+.container.active .forms{
+    height: 600px;
+}
+.container .form .title{
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #df5308;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.calendar{
+    padding: 20px;
+}
+.calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+.calendar .days{
+    margin-bottom: 20px;
+}
+.calendar li{
+    color: #fffefe;
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+}
+.calendar .weeks li{
+    font-weight: 500;
+    cursor: default;
+}
+.calendar .days li{
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 30px;
+}
+.days li.inactive{
+    color: #333;
+}
+.days li.active{
+    color: #fff;
+}
+.days li::before{
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
