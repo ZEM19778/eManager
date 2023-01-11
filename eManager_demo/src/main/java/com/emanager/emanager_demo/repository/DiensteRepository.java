@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface DiensteRepository extends JpaRepository<Dienste, Long> {
-
     public List<Dienste> findDiensteByMitarbeiter(String mitarbeiterName);
 }
