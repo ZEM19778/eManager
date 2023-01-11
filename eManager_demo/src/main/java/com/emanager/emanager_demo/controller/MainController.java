@@ -2,6 +2,7 @@ package com.emanager.emanager_demo.controller;
 
 import com.emanager.emanager_demo.model.*;
 import com.emanager.emanager_demo.service.*;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -216,10 +222,27 @@ public class MainController {
         return "wochenzettel";
     }
 
-    @GetMapping("/admin/wochenzettelView{id}")
-    public String wochenzettelView(@PathVariable(value = "id") long id, Model model) {
-        User user = service.getUserById(id);
-        model.addAttribute("user", user);
+    @GetMapping("/admin/wochenzettel/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException{
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=wochenzettel_"+currentDateTime+".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Dienste> listDienste = diensteService.getAllDienste();
+
+        UserPDFExporter exporter = new UserPDFExporter(listDienste);
+        exporter.export(response);
+    }
+
+    @GetMapping("/admin/wochenzettelView{name}")
+    public String wochenzettelView(@PathVariable(value = "name") String name, Model model) {
+        User u = service.finduserByMitarbeiterLike(name);
+        List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(u.getUsername());
+        model.addAttribute("listDienste", listDienste);
         return "wochenzettelView";
     }
 

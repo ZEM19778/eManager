@@ -46,7 +46,7 @@
       </tr>
       </thead>
       <tbody>
-      <th:block th:each="User : ${listDienste} ">
+      <th:block th:each="Dienste : ${listDienste} ">
 
         <tr>
           <th scope="row" th:pattern="d">[[${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}]]</th>
@@ -63,13 +63,6 @@
   <br>
   <br>
 </div>
-
-<script type="text/javascript">
-  document.getElementById("userverwaltung").onclick = function () {
-    location.href = 'userverwaltung'
-  }
-</script>
-
 </div>
 </body>
 </html>
