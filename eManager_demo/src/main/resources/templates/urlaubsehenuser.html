@@ -54,6 +54,7 @@
     <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
         <p>Urlaub</p>
         <a th:href = "@{/user/kalender}" class="btn btn-primary btn-sm mb-3"> Termine </a>
+        <br>
         <a th:href = "@{/user/urlaubErstellen}" class="btn btn-primary btn-sm mb-3"> Urlaub beantragen </a>
         <div class="container">
             <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
@@ -72,7 +73,7 @@
                         <td align=center>[[${Urlaub.beginn}]]</td>
                         <td align=center>[[${Urlaub.ende}]]</td>
                         <td align=center>[[${Urlaub.genehmigt}]]</td>
-                        <td align=center>[[${Urlaub.beantragtMitarbeiter}]]h</td>
+                        <td align=center>[[${Urlaub.beantragtMitarbeiter}]]</td>
                         </td>
                         <td align="center"> <a th:href="@{/user/urlaubloeschen/{id}(id=${Urlaub.id})}" class="btn btn-danger">Delete</a>
                         </td>

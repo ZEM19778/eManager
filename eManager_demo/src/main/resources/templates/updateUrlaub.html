@@ -41,8 +41,8 @@
             <br>
             <br>
 
-            <p>Id</p>
-            <input type="text" th:field="*{id}"
+
+            <input type="hidden" th:field="*{id}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
             <br>
 
@@ -50,15 +50,15 @@
             <input type="checkbox" name="Genehmigen" th:field="*{genehmigt}" />
 
 
-            <p>Beginn</p>
-            <input type="date" th:field="*{beginn}"
+
+            <input type="hidden" th:field="*{beginn}"
                    placeholder="Zeit-ab" class="form-control mb-4 col-4" >
 
-            <p>Ende</p>
-            <input type="date" th:field="*{ende}"
-                   placeholder="Zeit-bis" class="form-control mb-4 col-4" r>
-            <br>
 
+            <input type="hidden" th:field="*{ende}"
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4" r>
+
+            <p>Mitarbeiter</p>
             <input type="text" th:field="*{beantragtMitarbeiter}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
 
