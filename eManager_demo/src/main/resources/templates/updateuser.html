@@ -25,6 +25,9 @@
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/kalender}">Urlaub & Kalender</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -38,15 +41,15 @@
       <br>
 
 
-      <input type="text" th:field="*{id}"
-             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
+      <p>ID-Nummer: <input type="text" th:field="*{id}"
+             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"> </p>
 
 
       <p>Name ändern: <input type="text" th:field="*{username}"
                              placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
 
 
-      <p>Rolle ändern: <select th:field="*{role}">
+      <p>Rolle auswählen: <select th:field="*{role}">
         <option th:value="'USER'" th:text="USER"></option>
         <option th:value="'ADMIN'" th:text="ADMIN"></option>
       </select> </p>
