@@ -12,6 +12,8 @@ public interface DiensteServiceIn {
     void saveDienste(Dienste dienste);
     Dienste getDiensteById(long id);
 
+    void deleteDienstById(long id);
+
     @Query("SELECT d from Dienste d where d.mitarbeiter like %:nutzername%")
     List<Dienste> findDiensteByMitarbeiterLike(@Param("nutzername") String nutzername);
 }

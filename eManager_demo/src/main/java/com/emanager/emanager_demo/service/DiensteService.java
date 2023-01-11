@@ -40,6 +40,10 @@ public class DiensteService implements DiensteServiceIn{
         return dienste;
     }
 
+    @Override
+    public void deleteDienstById(long id) {
+        this.diensteRepository.deleteById(id);
+    }
 
     @Override
     public List<Dienste> findDiensteByMitarbeiterLike(String nutzername) {

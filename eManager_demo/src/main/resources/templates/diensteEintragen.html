@@ -65,6 +65,9 @@
                         <td align=center>[[${Dienste.zeitbis}]]</td>
                         <td align=center>[[${Dienste.mitarbeiter}]]</td>
                         <td align=center>[[${Dienste.dauer}]]h</td>
+                        </td>
+                        <td align="center"> <a th:href="@{/user/deletedienst/{id}(id=${Dienste.id})}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                 </th:block>
                 </tbody>

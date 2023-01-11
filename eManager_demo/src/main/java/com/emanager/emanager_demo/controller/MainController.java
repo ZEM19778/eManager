@@ -347,6 +347,13 @@ public class MainController {
         return "redirect:/admin/home";
     }
 
+    @GetMapping("/user/deletedienst/{id}")
+    public String deletedienst(@PathVariable (value = "id") long id) {
+        this.diensteService.deleteDienstById(id);
+
+        return "redirect:/user/diensteEintragen";
+    }
+
 
 
     //Passwortändern
