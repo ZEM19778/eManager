@@ -55,15 +55,11 @@
                     <tr>
                         <td align=center>[[${User.username}]]</td>
                         <td align=center>[[${User.role}]]</td>
-                        <td align="center"> <a th:href="@{/admin/wochenzettelView/{name}(name=${User.username})}" class="btn btn-primary">Anschauen</a>
+                        <td align="center"> <a th:href="@{/admin/wochenzettelView/}" class="btn btn-primary">Anschauen</a>
                     </tr>
                 </th:block>
                 </tbody>
             </table>
-            <br>
-            <a th:href="@{/admin/wochenzettel/pdf}">
-                <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="pdf">PDF</button>
-            </a>
         </div>
     </div>
     <br>

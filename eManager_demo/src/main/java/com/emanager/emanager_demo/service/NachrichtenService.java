@@ -25,7 +25,7 @@ public class NachrichtenService implements NachrichtenServiceIn{
 
 
     public void saveNachrichten(Nachrichten nachrichten) {
-        String date=new SimpleDateFormat("dd.MMM.yyyy HH:mm:ss").format(new Timestamp(System.currentTimeMillis()));
+        String date=new SimpleDateFormat("dd.MMMyyyy HH:mm:ss").format(new Timestamp(System.currentTimeMillis()));
         nachrichten.setDatumzeit(date);
         this.nachrichtenRepository.save(nachrichten);
     }

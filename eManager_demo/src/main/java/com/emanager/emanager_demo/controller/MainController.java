@@ -239,10 +239,9 @@ public class MainController {
     }
 
     @GetMapping("/admin/wochenzettelView{name}")
-    public String wochenzettelView(@PathVariable(value = "name") String name, Model model) {
-        User u = service.finduserByMitarbeiterLike(name);
-        List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(u.getUsername());
-        model.addAttribute("listDienste", listDienste);
+    public String wochenzettelView(Model model) {
+        List<Dienste> listDienste = diensteService.getAllDienste();
+        model.addAttribute("listDienste",listDienste);
         return "wochenzettelView";
     }
 
