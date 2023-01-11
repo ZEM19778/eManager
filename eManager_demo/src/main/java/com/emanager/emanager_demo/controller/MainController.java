@@ -201,6 +201,19 @@ public class MainController {
         return "updateuser";
     }
 
+    @GetMapping("/admin/wochenzettel")
+    public String wochenzettel(Model model) {
+        List<User> listUsers = service.listAll();
+        model.addAttribute("listUsers", listUsers);
+        return "wochenzettel";
+    }
+
+    @GetMapping("/admin/wochenzettelView{id}")
+    public String wochenzettelView(@PathVariable(value = "id") long id, Model model) {
+        User user = service.getUserById(id);
+        model.addAttribute("user", user);
+        return "wochenzettelView";
+    }
 
     //Update User
 
