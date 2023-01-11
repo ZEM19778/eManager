@@ -32,10 +32,15 @@
   <h3 align="center">Bearbeiten</h3>
   <br>
   <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
-    <form action="#" th:action="@{/admin/updateUser}" th:object="${user}"  method="POST">
+    <form action="#" th:action="@{/admin/saveUser}" th:object="${user}"  method="POST">
       <u>Hier können Sie Ihren ausgwählten User bearbeiten</u>
       <br>
       <br>
+
+
+      <input type="text" th:field="*{id}"
+             placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
+
 
       <p>Name ändern: <input type="text" th:field="*{username}"
                              placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>

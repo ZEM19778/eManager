@@ -35,14 +35,34 @@
     <h3 align="center">Bearbeiten</h3>
     <br>
     <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
-        <form action="#" th:action="@{/admin/updateUrlaub}" th:object="${urlaub}"
+        <form action="#" th:action="@{/admin/saveUrlaub}" th:object="${urlaub}"
               method="POST">
             <u>Hier können Sie Ihren ausgwählten Urlaub genehmigen</u>
             <br>
             <br>
 
+            <p>Id</p>
+            <input type="text" th:field="*{id}"
+                   placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
+            <br>
+
             <p>Genehmigen</p>
             <input type="checkbox" name="Genehmigen" th:field="*{genehmigt}" />
+
+
+            <p>Beginn</p>
+            <input type="date" th:field="*{beginn}"
+                   placeholder="Zeit-ab" class="form-control mb-4 col-4" >
+
+            <p>Ende</p>
+            <input type="date" th:field="*{ende}"
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4" r>
+            <br>
+
+            <input type="text" th:field="*{beantragtMitarbeiter}"
+                   placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
+
+
 
             <table border="3">
                 <tr>

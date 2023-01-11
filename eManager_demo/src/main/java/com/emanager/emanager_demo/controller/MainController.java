@@ -94,7 +94,7 @@ public class MainController {
     @GetMapping("/user/urlaubloeschen/{id}")
     public String deleteurlaub(@PathVariable(value = "id") long id) {
         this.urlaubService.deleteUrlaubById(id);
-        return "redirect:/admin/kalender";
+        return "redirect:/user/kalender";
     }
 
     @PostMapping("/user/saveUrlaub")
@@ -156,6 +156,14 @@ public class MainController {
         termineService.saveTermin(termin);
         return "redirect:/admin/kalender";
     }
+
+    @PostMapping("/admin/saveUrlaub")
+    public String saveUpdateUser(Urlaub urlaub) {
+        //if(termin.get)
+        urlaubService.saveUrlaub(urlaub);
+        return "redirect:/admin/urlaub";
+    }
+
 
     @GetMapping("/user/kalender")
     public String kalenderUser(Model model) {
