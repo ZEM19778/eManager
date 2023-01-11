@@ -1,5 +1,6 @@
 package com.emanager.emanager_demo.service;
 
+import com.emanager.emanager_demo.model.Dienste;
 import com.emanager.emanager_demo.model.User;
 import com.emanager.emanager_demo.UserNotFoundException;
 import com.emanager.emanager_demo.repository.UserRepository;
@@ -28,6 +29,10 @@ public class UserService implements UserServiceIn {
         repo.save(user);
     }
 
+    @Override
+    public User finduserByMitarbeiterLike(String nutzername) {
+        return repo.findByUsername(nutzername);
+    }
 
 
 

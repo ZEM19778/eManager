@@ -325,4 +325,46 @@ public class MainController {
     }
 
 
+
+    //Passwortändern
+    @GetMapping("/user/passwortaendern")
+    public String passwortaendern(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String benutzername = authentication.getName();
+        User user = service.finduserByMitarbeiterLike(benutzername);
+        model.addAttribute("listUsers",user);
+
+        return "passwortaendern";
+    }
+
+    @GetMapping("user/showNewPasswordForm")
+    public String showNewPasswordForm(Model model) {
+        // create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "newuser";
+    }
+
+    @GetMapping("/user/showFormForUpdatePassword/{id}")
+    public String showFormForUpdatePassword(@PathVariable ( value = "id") long id, Model model) {
+
+        // get employee from the service
+        User user = service.getUserById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("user", user);
+        return "updatepassword";
+    }
+
+    @PostMapping("/user/savePassword")
+    public String savePassword( User user) {
+
+        service.saveUser(user);
+
+        return "redirect:/user/passwortaendern";
+    }
+
+
+
 }
