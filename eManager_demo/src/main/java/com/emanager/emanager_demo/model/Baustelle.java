@@ -12,5 +12,5 @@ public class Baustelle {
     private Long id;
 
     @Column (name="b_bezeichnung")
-    private String bezeichung;
+    private String bezeichnung;
 }
