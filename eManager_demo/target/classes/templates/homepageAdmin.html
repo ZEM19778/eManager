@@ -68,38 +68,33 @@
         </th:block>
         </tbody>
       </table>
+      <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+        <br>
+        <!--rules=rows; rules=cols-->
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Beginn</th>
+          <th scope="col">Ende</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">Genehmigt?</th>
+          <th scope="col">User-Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="Urlaub : ${listUrlaub} ">
+          <tr>
+            <td align=center>[[${Urlaub.beginn}]]</td>
+            <td align=center>[[${Urlaub.ende}]]</td>
+            <td align=center>[[${Urlaub.beschreibung}]]</td>
+            <td align=center>[[${Urlaub.genehmigt}]]</td>
+            <td align=center>[[${Urlaub.beantragtMitarbeiter}]]</td>
+            <td align="center"> <a th:href="@{/admin/showFormForUpdateUrlaub/{id}(id=${Urlaub.id})}" class="btn btn-primary">Genehmigen</a>
+
+          </tr>
+
+        </th:block>
+        </tbody>
+      </table>
     </div>
-
-
-  </div>
-  <br>
-</div>
-<div>
-  <br>
-  <br>
-  <table style="width: 100%">
-    <tr>
-      <td style="text-align: center">
-        <p style="font-size: calc(13px + 0.390625vw); position: relative;">Verwalten Sie ihre User!</p>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">
-        <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="userverwaltung">User verwalten</button>
-      </td>
-    </tr>
-  </table>
-
-
-
-
-
-  <script type="text/javascript">
-    document.getElementById("userverwaltung").onclick = function () {
-      location.href = 'userverwaltung'
-    }
-  </script>
-</div>
 </body>
 </html>
