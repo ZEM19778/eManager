@@ -25,6 +25,9 @@ public class Urlaub {
     @Column(name="u_genehmigt")
     private Boolean genehmigt;
 
+    @Column(name="u_beschreibung")
+    private String beschreibung;
+
     @Column(name = "u_beantragt_name")
     private String beantragtMitarbeiter;
 
@@ -36,6 +39,7 @@ public class Urlaub {
                 ", beginn=" + beginn +
                 ", ende=" + ende +
                 ", genehmigt=" + genehmigt +
+                ", beschreibung=" + beschreibung +
                 ", beantragtMitarbeiter='" + beantragtMitarbeiter + '\'' +
                 '}';
     }
@@ -78,5 +82,13 @@ public class Urlaub {
 
     public void setBeantragtMitarbeiter(String beantragtMitarbeiter) {
         this.beantragtMitarbeiter = beantragtMitarbeiter;
+    }
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 }

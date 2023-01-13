@@ -34,8 +34,7 @@ public class Termin {
     @Column(name = "t_betrifft")
     private String betrifft;
 
-    @Column(name = "t_ganztags")
-    private boolean ganztags;
+
 
 
     @Override
@@ -47,7 +46,7 @@ public class Termin {
                 ", beginn=" + beginn +
                 ", ende=" + ende +
                 ", betrifft='" + betrifft + '\'' +
-                ", ganztags=" + ganztags +
+
                 '}';
     }
 
@@ -100,11 +99,5 @@ public class Termin {
         this.betrifft = betrifft;
     }
 
-    public boolean isGanztags() {
-        return ganztags;
-    }
 
-    public void setGanztags(boolean ganztags) {
-        this.ganztags = ganztags;
-    }
 }

@@ -15,7 +15,6 @@ public interface UserServiceIn {
 
     void deleteUsereById(long id);
 
-    public abstract void updateUser(User user);
 
     @Query("SELECT d from User d where d.username like %:nutzername%")
     User finduserByMitarbeiterLike(@Param("nutzername") String nutzername);

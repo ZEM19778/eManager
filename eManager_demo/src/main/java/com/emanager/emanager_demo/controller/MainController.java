@@ -100,7 +100,7 @@ public class MainController {
     @GetMapping("/user/urlaubloeschen/{id}")
     public String deleteurlaub(@PathVariable(value = "id") long id) {
         this.urlaubService.deleteUrlaubById(id);
-        return "redirect:/user/kalender";
+        return "redirect:/user/urlaub";
     }
 
     @PostMapping("/user/saveUrlaub")
@@ -130,7 +130,19 @@ public class MainController {
     }
 
 
-    //update urlaub /admin/updateUrlaub  damit er genehmigen kann
+    @GetMapping("/user/showFormForUpdateDienst/{id}")
+    public String showFormForUpdateDienst(@PathVariable(value = "id") long id, Model model) {
+
+        Dienste dienste = diensteService.getDiensteById(id);
+        model.addAttribute("dienste", dienste);
+        return "updateDienst";
+    }
+
+
+
+
+
+
 
 
     @GetMapping("/admin/kalender")
@@ -334,6 +346,16 @@ public class MainController {
 
     @PostMapping("/admin/saveNachrichten")
     public String saveNachrichten( Nachrichten nachrichten) {
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        nachrichten.setsenderAdmin(username);
+
         nachrichtenService.saveNachrichten(nachrichten);
         return "redirect:/admin/home";
     }
@@ -345,6 +367,10 @@ public class MainController {
         this.nachrichtenService.deleteNachrichtById(id);
         return "redirect:/admin/home";
     }
+
+
+
+
 
     @GetMapping("/user/deletedienst/{id}")
     public String deletedienst(@PathVariable (value = "id") long id) {
