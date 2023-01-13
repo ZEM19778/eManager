@@ -5,15 +5,12 @@ import com.emanager.emanager_demo.service.*;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +21,6 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -381,7 +377,7 @@ public class MainController {
 
 
 
-    //Passwortändern
+    //USER Passwortändern
     @GetMapping("/user/passwortaendern")
     public String passwortaendern(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -419,6 +415,52 @@ public class MainController {
 
         return "redirect:/user/passwortaendern";
     }
+
+
+
+
+
+
+
+    //ADMIN Passwortändern
+    @GetMapping("/admin/passwortaendernadmin")
+    public String adminpasswortaendern(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String benutzername = authentication.getName();
+        User user = service.finduserByMitarbeiterLike(benutzername);
+        model.addAttribute("listUsers",user);
+
+        return "adminpasswortaendern";
+    }
+
+    @GetMapping("admin/adminshowNewPasswordForm")
+    public String adminshowNewPasswordForm(Model model) {
+        // create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "newuser";
+    }
+
+    @GetMapping("/admin/adminshowFormForUpdatePassword/{id}")
+    public String adminshowFormForUpdatePassword(@PathVariable ( value = "id") long id, Model model) {
+
+        // get employee from the service
+        User user = service.getUserById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("user", user);
+        return "adminupdatepassword";
+    }
+
+    @PostMapping("/admin/adminsavePassword")
+    public String adminsavePassword( User user) {
+
+        service.saveUser(user);
+
+        return "redirect:/admin/passwortaendernadmin";
+    }
+
 
 
 
