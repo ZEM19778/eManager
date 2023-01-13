@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Passwort ändern</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href='/homepageUser.css'/>
+  <link rel="stylesheet" href='/passwortAendern.css'/>
+</head>
+
+<body>
+<div align="center" style="background-color: #f48324">
+  <h1 style="color: white">eManager - Admin</h1>
+  <h2 style="color: white">Passwortverwaltung</h2>
+  <br>
+  <br>
+</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/userverwaltung}"><b>Mitarbeiter verwalten</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/kalender}">Urlaub & Kalender</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" th:href = "@{/admin/adminpasswortaendern}"><b>Passwort ändern</b></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+  <h3 align="center">Passwort ändern</h3>
+  <br>
+  <div style="width:900px;height:330px;border:1px solid #000; border-radius: 5px">
+    <br>
+    <div class="container">
+      <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
+        <!--rules=rows; rules=cols-->
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Passwort</th>
+          <th scope="col">Anpassen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="User : ${listUsers} ">
+
+          <tr>
+            <td align=center>[[${User.password}]]</td>
+            <td align="center"> <a th:href="@{/admin/adminshowFormForUpdatePassword/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+          </tr>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </div>
+  <br>
+</div>
+
+</body>
+</html>
