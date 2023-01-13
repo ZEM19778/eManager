@@ -68,7 +68,6 @@
                     <th scope="col">Datum</th>
                     <th scope="col">Beginn</th>
                     <th scope="col">Ende</th>
-                    <th scope="col">Ganzer Tag</th>
                     <th scope="col">Betrifft</th>
                     <th scope="col">Löschen</th>
                 </tr>
@@ -80,7 +79,6 @@
                         <td align=center>[[${Termin.datum}]]</td>
                         <td align=center>[[${Termin.beginn}]]</td>
                         <td align=center>[[${Termin.ende}]]</td>
-                        <td align=center>[[${Termin.ganztags}]]</td>
                         <td align=center>[[${Termin.betrifft}]]</td>
                         <td align="center"> <a th:href="@{/admin/deletetermin/{id}(id=${Termin.id})}" class="btn btn-danger">Delete</a>
                         </td>

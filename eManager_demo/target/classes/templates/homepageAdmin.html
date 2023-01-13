@@ -52,6 +52,7 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nachricht</th>
+          <th scope="col">Sender</th>
           <th scope="col">Datum & Uhrzeit</th>
           <th scope="col">Löschen</th>
         </tr>
@@ -62,6 +63,7 @@
           <tr>
             <th scope="row">[[${Nachrichten.id}]]</th>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
+            <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
             <td align="center"><a th:href="@{/admin/deletenachricht/{id}(id=${Nachrichten.id})}" class="btn btn-danger">Löschen</a>
             </td>

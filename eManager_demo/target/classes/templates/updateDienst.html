@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Passwort ändern</title>
+    <title>Update Dienst</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href='/homepageUser.css'/>
 </head>
@@ -9,7 +9,7 @@
 <body>
 <div align="center" style="background-color: #f48324">
     <h1 style="color: white">eManager</h1>
-    <h2 style="color: white">Passwort updaten</h2>
+    <h2 style="color: white">Update Dienst</h2>
     <br>
     <br>
 </div>
@@ -36,8 +36,8 @@
     <h3 align="center">Bearbeiten</h3>
     <br>
     <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
-        <form action="#" th:action="@{/user/savePassword}" th:object="${user}" method="POST">
-            <u>Hier können Sie Ihr Passwort bearbeiten</u>
+        <form action="#" th:action="@{/user/saveDienste}" th:object="${dienste}" method="POST">
+            <u>Hier können Sie Ihren Dienst bearbeiten</u>
             <br>
             <br>
 
@@ -45,19 +45,23 @@
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
 
 
-            <p><input type="hidden" th:field="*{username}"
-                                   placeholder="User Name" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
+            <input type="date"  th:field="*{datumvon}"
+                   placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
 
 
+            <select th:field="*{addresse}">
+                <option th:value="'Wienerberg'" th:text="Wienerberg"></option>
+                <option th:value="'Spengergasse'" th:text="Spengergasse"></option>
+                <option th:value="'Neubaugasse'" th:text="Neubaugasse"></option>
+                <option th:value="'Schellinggasse'" th:text="Schellinggasse"></option>
+                <option th:value="'Neilreichgasse'" th:text="Neilreichgasse"></option>
+            </select>
 
-            <p>Passwort ändern: <input type="text" th:field="*{password}"
-                                       placeholder="User Name" class="form-control mb-4 col-4" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Dass Passwort muss mindestens eine Zahl und einen Groß- und einen Kleinbuchstaben sowie mindestens 4 Zeichen enthalten"></p>
-            <div style="display: none">
-                <p>Rolle ändern: <select th:field="*{role}">
-                    <option th:value="'USER'" th:text="USER"></option>
-                    <option th:value="'ADMIN'" th:text="ADMIN"></option>
-                </select> </p>
-            </div>
+            <input type="time" th:field="*{zeitvon}"
+                   placeholder="Zeit-ab" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+
+            <input type="time" th:field="*{zeitbis}"
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
             <br>
             <hr>
             <br>
@@ -65,7 +69,7 @@
             <table border="3">
                 <tr>
                     <th>
-                        <a th:href = "@{/user/passwortaendern}"> Zurück zur Seite </a>
+                        <a th:href = "@{/user/diensteEintragen}"> Zurück zur Seite </a>
                     </th>
                 </tr>
                 <tr>
@@ -74,6 +78,7 @@
                     </th>
                 </tr>
             </table>
+
 
         </form>
     </div>

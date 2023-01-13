@@ -23,7 +23,8 @@ public class Nachrichten {
     @Column(name = "n_nachricht")
     private String nachricht;
 
-
+    @Column(name = "n_sender")
+    private String sender;
 
     @Column(name = "n_datumzeit",nullable = false, updatable = false)
     private String datumzeit;
@@ -59,5 +60,17 @@ public class Nachrichten {
 
     public void setDatumzeit(String datumzeit) {
         this.datumzeit = datumzeit;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public void setsenderAdmin(String sender) {
+        this.sender = sender;
     }
 }
