@@ -54,6 +54,9 @@ public class MainController {
     public String homepageAdmin(Model model) {
         List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
         model.addAttribute("listNachrichten", listNachrichten);
+
+        List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
+        model.addAttribute("listUrlaub", listUrlaub);
         return "homepageAdmin";
     }
 
@@ -77,12 +80,7 @@ public class MainController {
         return "urlaubsehenuser";
     }
 
-    @GetMapping("/admin/urlaub")
-    public String urlaubadmin(Model model) {
-        List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
-        model.addAttribute("listUrlaub", listUrlaub);
-        return "urlaubsehenadmin";
-    }
+
 
     @GetMapping("/user/urlaubErstellen")
     public String urlauberstellen(Model model) {
@@ -115,6 +113,7 @@ public class MainController {
         urlaubService.saveUrlaub(urlaub);
         return "redirect:/user/urlaub";
     }
+
 
     @GetMapping("/admin/showFormForUpdateUrlaub/{id}")
     public String showFormForUpdateUrlaub(@PathVariable(value = "id") long id, Model model) {
