@@ -50,6 +50,11 @@ public class MainController {
         return "admin_login";
     }
 
+    @GetMapping("/exception")
+    public String getAccessDenied() {
+        return "/exception";
+    }
+
     @GetMapping("/admin/home")
     public String homepageAdmin(Model model) {
         List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
