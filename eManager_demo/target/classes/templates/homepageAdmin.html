@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
 <head>
   <title>Admin-Hauptseite</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href='/homepageUser.css'/>
   <link rel="stylesheet" href='/homepageAdmin.css'/>
 </head>
+<style>
+  footer{
+    position: -ms-device-fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+
+    padding-top: 40px;
+    color: #fff;
+  }
+  .footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+</style>
 
 <body>
 <div align="center" style="background-color: #f48324" sec:authorize="isAuthenticated()">
@@ -30,12 +53,12 @@
         <a class="nav-link active" th:href = "@{/admin/kalender}">Urlaub & Kalender</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/admin/passwortaendernadmin}"><b>Passwort ändern</b></a>
+        <a class="nav-link active" th:href = "@{/admin/passwortaendernadmin}">Passwort ändern</a>
       </li>
     </ul>
   </div>
 </nav>
-<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+<div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>
   <form th:action="@{/admin/logout}" method="post">
@@ -94,16 +117,19 @@
             <td align=center>[[${Urlaub.genehmigt}]]</td>
             <td align=center>[[${Urlaub.beantragtMitarbeiter}]]</td>
             <td align="center"> <a th:href="@{/admin/showFormForUpdateUrlaub/{id}(id=${Urlaub.id})}" class="btn btn-primary">Genehmigen</a>
-
           </tr>
-
-
     </th:block>
     </tbody>
     </table>
   </div>
-
+  </div>
+</div>
+<br>
+  <footer class="footer">
+    <div class="footer-content">
+      <h4>eManager - Mitarbeiterverwaltungssystem</h4>
+      <br>
     </div>
-
+  </footer>
 </body>
 </html>

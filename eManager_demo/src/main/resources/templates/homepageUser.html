@@ -4,11 +4,13 @@
   <title>User-Hauptseite</title>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href='/homepageUser.css'/>
+
   <style>
     .container {
       height: 305px;
       overflow-y: scroll;
     }
+
     ul {
       list-style-type: none;
       margin: 0;
@@ -32,6 +34,31 @@
     li a:hover {
       background-color: #df5308;
     }
+
+    footer{
+      position: -ms-device-fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      height: auto;
+      width: 100vw;
+
+      padding-top: 40px;
+      color: #fff;
+    }
+    .footer-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
   </style>
 </head>
 
@@ -61,7 +88,7 @@
     </ul>
   </div>
 </nav>
-<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+<div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>
   <form th:action="@{/user/logout}" method="post">
@@ -76,7 +103,6 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nachricht</th>
-          <th scope="col">Sender</th>
           <th scope="col">Datum & Uhrzeit</th>
         </tr>
         </thead>
@@ -86,7 +112,6 @@
           <tr>
             <th scope="row">[[${Nachrichten.id}]]</th>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
-            <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
           </tr>
         </th:block>
@@ -94,42 +119,13 @@
       </table>
     </div>
   </div>
-  <br>
 </div>
 <br>
-<br>
-<table style="width: 100%">
-  <tr>
-    <td style="text-align: center">
-      <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
-    </td>
-    <td></td>
-    <td style="text-align: center">
-      <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
-    </td>
-  </tr>
-  <tr class="blank_row">
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td style="text-align: center">
-      <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
-    </td>
-    <td></td>
-    <td style="text-align: center">
-      <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
-    </td>
-  </tr>
-</table>
-  <script type="text/javascript">
-    document.getElementById("Dienste").onclick = function () {
-      location.href = 'diensteEintragen'
-    }
-  </script>
-  <script type="text/javascript">
-    document.getElementById("Kalender").onclick = function () {
-      location.href = 'kalender'
-    }
-  </script>
+<footer class="footer">
+  <div class="footer-content">
+    <h4>eManager - Mitarbeiterverwaltungssystem</h4>
+    <br>
+  </div>
+</footer>
 </body>
 </html>

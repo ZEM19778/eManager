@@ -6,6 +6,27 @@
   <link rel="stylesheet" href='/homepageUser.css'/>
   <link rel="stylesheet" href='/userverwaltung.css'/>
 </head>
+<style>
+  footer{
+    position: -ms-device-fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+
+    padding-top: 40px;
+    color: #fff;
+  }
+  .footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+</style>
 
 <body>
 <div align="center" style="background-color: #f48324">
@@ -36,7 +57,7 @@
   </div>
 </nav>
 
-<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+<div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h3 align="center">Mitarbeiterliste</h3>
   <br>
   <div style="width:900px;height:330px;border:1px solid #000; border-radius: 5px">
@@ -69,10 +90,14 @@
         </tbody>
       </table>
     </div>
-
   </div>
-  <br>
 </div>
-
+<br>
+<footer class="footer">
+  <div class="footer-content">
+    <h4>eManager - Mitarbeiterverwaltungssystem</h4>
+    <br>
+  </div>
+</footer>
 </body>
 </html>

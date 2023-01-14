@@ -5,6 +5,31 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href='/homepageUser.css'/>
 </head>
+<style>
+  footer{
+    position: -ms-device-fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+
+    padding-top: 40px;
+    color: #fff;
+  }
+  .footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+</style>
 
 <body>
 <div align="center" style="background-color: #f48324">
@@ -31,7 +56,7 @@
     </ul>
   </div>
 </nav>
-<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+<div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h3 align="center">Bearbeiten</h3>
   <br>
   <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
@@ -60,36 +85,16 @@
 
       <button type="submit" class="btn btn primary">Save</button>
     </form>
-
-
   </div>
   <br>
 </div>
-<div>
-  <br>
-  <br>
-  <br>
-  <table style="width: 100%">
-    <tr>
-      <td style="text-align: center">
-        <p style="font-size: calc(13px + 0.390625vw); position: relative;">Verwalten Sie ihre User!</p>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">
-        <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="userverwaltung">User verwalten</button>
-      </td>
-    </tr>
-  </table>
 
-  <script type="text/javascript">
-    document.getElementById("userverwaltung").onclick = function () {
-      location.href = 'userverwaltung'
-    }
-  </script>
-
-</div>
+<footer class="footer">
+  <div class="footer-content">
+    <h4>eManager - Mitarbeiterverwaltungssystem</h4>
+    <br>
+  </div>
+</footer>
 </body>
 </html>
 

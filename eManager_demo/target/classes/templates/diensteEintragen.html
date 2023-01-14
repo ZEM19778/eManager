@@ -6,6 +6,29 @@
     <link rel="stylesheet" href='/homepageUser.css'/>
     <link rel="stylesheet" href='/diensteEintragen.css'/>
 </head>
+
+<style>
+    footer{
+        position: static;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #111;
+        height: auto;
+        width: 100vw;
+
+        padding-top: 40px;
+        color: #fff;
+    }
+    .footer-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+</style>
 <body>
 
 
@@ -36,15 +59,15 @@
     </div>
 </nav>
 
-<div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
+<div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Dienste eintragen</h3>
     <h2 style="color: orange">Dienste von: <span sec:authentication="name"></span></h2>
     <br>
-    <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
+    <div style="width:1000px;height:330px;border:1px solid #000; border-radius: 10px">
         <p>Deine Dienste</p>
         <a th:href = "@{/user/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
         <div class="container">
-            <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+            <table width="90%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
                 <tr>
@@ -54,6 +77,8 @@
                     <th scope="col">Zeit bis</th>
                     <th scope="col">Mitarbeiter</th>
                     <th scope="col">Dauer</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,53 +90,22 @@
                         <td align=center>[[${Dienste.zeitbis}]]</td>
                         <td align=center>[[${Dienste.mitarbeiter}]]</td>
                         <td align=center>[[${Dienste.dauer}]]h</td>
-                        <td align="center"> <a th:href="@{/user/showFormForUpdateDienst/{id}(id=${Dienste.id})}" class="btn btn-primary">Update</a>
-                        </td>
-                        </td>
-                        <td align="center"> <a th:href="@{/user/deletedienst/{id}(id=${Dienste.id})}" class="btn btn-danger">Delete</a>
-                        </td>
+                        <td align="center"> <a th:href="@{/user/showFormForUpdateDienst/{id}(id=${Dienste.id})}" class="btn btn-primary">Update</a></td>
+                        <td align="center"> <a th:href="@{/user/deletedienst/{id}(id=${Dienste.id})}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 </th:block>
                 </tbody>
             </table>
         </div>
     </div>
-    <br>
 </div>
+
 <br>
-<br>
-<table style="width: 100%">
-    <tr>
-        <td style="text-align: center">
-            <p style="font-size: calc(14px + 0.390625vw); position: relative;">Tragen Sie Ihre Dienste ein!</p>
-        </td>
-        <td></td>
-        <td style="text-align: center">
-            <p style="font-size:calc(14px + 0.390625vw); position: relative;">Blicken Sie in den Kalender</p>
-        </td>
-    </tr>
-    <tr class="blank_row">
-        <td colspan="2"></td>
-    </tr>
-    <tr>
-        <td style="text-align: center">
-            <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Dienste">Dienste</button>
-        </td>
-        <td></td>
-        <td style="text-align: center">
-            <button type="button" class="btn btn-default btn-lg btn-block responsive-width" id="Kalender">Kalender</button>
-        </td>
-    </tr>
-</table>
-<script type="text/javascript">
-    document.getElementById("Dienste").onclick = function () {
-        location.href = 'diensteEintragen'
-    }
-</script>
-<script type="text/javascript">
-    document.getElementById("Kalender").onclick = function () {
-        location.href = 'kalender'
-    }
-</script>
+<footer class="footer">
+    <div class="footer-content">
+        <h4>eManager - Mitarbeiterverwaltungssystem</h4>
+        <br>
+    </div>
+</footer>
 </body>
 </html>
