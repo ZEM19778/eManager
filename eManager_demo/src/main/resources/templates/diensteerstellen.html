@@ -64,28 +64,33 @@
     <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
         <form action="#" th:action="@{/user/saveDienste}" th:object="${dienste}"
               method="POST">
-
+            <u>Tragen Sie Ihre Dienste ein</u>
+            <br>
+            <br>
             <!--<input type="text" th:field="*{id}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30"-->
 
-            <input type="date"  th:field="*{datumvon}"
-                   placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
+            <p>Wann haben Sie gearbeitet?: <input type="date"  th:field="*{datumvon}"
+                   placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
+            <br>
 
-            <select th:field="*{addresse}">
+            <p>Wo haben Sie gearbeitet?: <select th:field="*{addresse}">
                 <option th:value="'Wienerberg'" th:text="Wienerberg"></option>
                 <option th:value="'Spengergasse'" th:text="Spengergasse"></option>
                 <option th:value="'Neubaugasse'" th:text="Neubaugasse"></option>
                 <option th:value="'Schellinggasse'" th:text="Schellinggasse"></option>
                 <option th:value="'Neilreichgasse'" th:text="Neilreichgasse"></option>
-            </select>
+            </select> </p>
+            <br>
 
-            <input type="time" th:field="*{zeitvon}"
+            <p>Von-Bis: <input type="time" th:field="*{zeitvon}"
                    placeholder="Zeit-ab" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
 
             <input type="time" th:field="*{zeitbis}"
-                   placeholder="Zeit-bis" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4" required minlength="2" maxlength="45"> </p>
+            <br>
 
-            <button type="submit" class="btn btn primary">Save</button>
+            <button type="submit" class="btn btn primary">Speichern</button>
         </form>
     </div>
     <br>

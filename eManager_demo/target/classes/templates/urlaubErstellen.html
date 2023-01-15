@@ -4,6 +4,8 @@
     <title>Urlaub eintragen</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href='/homepageUser.css'/>
+    <link rel="stylesheet" href='/userurlaub.css'/>
+
 </head>
 <style>
     footer{
@@ -32,7 +34,7 @@
 </style>
 <body>
 <div align="center" style="background-color: #f48324">
-    <h1 style="color: white">eManager</h1>
+    <h1 style="color: white">eManager - User</h1>
     <h2 style="color: white">Urlaub</h2>
     <br>
     <br>
@@ -64,14 +66,15 @@
     <div style="width:700px;height:330px;border:1px solid #000; border-radius: 5px">
         <form action="#" th:action="@{/user/saveUrlaub}" th:object="${urlaub}"
               method="post">
+            <u>Tragen Sie Ihren Urlaub ein</u>
+            <br>
+            <br>
 
-            <p>Beginn</p>
-            <input type="date" th:field="*{beginn}"
-                   placeholder="Zeit-ab" class="form-control mb-4 col-4" >
+            <p>Beginn <input type="date" th:field="*{beginn}"
+                   placeholder="Zeit-ab" class="form-control mb-4 col-4" > </p>
 
-            <p>Ende</p>
-            <input type="date" th:field="*{ende}"
-                   placeholder="Zeit-bis" class="form-control mb-4 col-4">
+            <p>Ende <input type="date" th:field="*{ende}"
+                   placeholder="Zeit-bis" class="form-control mb-4 col-4"> </p>
             <br>
 
             <textarea  th:field="*{beschreibung}"

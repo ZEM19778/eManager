@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='/kalender.css'/>
+    <link rel="stylesheet" href='/userurlaub.css'/>
 
 
     <title>Calendar</title>
@@ -21,7 +22,7 @@
 
 <div align="center" style="background-color: #f48324">
     <h1 style="color: white">eManager - User</h1>
-    <h2 style="color: white">Kalender</h2>
+    <h2 style="color: white">Termine</h2>
     <br>
     <br>
 </div>
@@ -52,9 +53,8 @@
 
     <br>
     <div style="width:900px;height:330px;border:1px solid #000; border-radius: 10px">
-        <p>Termine</p>
-
         <a th:href = "@{/user/urlaub}" class="btn btn-primary btn-sm mb-3"> Urlaube </a>
+        <p>Hier können Sie die Termine sehen</p>
         <div class="container">
             <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
                 <!--rules=rows; rules=cols-->

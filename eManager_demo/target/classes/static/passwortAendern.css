@@ -1,7 +1,8 @@
 .container {
-    height: 305px;
+    height: 285px;
     overflow-y: scroll;
 }
+
 ul {
     list-style-type: none;
     margin: 0;

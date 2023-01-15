@@ -96,7 +96,7 @@
 
       </table>
 
-      <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+      <table width="90%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
         <br>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
@@ -109,6 +109,7 @@
         </tr>
         </thead>
         <tbody>
+        <u>Urlaube & aktuelle Termine</u>
         <th:block th:each="Urlaub : ${listUrlaub} ">
           <tr>
             <td align=center>[[${Urlaub.beginn}]]</td>

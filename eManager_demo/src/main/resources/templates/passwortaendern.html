@@ -54,7 +54,6 @@
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/user/passwortaendern}"><b>Passwort ändern</b></a>
       </li>
-
     </ul>
   </div>
 </nav>
@@ -68,14 +67,16 @@
       <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
+        <u>Hier sehen Sie ihr derzeigites Passwort</u>
+        <br><br>
         <tr>
-          <th scope="col">Passwort</th>
-          <th scope="col">Anpassen</th>
+          <th scope="col">derzeitiges Passwort</th>
+          <th scope="col">Ändern</th>
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="User : ${listUsers} ">
 
+        <th:block th:each="User : ${listUsers} ">
           <tr>
             <td align=center>[[${User.password}]]</td>
             <td align="center"> <a th:href="@{/user/showFormForUpdatePassword/{id}(id=${User.id})}" class="btn btn-primary">Update</a>

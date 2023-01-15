@@ -53,6 +53,9 @@
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/kalender}"><b>Urlaub & Kalender</b></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/passwortaendern}">Passwort ändern</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -64,20 +67,14 @@
               method="POST">
             <u>Hier können Sie Ihren ausgwählten Urlaub genehmigen</u>
             <br>
-            <br>
-
-
             <input type="hidden" th:field="*{id}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
-            <br>
 
             <p>Genehmigen</p>
             <input type="checkbox" name="Genehmigen" th:field="*{genehmigt}" />
 
 
             <input type="hidden" th:field="*{beschreibung}">
-
-
 
             <input type="hidden" th:field="*{beginn}"
                    placeholder="Zeit-ab" class="form-control mb-4 col-4" >
@@ -89,6 +86,8 @@
             <p>Mitarbeiter</p>
             <input type="text" th:field="*{beantragtMitarbeiter}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
+            <br>
+            <br>
             <table border="3">
                 <tr>
                     <th>

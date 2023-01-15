@@ -8,6 +8,7 @@
 }
 .responsive-width {
     font-size: calc(15px + 0.390625vw);
+    position: -ms-device-fixed;
 }
 
 button{

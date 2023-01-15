@@ -1,0 +1,12 @@
+.container {
+    height: 240px;
+    overflow-y: scroll;
+}
+textarea{
+    width: 45em;
+    height: 15em;
+    border: 1px solid #cccccc;
+    resize:vertical; max-height:100px; min-height:130px;
+    padding: 0.5em;
+    font-family: Calibri, sans-serif;
+}
