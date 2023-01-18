@@ -37,7 +37,10 @@
                 <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/kalender}"><b>Urlaub & Kalender</b></a>
+                <a class="nav-link active" th:href = "@{/user/kalender}"><b>Kalender</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
@@ -53,7 +56,6 @@
 
     <br>
     <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
-        <a th:href = "@{/user/urlaub}" class="btn btn-primary btn-sm mb-3"> Urlaube </a>
         <p>Hier können Sie die Termine sehen</p>
         <div class="container">
             <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">

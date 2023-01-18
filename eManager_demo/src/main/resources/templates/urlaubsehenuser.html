@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='/kalender.css'/>
     <link rel="stylesheet" href='/userurlaub.css'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 
     <title>Urlaub</title>
@@ -37,7 +38,13 @@
                 <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/kalender}"><b>Urlaub & Kalender</b></a>
+                <a class="nav-link active" th:href = "@{/user/kalender}">Kalender</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/urlaub}"><b>Urlaub</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
             </li>
 
         </ul>
