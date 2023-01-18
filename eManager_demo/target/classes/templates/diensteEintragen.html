@@ -7,16 +7,14 @@
     <link rel="stylesheet" href='/diensteEintragen.css'/>
 </head>
 
+
 <style>
     footer{
-        position: static;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: -ms-device-fixed;
+        bottom: 0; left: 0; right: 0;
         background: #111;
         height: auto;
-        width: 100vw;
-
+        width: 100%;
         padding-top: 40px;
         color: #fff;
     }
@@ -26,12 +24,18 @@
         justify-content: center;
         flex-direction: column;
         text-align: center;
+
+        bottom: 0;
+        float: left;
+        width: 100%;
+        height: 100px; /* Height of the footer */
+        background: #111;
+        margin-top: auto;
+        clear: both;
     }
-
 </style>
+
 <body>
-
-
 <div align="center" style="background-color: #f48324">
     <h1 style="color: white">eManager - User</h1>
     <h2 style="color: white">Dienste</h2>
