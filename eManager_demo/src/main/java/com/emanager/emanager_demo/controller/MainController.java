@@ -42,6 +42,9 @@ public class MainController {
     @Autowired
     private TermineServiceIn termineService;
 
+    @Autowired
+    private BaustelleServiceIn baustelleService;
+
     @GetMapping("")
     public String viewHomePage() {
         return "index";
@@ -494,6 +497,22 @@ public class MainController {
         service.saveUser(user);
 
         return "redirect:/admin/passwortaendernadmin";
+    }
+
+
+    @GetMapping("/admin/baustelle")
+    public String baustelle(Model model) {
+        List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
+        model.addAttribute("listBaustelle", listBaustelle);
+        return "baustellesehen";
+    }
+
+    @PostMapping("/admin/saveBaustelle")
+    public String saveBaustelle(Baustelle baustelle, RedirectAttributes ra) {
+
+        baustelleService.saveBaustelle(baustelle);
+        return "redirect:/admin/baustelle";
+
     }
 
 
