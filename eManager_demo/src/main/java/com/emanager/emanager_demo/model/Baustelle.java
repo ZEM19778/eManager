@@ -13,4 +13,30 @@ public class Baustelle {
 
     @Column (name="b_bezeichnung")
     private String bezeichnung;
+
+
+    @Override
+    public String toString() {
+        return "Baustelle{" +
+                "id=" + id +
+                ", bezeichnung='" + bezeichnung + '\'' +
+                '}';
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
+    public void setBezeichnung(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
+    }
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='/login.css'/>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Exception</title>
+  <style>
+    button{
+      background-color: #f48324;
+      border:#f48324;
+      align-content: center;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      border-radius: 3px;
+      font-family: "Calibri",sans-serif;
+      padding: 0.25em 5em;
+    }
+    button:hover{
+      background-color: #df5308
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="forms">
+    <div class="form login" style="text-align: center; vertical-align: top">
+      <span class="title" style="font-size: 35px">Fehler</span>
+      <h2>Zeit-bis darf nicht vor Zeit-von sein!</h2>
+      <div style="horiz-align: center">
+        <h4>
+          <a th:href="@{/user/diensteerstellen}">
+            <button type="button" class="button" id="admin" style="width: 330px">Zurück </button>
+          </a>
+          <br>
+        </h4>
+      </div>
+      <h4>
+
+      </h4>
+      <br>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -22,6 +22,8 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
+
 @Controller
 public class MainController {
 
@@ -39,6 +41,9 @@ public class MainController {
 
     @Autowired
     private TermineServiceIn termineService;
+
+    @Autowired
+    private BaustelleServiceIn baustelleService;
 
     @GetMapping("")
     public String viewHomePage() {
@@ -179,7 +184,7 @@ public class MainController {
     public String saveUpdateUser(Urlaub urlaub) {
         //if(termin.get)
         urlaubService.saveUrlaub(urlaub);
-        return "redirect:/admin/urlaub";
+        return "redirect:/admin/home";
     }
 
 
@@ -322,11 +327,40 @@ public class MainController {
         }
         dienste.setMitarbeiter(username);
         Duration diff = Duration.between(von, bis);
+
         Long d = diff.toMinutes();
         int stunde = 60;
         double stunden = (double) d /  stunde;
         float stundenzahl = (float) stunden;
-        dienste.setDauer(stundenzahl);
+
+
+        if(bis.isAfter(von)) {
+            dienste.setDauer(stundenzahl);
+        }
+        else {
+            return "exceptionTime";
+        }
+
+
+
+
+       /*
+        if(stundenzahl > 0){
+            throw new RuntimeException(" Zweite Zeit darf nicht vor der ersten sein " );
+        }
+        else{
+            dienste.setDauer(stundenzahl);
+        }
+
+
+       String vonneu = (String) dienste.getZeitvon().toString();
+        int compare = dienste.getZeitvon().compareTo(dienste.getZeitvon());
+
+        System.out.println(compare);'*/
+
+
+
+
         diensteService.saveDienste(dienste);
 
         return "redirect:/user/diensteEintragen";
@@ -463,6 +497,22 @@ public class MainController {
         service.saveUser(user);
 
         return "redirect:/admin/passwortaendernadmin";
+    }
+
+
+    @GetMapping("/admin/baustelle")
+    public String baustelle(Model model) {
+        List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
+        model.addAttribute("listBaustelle", listBaustelle);
+        return "baustellesehen";
+    }
+
+    @PostMapping("/admin/saveBaustelle")
+    public String saveBaustelle(Baustelle baustelle, RedirectAttributes ra) {
+
+        baustelleService.saveBaustelle(baustelle);
+        return "redirect:/admin/baustelle";
+
     }
 
 

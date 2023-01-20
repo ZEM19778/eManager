@@ -23,7 +23,7 @@ public class Urlaub {
     private LocalDate ende;
 
     @Column(name="u_genehmigt")
-    private Boolean genehmigt;
+    private String genehmigt;
 
     @Column(name="u_beschreibung")
     private String beschreibung;
@@ -68,11 +68,11 @@ public class Urlaub {
         this.ende = ende;
     }
 
-    public Boolean getGenehmigt() {
+    public String getGenehmigt() {
         return genehmigt;
     }
 
-    public void setGenehmigt(Boolean genehmigt) {
+    public void setGenehmigt(String genehmigt) {
         this.genehmigt = genehmigt;
     }
 
