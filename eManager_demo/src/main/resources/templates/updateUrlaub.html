@@ -66,13 +66,17 @@
     <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
         <form action="#" th:action="@{/admin/saveUrlaub}" th:object="${urlaub}"
               method="POST">
-            <u>Hier können Sie Ihren ausgwählten Urlaub genehmigen</u>
+            <u>Hier können Sie den ausgwählten Urlaub genehmigen</u>
             <br>
             <input type="hidden" th:field="*{id}"
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
 
-            <p>Genehmigen</p>
-            <input type="checkbox" name="Genehmigen" th:field="*{genehmigt}" />
+
+            <p>Genehmigen:
+                <select th:field="*{genehmigt}">
+                <option th:value="'Ja'" th:text="Ja"></option>
+                <option th:value="'Nein'" th:text="Nein"></option>
+            </select>
 
 
             <input type="hidden" th:field="*{beschreibung}">
