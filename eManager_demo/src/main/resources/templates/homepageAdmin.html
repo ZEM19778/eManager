@@ -89,7 +89,9 @@
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
-            <td align="center"><a th:href="@{/admin/deletenachricht/{id}(id=${Nachrichten.id})}" class="btn btn-danger">Löschen</a>
+            <td align="center"><a th:href="@{/admin/deletenachricht/{id}(id=${Nachrichten.id})}">
+              <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 13px">Löschen</button>
+            </a>
             </td>
           </tr>
         </th:block>

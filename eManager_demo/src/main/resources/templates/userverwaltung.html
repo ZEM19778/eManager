@@ -32,6 +32,20 @@
     margin-top: auto;
     clear: both;
   }
+  button{
+    background-color: #f48324;
+    border:#f48324;
+    align-content: center;
+    font-size: 19px;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: "Calibri",sans-serif;
+    padding: 5px 20px 5px;
+  }
+  button:hover{
+    background-color: #df5308
+  }
 
 </style>
 
@@ -68,7 +82,9 @@
   <h3 align="center">Mitarbeiterliste</h3>
   <br>
   <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
-    <a th:href = "@{/admin/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Mitarbeiter hinzufügen </a>
+    <a th:href = "@{/admin/showNewUserForm}">
+      <button type="button" class="button" id="admin" style="width: 330px">Mitarbeiter hinzufügen</button>
+    </a>
     <br>
     <br>
     <div class="container">
@@ -88,9 +104,15 @@
           <tr>
             <td align=center>[[${User.username}]]</td>
             <td align=center>[[${User.role}]]</td>
-            <td align="center"> <a th:href="@{/admin/showFormForUpdate/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            <td align="center"> <a th:href="@{/admin/showFormForUpdate/{id}(id=${User.id})}">
+              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Update</button>
+
+            </a>
             </td>
-            <td align="center"> <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}" class="btn btn-danger">Delete</a>
+            <td align="center"> <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}">
+              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Delete</button>
+
+            </a>
             </td>
           </tr>
         </th:block>
