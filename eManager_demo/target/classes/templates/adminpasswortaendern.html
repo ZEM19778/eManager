@@ -52,7 +52,7 @@
         <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/admin/userverwaltung}"><b>Mitarbeiter verwalten</b></a>
+        <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
@@ -80,7 +80,7 @@
         <u>Hier sehen Sie das derzeigite Passwort</u>
         <br><br>
         <tr>
-          <th scope="col">Passwort</th>
+          <th scope="col">Ihr Passwort: </th>
           <th scope="col">Anpassen</th>
         </tr>
         </thead>
@@ -89,7 +89,8 @@
 
           <tr>
             <td align=center>[[${User.password}]]</td>
-            <td align="center"> <a th:href="@{/admin/adminshowFormForUpdatePassword/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            <td align="center"> <a th:href="@{/admin/adminshowFormForUpdatePassword/{id}(id=${User.id})}">
+              <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 15px">Update</button></a>
           </tr>
         </th:block>
         </tbody>

@@ -81,7 +81,7 @@
         <u>Hier sehen Sie ihr derzeigites Passwort</u>
         <br><br>
         <tr>
-          <th scope="col">derzeitiges Passwort</th>
+          <th scope="col">Ihr Passwort: </th>
           <th scope="col">Ändern</th>
         </tr>
         </thead>
@@ -90,7 +90,8 @@
         <th:block th:each="User : ${listUsers} ">
           <tr>
             <td align=center>[[${User.password}]]</td>
-            <td align="center"> <a th:href="@{/user/showFormForUpdatePassword/{id}(id=${User.id})}" class="btn btn-primary">Update</a>
+            <td align="center"> <a th:href="@{/user/showFormForUpdatePassword/{id}(id=${User.id})}">
+              <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 15px">Update</button></a>
           </tr>
         </th:block>
         </tbody>

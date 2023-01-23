@@ -112,7 +112,8 @@
         </tr>
         </thead>
         <tbody>
-        <u>Urlaube & aktuelle Termine</u>
+        <br>
+        <u>Urlaube</u>
         <th:block th:each="Urlaub : ${listUrlaub} ">
           <tr>
             <td align=center>[[${Urlaub.beginn}]]</td>
@@ -120,7 +121,8 @@
             <td align=center>[[${Urlaub.beschreibung}]]</td>
             <td align=center>[[${Urlaub.genehmigt}]]</td>
             <td align=center>[[${Urlaub.beantragtMitarbeiter}]]</td>
-            <td align="center"> <a th:href="@{/admin/showFormForUpdateUrlaub/{id}(id=${Urlaub.id})}" class="btn btn-primary">Genehmigen</a>
+            <td align="center"> <a th:href="@{/admin/showFormForUpdateUrlaub/{id}(id=${Urlaub.id})}">
+              <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 13px">Genehmigen</button></a>
           </tr>
     </th:block>
     </tbody>

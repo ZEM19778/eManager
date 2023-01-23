@@ -86,7 +86,9 @@
                     <tr>
                         <td align=center>[[${User.username}]]</td>
                         <td align=center>[[${User.role}]]</td>
-                        <td align="center"> <a th:href="@{/admin/wochenzettelView/}" class="btn btn-primary">Anschauen</a>
+                        <td align="center"> <a th:href="@{/admin/wochenzettelView/}">
+                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Anschauen</button>
+                        </a>
                     </tr>
                 </th:block>
                 </tbody>
