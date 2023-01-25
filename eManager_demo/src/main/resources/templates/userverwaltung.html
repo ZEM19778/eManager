@@ -4,7 +4,7 @@
   <title>Mitarbeiter-Verwaltung</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href='/homepageUser.css'/>
-  <link rel="stylesheet" href='/userverwaltung.css'/>
+  <link rel="stylesheet" href='/homepageAdmin.css'/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 <style>
@@ -46,6 +46,22 @@
   button:hover{
     background-color: #df5308
   }
+  .container {
+    height: 255px;
+    overflow-y: scroll;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
 
@@ -83,12 +99,12 @@
   <br>
   <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
     <a th:href = "@{/admin/showNewUserForm}">
-      <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Mitarbeiter hinzufügen</button>
+      <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 20px">Mitarbeiter hinzufügen</button>
     </a>
     <br>
     <br>
-    <div class="container">
-      <table width="80%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
+    <div style="overflow-x:auto;" class="container">
+      <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
         <tr>
@@ -105,13 +121,10 @@
             <td align=center>[[${User.username}]]</td>
             <td align=center>[[${User.role}]]</td>
             <td align="center"> <a th:href="@{/admin/showFormForUpdate/{id}(id=${User.id})}">
-              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Update</button>
-
-            </a>
+              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Update</button></a>
             </td>
             <td align="center"> <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}">
               <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Delete</button>
-
             </a>
             </td>
           </tr>

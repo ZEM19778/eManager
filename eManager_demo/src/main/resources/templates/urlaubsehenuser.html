@@ -41,6 +41,18 @@
         margin-top: auto;
         clear: both;
     }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
 <body>
@@ -83,11 +95,11 @@
     <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
 
         <a th:href = "@{/user/urlaubErstellen}">
-            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Urlaub beantragen</button></a>
+            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 19px">Urlaub beantragen</button></a>
         <br>
         <u>Hier sehen Sie die Urlaubstermine</u>
-        <div class="container">
-            <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+        <div style="overflow-x:auto;" class="container">
+            <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
                 <tr>
@@ -110,7 +122,7 @@
                         <td align=center>[[${Urlaub.beantragtMitarbeiter}]]</td>
                         </td>
                         <td align="center"> <a th:href="@{/user/urlaubloeschen/{id}(id=${Urlaub.id})}">
-                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 15px">Delete</button></a>
+                            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 17px">Delete</button></a>
                         </td>
                     </tr>
                 </th:block>

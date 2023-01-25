@@ -58,14 +58,17 @@
       margin: 0;
     }
     table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-    table tbody, thead{
-      display: table;
+      border-collapse: collapse;
+      border-spacing: 0;
       width: 100%;
+      border: 1px solid #ddd;
     }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
   </style>
 </head>
 
@@ -106,11 +109,11 @@
   </form>
   <br>
   <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
-    <div class="container">
-      <table width="70%" border=2 rules=rows cellpadding=15 cellspacing=15 class="table">
+    <div style="overflow-x:auto;" class="container">
+      <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr>
+        <tr align="center">
           <th scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Datum & Uhrzeit</th>

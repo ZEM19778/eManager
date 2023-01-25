@@ -34,6 +34,19 @@
         margin-top: auto;
         clear: both;
     }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
+
 </style>
 
 <body>
@@ -75,15 +88,15 @@
         <p>Deine Dienste</p>
         <a th:href = "@{/user/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
 
-        <div class="container">
-            <table width="90%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+        <div style="overflow-x:auto;" class="container">
+            <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Datum</th>
                     <th scope="col">Addresse</th>
-                    <th scope="col">Zeit von</th>
-                    <th scope="col">Zeit bis</th>
+                    <th scope="col">Von</th>
+                    <th scope="col">Bis</th>
                     <th scope="col">Mitarbeiter</th>
                     <th scope="col">Dauer</th>
                     <th scope="col">Update</th>
@@ -100,9 +113,9 @@
                         <td align=center>[[${Dienste.mitarbeiter}]]</td>
                         <td align=center>[[${Dienste.dauer}]]h</td>
                         <td align="center"> <a th:href="@{/user/showFormForUpdateDienst/{id}(id=${Dienste.id})}">
-                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 14px">Update</button></a></td>
+                            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 16px">Update</button></a></td>
                         <td align="center"> <a th:href="@{/user/deletedienst/{id}(id=${Dienste.id})}">
-                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 14px">Delete</button></a></td>
+                            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 17px">Delete</button></a></td>
                     </tr>
                 </th:block>
                 </tbody>
