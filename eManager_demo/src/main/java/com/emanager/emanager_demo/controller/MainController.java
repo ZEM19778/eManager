@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class MainController {
 
     @Autowired
     private BaustelleServiceIn baustelleService;
+
+    private List<Dienste> individuelleDienste;
 
     @GetMapping("")
     public String viewHomePage() {
@@ -249,16 +252,15 @@ public class MainController {
         String headerValue = "attachment; filename=wochenzettel_"+currentDateTime+".pdf";
         response.setHeader(headerKey, headerValue);
 
-        List<Dienste> listDienste = diensteService.getAllDienste();
-
-        UserPDFExporter exporter = new UserPDFExporter(listDienste);
+        UserPDFExporter exporter = new UserPDFExporter(individuelleDienste);
+        individuelleDienste = new ArrayList<>();
         exporter.export(response);
     }
 
-    @GetMapping("/admin/wochenzettelView{name}")
-    public String wochenzettelView(Model model) {
-        List<Dienste> listDienste = diensteService.getAllDienste();
-        model.addAttribute("listDienste",listDienste);
+    @GetMapping("/admin/wochenzettelView/")
+    public String wochenzettelView(@RequestParam("user") String username,  Model model) {
+        individuelleDienste = diensteService.findDiensteByMitarbeiterLike(username);
+        model.addAttribute("listDienste",individuelleDienste);
         return "wochenzettelView";
     }
 

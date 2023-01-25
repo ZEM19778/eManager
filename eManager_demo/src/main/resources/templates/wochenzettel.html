@@ -101,7 +101,7 @@
                     <tr>
                         <td align=center>[[${User.username}]]</td>
                         <td align=center>[[${User.role}]]</td>
-                        <td align="center"> <a th:href="@{/admin/wochenzettelView/}">
+                        <td align="center"> <a th:href="@{/admin/wochenzettelView/(user=${User.username})}">
                             <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 19px">Anschauen</button>
                         </a>
                     </tr>

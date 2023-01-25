@@ -4,7 +4,6 @@
     <title>Wochenzettel</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href='/homepageUser.css'/>
-    <link rel="stylesheet" href='/userverwaltung.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 <style>
@@ -32,6 +31,22 @@
         margin-top: auto;
         clear: both;
     }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    .container {
+        height: 255px;
+        overflow-y: scroll;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
 
@@ -70,14 +85,14 @@
     <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
         <p>Mitarbeiterliste</p>
         <br>
-        <div class="container">
-            <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
+        <div style="overflow-x:auto;" class="container">
+            <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Role</th>
-                    <th scope="col">Wochenzettel einsehen</th>
+                    <th scope="col">Wochenzettel</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,9 +102,8 @@
                         <td align=center>[[${User.username}]]</td>
                         <td align=center>[[${User.role}]]</td>
                         <td align="center"> <a th:href="@{/admin/wochenzettelView/(user=${User.username})}">
-                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Anschauen</button>
+                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 19px">Anschauen</button>
                         </a>
-                        </td>
                     </tr>
                 </th:block>
                 </tbody>

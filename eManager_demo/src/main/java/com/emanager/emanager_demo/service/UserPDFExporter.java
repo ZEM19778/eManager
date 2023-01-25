@@ -13,10 +13,11 @@ import com.lowagie.text.pdf.PdfWriter;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPDFExporter {
-    private List<Dienste> listDienste;
+    private List<Dienste> listDienste = new ArrayList<>();
     public UserPDFExporter(List<Dienste> listDienste){
         this.listDienste = listDienste;
     }
