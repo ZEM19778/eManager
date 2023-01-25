@@ -40,6 +40,18 @@
         margin-top: auto;
         clear: both;
     }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
 <body>
@@ -81,8 +93,8 @@
     <br>
     <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
         <p>Hier können Sie die Termine sehen</p>
-        <div class="container">
-            <table width="80%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
+        <div style="overflow-x:auto;" class="container">
+            <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
                 <tr>
