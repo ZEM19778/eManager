@@ -36,6 +36,22 @@
     height: 100%;
     margin: 0;
   }
+  .container {
+    height: 255px;
+    overflow-y: scroll;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    text-align: center;
+    padding: 8px;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
 </style>
 
 <body>
@@ -72,25 +88,30 @@
 </nav>
 
 <div style="box-shadow: 0 5px 100px #f48324; border-radius: 10px;" align="center">
-  <h3 align="center">Passwort ändern</h3>
+  <h3 align="center">Baustellenverwaltung</h3>
   <br>
   <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
+    <a th:href = "@{/admin/baustelleneu}">
+      <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 20px">Baustelle eingeben</button></a><br>
     <br>
-    <div class="container">
-      <table width="60%" border=2 rules=rows cellpadding=15 cellspacing=15 class="data">
+    <u>Hier sehen Sie die derzeigiten Baustellen</u>
+    <br>
+    <div style="overflow-x:auto; height: 220px" class="container">
+      <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <u>Hier sehen Sie die derzeigiten Baustellen</u>
-        <a th:href = "@{/admin/baustelleneu}" class="btn btn-primary btn-sm mb-3"> Baustelle eingeben </a>
-        <br><br>
+        <tr>
+          <th scope="col">Baustelle</th>
+          <th scope="col">Update</th>
+        </tr>
         </thead>
+
         <tbody>
         <th:block th:each="Baustelle : ${listBaustelle} ">
-
           <tr>
             <td align=center>[[${Baustelle.bezeichnung}]]</td>
             <td align="center"> <a th:href="@{/admin/baustelleUpdate/{id}(id=${Baustelle.id})}">
-              <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 15px">Update</button></a>
+              <button type="button" class="button" style="padding: 2px 15px 2px; font-size: 18px">Update</button></a>
             </td>
           </tr>
         </th:block>
