@@ -32,8 +32,10 @@ public class Dienste {
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime zeitbis;
 
-    @Column(name = "d_adresse")
-    private String addresse;
+    @ManyToOne
+    @JoinColumn(name = "b_d_id", referencedColumnName = "b_id")
+    private Baustelle addresse;
+
 
     @Column(name = "d_mitarbeiter")
     private String mitarbeiter;
@@ -77,11 +79,11 @@ public class Dienste {
     }
 
 
-    public String getAddresse() {
+    public Baustelle getAddresse() {
         return addresse;
     }
 
-    public void setAddresse(String addresse) {
+    public void setAddresse(Baustelle addresse) {
         this.addresse = addresse;
     }
 

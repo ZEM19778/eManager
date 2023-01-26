@@ -52,7 +52,7 @@ public class UserPDFExporter {
             table.addCell(String.valueOf(dienste.getZeitvon()));
             table.addCell(String.valueOf(dienste.getZeitbis()));
             table.addCell(String.valueOf(dienste.getDauer()));
-            table.addCell(dienste.getAddresse());
+            table.addCell(String.valueOf(dienste.getAddresse()));
         }
     }
 

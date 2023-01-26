@@ -84,13 +84,13 @@
                    placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30"> </p>
             <br>
 
-            <p>Wo haben Sie gearbeitet?: <select th:field="*{addresse}">
-                <option th:value="'Wienerberg'" th:text="Wienerberg"></option>
-                <option th:value="'Spengergasse'" th:text="Spengergasse"></option>
-                <option th:value="'Neubaugasse'" th:text="Neubaugasse"></option>
-                <option th:value="'Schellinggasse'" th:text="Schellinggasse"></option>
-                <option th:value="'Neilreichgasse'" th:text="Neilreichgasse"></option>
-            </select> </p>
+
+            <p>Wo haben Sie gearbeitet?:
+                <select th:field="*{addresse}">
+                    <option th:each="course: ${listBaustelle}" th:value="${course.id}" th:text="${course.bezeichnung}" />
+                </select>
+            </p>
+
             <br>
 
             <p>Von-Bis: <input type="time" th:field="*{zeitvon}"

@@ -46,6 +46,8 @@ public class MainController {
     @Autowired
     private BaustelleServiceIn baustelleService;
 
+
+
     private List<Dienste> individuelleDienste;
 
     @GetMapping("")
@@ -138,13 +140,6 @@ public class MainController {
     }
 
 
-    @GetMapping("/user/showFormForUpdateDienst/{id}")
-    public String showFormForUpdateDienst(@PathVariable(value = "id") long id, Model model) {
-
-        Dienste dienste = diensteService.getDiensteById(id);
-        model.addAttribute("dienste", dienste);
-        return "updateDienst";
-    }
 
 
 
@@ -303,6 +298,10 @@ public class MainController {
         List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(benutzername);
         model.addAttribute("listDienste",listDienste);
 
+
+
+
+
         return "diensteEintragen";
     }
 
@@ -312,6 +311,10 @@ public class MainController {
         // create model attribute to bind form data
         Dienste dienste = new Dienste();
         model.addAttribute("dienste", dienste);
+
+        List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
+        model.addAttribute("listBaustelle", listBaustelle);
+
         return "diensteerstellen";
     }
 
@@ -509,6 +512,16 @@ public class MainController {
         return "baustellesehen";
     }
 
+
+    @GetMapping("/admin/baustelleneu")
+    public String baustelleneu(Model model) {
+        // create model attribute to bind form data
+        Baustelle baustelle = new Baustelle();
+        model.addAttribute("baustelle", baustelle);
+
+        return "baustelleneu";
+    }
+
     @PostMapping("/admin/saveBaustelle")
     public String saveBaustelle(Baustelle baustelle, RedirectAttributes ra) {
 
@@ -517,6 +530,33 @@ public class MainController {
 
     }
 
+    @GetMapping("/admin/baustelleUpdate/{id}")
+    public String baustelleUpdate(@PathVariable ( value = "id") long id, Model model) {
+
+        Baustelle baustelle = baustelleService.getBaustelleById(id);
+
+        model.addAttribute("baustelle", baustelle);
+        return "baustelleupdate";
+    }
+
+    @GetMapping("/admin/baustelleDelete/{id}")
+    public String baustelleDelete(@PathVariable(value = "id") long id) {
+        this.baustelleService.deleteBaustelleById(id);
+        return "redirect:/admin/baustelle";
+    }
+
+
+    @GetMapping("/user/showFormForUpdateDienst/{id}")
+    public String showFormForUpdateDienst(@PathVariable(value = "id") long id, Model model) {
+
+        Dienste dienste = diensteService.getDiensteById(id);
+        model.addAttribute("dienste", dienste);
+
+        Baustelle baustelle= baustelleService.getBaustelleById(id);
+        model.addAttribute("baustelle",baustelle);
+
+        return "updateDienst";
+    }
 
 
 

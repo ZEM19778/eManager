@@ -11,4 +11,7 @@ public interface BaustelleServiceIn {
     void saveBaustelle(Baustelle baustelle);
 
     void deleteBaustelleById(long id);
+
+    Baustelle getBaustelleById(long id);
+
 }

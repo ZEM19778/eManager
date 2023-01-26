@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BaustelleService implements BaustelleServiceIn{
@@ -27,6 +28,18 @@ public class BaustelleService implements BaustelleServiceIn{
     @Override
     public void deleteBaustelleById(long id) {
         this.baustelleRepository.deleteById(id);
+    }
+
+    @Override
+    public Baustelle getBaustelleById(long id) {
+        Optional<Baustelle> optional = baustelleRepository.findById(id);
+        Baustelle baustelle = null;
+        if (optional.isPresent()) {
+            baustelle = optional.get();
+        } else {
+            throw new RuntimeException(" baustelle not found for id :: " + id);
+        }
+        return baustelle;
     }
 
 
