@@ -4,12 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.time.Duration;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="d_dienste")
@@ -79,8 +75,8 @@ public class Dienste {
     }
 
 
-    public Baustelle getAddresse() {
-        return addresse;
+    public String getAddresse() {
+        return addresse.getBezeichnung();
     }
 
     public void setAddresse(Baustelle addresse) {

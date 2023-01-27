@@ -275,11 +275,6 @@ public class MainController {
     // return "redirect:/admin/userverwaltung";
     //  }
 
-
-
-
-
-
     @GetMapping("/admin/deleteuser/{id}")
     public String deleteuser(@PathVariable (value = "id") long id) {
 
