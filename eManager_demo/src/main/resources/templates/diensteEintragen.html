@@ -107,7 +107,7 @@
                 <th:block th:each="Dienste : ${listDienste} ">
                     <tr>
                         <th scope="row" th:pattern="d">[[${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}]]</th>
-                        <td align=center>[[${Dienste.addresse.bezeichnung}]]</td>
+                        <td align=center>[[${Dienste.getAddresse()}]]</td>
                         <td align=center>[[${Dienste.zeitvon}]]</td>
                         <td align=center>[[${Dienste.zeitbis}]]</td>
                         <td align=center>[[${Dienste.mitarbeiter}]]</td>

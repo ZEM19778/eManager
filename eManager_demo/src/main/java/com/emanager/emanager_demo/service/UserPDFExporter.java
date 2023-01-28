@@ -7,12 +7,14 @@ import com.emanager.emanager_demo.model.User;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -75,7 +77,7 @@ public class UserPDFExporter {
     }
 
     public void export(HttpServletResponse response) throws DocumentException, IOException {
-        Document document = new Document(PageSize.A4.rotate());
+        Document document = new Document(PageSize.A4.rotate(),0,0,0,0);
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
 
@@ -83,19 +85,22 @@ public class UserPDFExporter {
         font.setSize(18);
         font.setColor(Color.BLACK);
 
-        Image img = Image.getInstance("eManager_demo/src/main/resources/templates/img/Logo.jpg");
-        img.scaleAbsolute(50,50);
+        Image img = Image.getInstance("eManager_demo/src/main/resources/templates/img/Logo_V2.jpg");
+        img.setAlignment(Image.RIGHT);
 
-        PdfPTable uberschrift = new PdfPTable(2);
-        uberschrift.getDefaultCell().setBorder(0);
-        uberschrift.setWidthPercentage(100f);
-        uberschrift.addCell(new Phrase("Wochenzettel", font));
-        uberschrift.addCell(img);
-        document.add(uberschrift);
+        Phrase ph = new Phrase("Wochenzettel", font);
+        Paragraph p = new Paragraph("Wochenzettel", font);
+        p.setSpacingBefore(350.8f);
 
+        document.add(img);
+        document.add(p);
+        document.add(ph);
+
+
+        //document.add(p);
 
         PdfPTable table = new PdfPTable(5);
-        table.setWidthPercentage(100f);
+        table.setWidthPercentage(90f);
         table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
         table.setSpacingBefore(10);
 
