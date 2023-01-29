@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.emanager.emanager_demo.EManagerDemoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.184 s - in com.emanager.emanager_demo.EManagerDemoApplicationTests
