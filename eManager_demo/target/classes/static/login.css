@@ -122,6 +122,8 @@ body{
 }
 .form .button{
     margin-top: 35px;
+    width: 80%;
+    height: 30%;
 }
 .form .button input{
     border: none;
@@ -133,6 +135,8 @@ body{
     background-color: #df5308;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 80%;
+    height: 30%;
 }
 
 button{
@@ -145,6 +149,8 @@ button{
     border-radius: 3px;
     font-family: "Calibri",sans-serif;
     padding: 0.25em 5em;
+    width: 80%;
+    height: 30%;
 }
 button:hover{
     background-color: #df5308
