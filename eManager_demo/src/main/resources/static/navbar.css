@@ -1,0 +1,66 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 1em;
+    background-color: black;
+    font-size: calc(10px + 0.390625vw);
+}
+
+.brand {
+    font-weight: bold;
+    text-decoration: none;
+    color: orange;
+    font-size: 20px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0 0.5em;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+
+.toggle-container {
+    display: none;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.toggle {
+    background-color: orange;
+    width: 30px;
+    height: 10px;
+    margin: 20px;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .menu {
+        display: none;
+    }
+    .toggle-container {
+        display: block;
+    }
+    input[type="checkbox"]:checked + .menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        right: 0;
+        background: linear-gradient(110deg, #000000 35%, orange 75%);
+    }
+}

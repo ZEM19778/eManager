@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href='/homepageUser.css'/>
   <link rel="stylesheet" href='/homepageAdmin.css'/>
+  <link rel="stylesheet" href='/navbar.css'/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 <style>
@@ -50,9 +51,14 @@
   <br>
   <br>
 </div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container-fluid">
-    <ul class="navbar-nav">
+<header>
+  <nav class="navbar">
+    <a href="#" class="brand">eManager</a>
+    <label for="toggle" class="toggle-container">
+      <span class="toggle"></span>
+    </label>
+    <input type="checkbox" id="toggle">
+    <ul class="menu">
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
       </li>
@@ -72,8 +78,9 @@
         <a class="nav-link active" th:href = "@{/admin/baustelle}">Baustellenverwaltung</a>
       </li>
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
+
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>

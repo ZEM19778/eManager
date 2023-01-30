@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href='/homepageUser.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href='/navbar.css'/>
+
+
+
 </head>
 <style>
     footer{
@@ -43,11 +47,11 @@
     }
 
     th, td {
-        text-align: left;
+        text-align: center;
         padding: 8px;
     }
-    tr:nth-child(even){background-color: #f2f2f2}
 
+    tr:nth-child(even){background-color: #f2f2f2}
 </style>
 
 <body>
@@ -57,9 +61,14 @@
     <br>
     <br>
 </div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
+<header>
+    <nav class="navbar">
+        <a href="#" class="brand">eManager</a>
+        <label for="toggle" class="toggle-container">
+            <span class="toggle"></span>
+        </label>
+        <input type="checkbox" id="toggle">
+        <ul class="menu">
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
             </li>
@@ -79,8 +88,8 @@
                 <a class="nav-link active" th:href = "@{/admin/baustelle}">Baustellenverwaltung</a>
             </li>
         </ul>
-    </div>
-</nav>
+    </nav>
+</header>
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Mitarbeiterliste</h3>
