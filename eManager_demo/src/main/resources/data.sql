@@ -29,3 +29,6 @@ INSERT INTO emanager.b_baustelle (b_id, b_bezeichnung) VALUES (1, 'Spengergasse 
 INSERT INTO emanager.b_baustelle (b_id, b_bezeichnung) VALUES (2, 'Wienerberg');
 INSERT INTO emanager.b_baustelle (b_id, b_bezeichnung) VALUES (3, 'Der Mond');
 INSERT INTO emanager.b_baustelle (b_id, b_bezeichnung) VALUES (4, 'Bergmanns Keller');
+
+-- Hibernate Sequence
+INSERT INTO emanager.hibernate_sequence (next_val) VALUES (0);

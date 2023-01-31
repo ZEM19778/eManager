@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,6 +23,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
 
@@ -277,9 +279,14 @@ public class MainController {
 
     @GetMapping("/admin/deleteuser/{id}")
     public String deleteuser(@PathVariable (value = "id") long id) {
-
-
-        this.service.deleteUsereById(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String eingeloggt = authentication.getName();
+        User user = service.getUserById(id);
+        String mitarbeiter = user.getUsername();
+        if(!Objects.equals(eingeloggt, mitarbeiter)){
+            this.service.deleteUsereById(id);
+            return "redirect:/admin/userverwaltung";
+        }
         return "redirect:/admin/userverwaltung";
     }
 
@@ -292,9 +299,6 @@ public class MainController {
         String benutzername = authentication.getName();
         List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(benutzername);
         model.addAttribute("listDienste",listDienste);
-
-
-
 
 
         return "diensteEintragen";
