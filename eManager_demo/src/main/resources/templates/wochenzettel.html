@@ -50,6 +50,13 @@
         text-align: center;
         padding: 8px;
     }
+    .toggle {
+        background-color: #f48324;
+        width: 30px;
+        height: 5px;
+        margin: 5px;
+        display: block;
+    }
 
     tr:nth-child(even){background-color: #f2f2f2}
 </style>
@@ -65,6 +72,8 @@
     <nav class="navbar">
         <a href="#" class="brand">eManager</a>
         <label for="toggle" class="toggle-container">
+            <span class="toggle"></span>
+            <span class="toggle"></span>
             <span class="toggle"></span>
         </label>
         <input type="checkbox" id="toggle">
