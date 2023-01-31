@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -153,6 +154,9 @@ public class MainController {
     @GetMapping("/admin/kalender")
     public String kalenderAdmin(Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
+        LocalDate anfang = LocalDate.of(2023,01,01);
+        LocalDate ende = LocalDate.of(2023,01,31);
+        List<Termin> kalenderTermine = termineService.getTermineInSpan(anfang,ende);
         model.addAttribute("listTermine", listTermine);
         return "kalenderAdmin";
     }

@@ -4,6 +4,7 @@ import com.emanager.emanager_demo.model.Termin;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TermineServiceIn {
@@ -14,4 +15,5 @@ public interface TermineServiceIn {
 
     void deleteTerminById(long id);
 
+    List<Termin> getTermineInSpan(LocalDate start, LocalDate ende);
 }

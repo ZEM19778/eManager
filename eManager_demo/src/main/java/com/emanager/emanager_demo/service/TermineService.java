@@ -3,14 +3,10 @@ package com.emanager.emanager_demo.service;
 import com.emanager.emanager_demo.model.Termin;
 import com.emanager.emanager_demo.repository.TermineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +39,20 @@ public class TermineService implements TermineServiceIn{
             throw new RuntimeException(" termine not found for id :: " + id);
         }
         return termin;
+    }
+    @Override
+    public List<Termin> getTermineInSpan(LocalDate start, LocalDate ende){
+        Integer i = 0;
+        List<Termin> alleTermine = termineRepository.findAll();
+        List<Termin> gefilterteTermine = new ArrayList<>();
+        for (Termin termin: alleTermine) {
+            boolean frueher = termin.getDatum().isBefore(start);
+            boolean spaeter = termin.getDatum().isAfter(ende);
+            if(!frueher && !spaeter){
+                gefilterteTermine.add(termin);
+            }
+        }
+        return gefilterteTermine;
     }
 
 
