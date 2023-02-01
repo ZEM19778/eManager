@@ -20,10 +20,12 @@ import javax.swing.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -152,8 +154,9 @@ public class MainController {
     public String kalenderAdmin(Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
         LocalDate weekReference = LocalDate.now();
+        LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
-                .mapToObj(weekReference::plusDays)
+                .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
         Temporals t = new Temporals();
 
@@ -562,7 +565,4 @@ public class MainController {
 
         return "updateDienst";
     }
-
-
-
 }
