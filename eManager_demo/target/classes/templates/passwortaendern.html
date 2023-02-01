@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href='/homepageUser.css'/>
   <link rel="stylesheet" href='/passwortAendern.css'/>
+  <link rel="stylesheet" href='/navbar.css'/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 
@@ -49,7 +50,13 @@
     text-align: left;
     padding: 4px;
   }
-
+  .toggle {
+    background-color: #f48324;
+    width: 30px;
+    height: 5px;
+    margin: 5px;
+    display: block;
+  }
   tr:nth-child(even){background-color: #f2f2f2}
 </style>
 
@@ -60,9 +67,16 @@
   <br>
   <br>
 </div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container-fluid">
-    <ul class="navbar-nav">
+<header>
+  <nav class="navbar">
+    <a href="#" class="brand">eManager</a>
+    <label for="toggle" class="toggle-container">
+      <span class="toggle"></span>
+      <span class="toggle"></span>
+      <span class="toggle"></span>
+    </label>
+    <input type="checkbox" id="toggle">
+    <ul class="menu">
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/user/home}">Home</a>
       </li>
@@ -79,13 +93,13 @@
         <a class="nav-link active" th:href = "@{/user/passwortaendern}"><b>Passwort ändern</b></a>
       </li>
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h3 align="center">Passwort ändern</h3>
   <br>
-  <div style="width:70%;height:330px;border:1px solid #000; border-radius: 5px">
+  <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
     <br>
     <div style="overflow-x:auto;" class="container">
       <table rules=rows>
