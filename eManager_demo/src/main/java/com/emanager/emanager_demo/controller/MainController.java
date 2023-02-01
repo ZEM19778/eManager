@@ -1,7 +1,9 @@
 package com.emanager.emanager_demo.controller;
 
 import com.emanager.emanager_demo.model.*;
+import com.emanager.emanager_demo.repository.TermineRepository;
 import com.emanager.emanager_demo.service.*;
+import com.emanager.emanager_demo.utility.Temporals;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,10 +23,13 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
 
@@ -49,7 +54,8 @@ public class MainController {
     @Autowired
     private BaustelleServiceIn baustelleService;
 
-
+    @Autowired
+    private TermineRepository termineRepository;
 
     private List<Dienste> individuelleDienste;
 
@@ -142,22 +148,18 @@ public class MainController {
         return "updateUrlaub";
     }
 
-
-
-
-
-
-
-
-
-
     @GetMapping("/admin/kalender")
     public String kalenderAdmin(Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
-        LocalDate anfang = LocalDate.of(2023,01,01);
-        LocalDate ende = LocalDate.of(2023,01,31);
-        List<Termin> kalenderTermine = termineService.getTermineInSpan(anfang,ende);
+        LocalDate weekReference = LocalDate.now();
+        List<LocalDate> weekDays = IntStream.range(0, 7)
+                .mapToObj(weekReference::plusDays)
+                .collect(Collectors.toList());
+        Temporals t = new Temporals();
+
         model.addAttribute("listTermine", listTermine);
+        model.addAttribute("temporals", t);
+        model.addAttribute("weekDays", weekDays);
         return "kalenderAdmin";
     }
 

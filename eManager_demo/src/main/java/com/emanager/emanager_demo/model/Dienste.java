@@ -1,6 +1,7 @@
 package com.emanager.emanager_demo.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lowagie.text.pdf.PdfPCell;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -75,8 +76,8 @@ public class Dienste {
     }
 
 
-    public String getAddresse() {
-        return addresse.getBezeichnung();
+    public Baustelle getAddresse() {
+        return addresse;
     }
 
     public void setAddresse(Baustelle addresse) {

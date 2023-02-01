@@ -70,7 +70,8 @@ public class UserPDFExporter {
             String date = simpleDateFormat.format(dienste.getDatumvon());
             table.addCell(date);
             //Arbeitsort
-            table.addCell(dienste.getAddresse());
+            Baustelle b = dienste.getAddresse();
+            table.addCell(b.getBezeichnung());
             //Zeit von
             table.addCell(String.valueOf(dienste.getZeitvon()));
             //Zeit bis

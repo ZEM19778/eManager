@@ -7,13 +7,15 @@
     <link rel="stylesheet" href='/kalender.css'/>
     <link rel="stylesheet" href='/homepageAdmin.css'/>
     <link rel="stylesheet" href='/navbar.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <title>Calendar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <script src="/js/script.js" defer></script>
 </head>
 <style>
     footer{
@@ -143,32 +145,43 @@
                 </th:block>
                 </tbody>
             </table>
+            <br>
+            <br>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:block th:each="day:${weekDays}">
+                            <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, day)}">
+                                <div th:text="${Termin.beschreibung}"></div>
+                                <div th:text="${Termin.beginn} - ${Termin.ende}"></div>
+                                <div th:text="${Termin.betrifft}"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <script src="/static/js/kalender.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
         </div>
     </div>
 </div>
 <br>
-
-<div class="wrapper">
-    <header>
-        <p class="current-date" align="center"></p>
-        <div class="icons" align="center">
-            <span id="prev" class="material-symbols-rounded">chevron_left</span>
-            <span id="next" class="material-symbols-rounded">chevron_right</span>
-        </div>
-    </header>
-    <div class="calendar" style="line-height: 130%">
-        <ul class="weeks">
-            <li>Sun</li>
-            <li>Mon</li>
-            <li>Tue</li>
-            <li>Wed</li>
-            <li>Thu</li>
-            <li>Fri</li>
-            <li>Sat</li>
-        </ul>
-        <ul class="days"></ul>
-    </div>
-</div>
 <footer class="footer">
     <div class="footer-content">
         <h4>eManager - Mitarbeiterverwaltungssystem</h4>
