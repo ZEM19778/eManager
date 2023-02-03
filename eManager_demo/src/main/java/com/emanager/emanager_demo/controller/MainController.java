@@ -565,9 +565,8 @@ public class MainController {
         Dienste dienste = diensteService.getDiensteById(id);
         model.addAttribute("dienste", dienste);
 
-        Baustelle baustelle= baustelleService.getBaustelleById(id);
-        model.addAttribute("baustelle",baustelle);
-
+        List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
+        model.addAttribute("listBaustelle", listBaustelle);
         return "updateDienst";
     }
 }

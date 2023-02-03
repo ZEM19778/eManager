@@ -147,12 +147,11 @@
             <br>
             <br>
             <!-- Kalender -->
-            <div id="kalender">
                 <button id="previousWeek" type="button" th:onclick="vorigeWoche()"><</button>
                 <button id="nextWeek">></button>
                 <br>
                 <div>
-                    <table>
+                    <table id="kalender">
                         <thead>
                         <tr>
                             <th>Montag</th>
@@ -180,7 +179,6 @@
             </div>
         </div>
     </div>
-</div>
 <br>
 <footer class="footer">
     <div class="footer-content">
@@ -191,41 +189,28 @@
 <script th:inline="javascript">
     function vorigeWoche() {
         console.log("Ich will nicht mehr");
-        var aktuellerTag = new Date();
-        var currentWeek = aktuelleWoche(aktuellerTag);
-        // get current week
-        function aktuelleWoche(tag){
-            let week = [];
-            for (let i = 1; i <= 7; i++){
-                let first = aktuellerTag.getDate() - aktuellerTag.getDay() + i;
-                let day = new Date(aktuellerTag.setDate(first)).toISOString().slice(0,10);
-                week.push(day);
-            }
-        }
-        // code to subtract one week from the current week
-        var previousWeek = currentWeek.subtract(1, "week");
+        var currentWeek = new Date();
+        var previousWeek = new Date(currentWeek.getTime() - 7 * 24 * 60 * 60 * 1000);
+
         // and refresh the calendar with the updated week
         $.ajax({
             url: "/admin/kalender",
-            type: "GET",
             data: {week: previousWeek},
             success: function (data){
-                updateCalendar(data);
+                $("#kalender td").empty();
+                for(var i = 0; i < termine.length; i++){
+                    var termin = termine[i];
+                    var tag = new Date(termin.datum)
+
+                    if(tag >= previousWeek && tag < currentWeek){
+                        $("#kalender td[data-date='" + tag.toISOString() + "']").append(
+                            "<div th:text='${Termin.beschreibung}'>" + "</div>"
+                        );
+                    }
+                }
             }
         })
     };
-
-    function updateCalendar(termine){
-        $("#kalender td").empty();
-        for(var i = 0; i < termine.length; i++){
-            var termin = termine[i];
-            var tag = new Date(termin.datum)
-            var tableData = $("#kalender td").filter(function (){
-                return $(this).data("day").getDate() === tag.getDate();
-            });
-            tableData.append("<p>" + termin.bezeichnung + "</p>")
-        }
-    }
 </script>
 </body>
 </html>

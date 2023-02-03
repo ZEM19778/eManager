@@ -6,10 +6,10 @@ INSERT INTO emanager.m_mitarbeiter (m_id, m_passwort, m_rolle, m_benutzername, m
 INSERT INTO emanager.m_mitarbeiter (m_id, m_passwort, m_rolle, m_benutzername, m_vorname) VALUES (19, 'admin2', 'ADMIN', 'admin2', null);
 
 -- Dienste
-INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von) VALUES (1, '2023-01-13 00:00:00', 4, 'test1', '20:24:00', '16:24:00');
-INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von) VALUES (2, '2023-01-03 00:00:00', 4, 'user', '15:43:00', '11:43:00');
-INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von) VALUES (3, '2023-01-21 00:00:00', 0.1, 'user', '11:49:00', '11:43:00');
-INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von) VALUES (4, '2023-01-12 00:00:00', 4, 'test1', '09:12:00', '05:12:00');
+INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von, b_d_id) VALUES (1, '2023-01-13 00:00:00', 4, 'user1', '20:24:00', '16:24:00', 1);
+INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von, b_d_id) VALUES (2, '2023-01-03 00:00:00', 4, 'user1', '15:43:00', '11:43:00', 2);
+INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von, b_d_id) VALUES (3, '2023-01-21 00:00:00', 0.1, 'user2', '11:49:00', '11:43:00', 3);
+INSERT INTO emanager.d_dienste (d_id, d_datum, d_dauer, d_mitarbeiter, d_bis, d_von, b_d_id) VALUES (4, '2023-01-12 00:00:00', 4, 'user2', '09:12:00', '05:12:00',4);
 
 -- Nachrichten
 INSERT INTO emanager.n_nachrichten (n_id, n_datumzeit, n_nachricht, n_sender) VALUES (2, '10.Jän.2023 11:22:49', 'Hallo test', null);
