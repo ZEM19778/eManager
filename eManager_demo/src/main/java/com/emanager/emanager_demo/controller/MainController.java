@@ -166,6 +166,11 @@ public class MainController {
         return "kalenderAdmin";
     }
 
+    //@GetMapping("/admin/kalender/{weekNumber}")
+    //public List<Termin> getTermineForPreviousWeek(@PathVariable int weekNumber){
+    //    return "/admin/kalender";
+    //}
+
     @GetMapping("/admin/terminErstellen")
     public String termin(Model model) {
 

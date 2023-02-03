@@ -147,40 +147,37 @@
             <br>
             <br>
             <!-- Kalender -->
-            <button id="previousWeek"><</button>
-            <button id="nextWeek">></button>
-            <br>
-            <div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Montag</th>
-                        <th>Dienstag</th>
-                        <th>Mittwoch</th>
-                        <th>Donnerstag</th>
-                        <th>Freitag</th>
-                        <th>Samstag</th>
-                        <th>Sonntag</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td th:block th:each="day:${weekDays}">
-                            <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, day)}">
-                                <div th:text="${Termin.beschreibung}"></div>
-                                <div th:text="${Termin.beginn}"></div>
-                                <div th:text="${Termin.betrifft}"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div id="kalender">
+                <button id="previousWeek" type="button" th:onclick="vorigeWoche()"><</button>
+                <button id="nextWeek">></button>
+                <br>
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Montag</th>
+                            <th>Dienstag</th>
+                            <th>Mittwoch</th>
+                            <th>Donnerstag</th>
+                            <th>Freitag</th>
+                            <th>Samstag</th>
+                            <th>Sonntag</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:block th:each="day:${weekDays}">
+                                <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, day)}">
+                                    <div th:text="${Termin.beschreibung}"></div>
+                                    <div th:text="${Termin.beginn}"></div>
+                                    <div th:text="${Termin.betrifft}"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <script src="/static/js/kalender.js"></script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous"></script>
         </div>
     </div>
 </div>
@@ -191,5 +188,44 @@
         <br>
     </div>
 </footer>
+<script th:inline="javascript">
+    function vorigeWoche() {
+        console.log("Ich will nicht mehr");
+        var aktuellerTag = new Date();
+        var currentWeek = aktuelleWoche(aktuellerTag);
+        // get current week
+        function aktuelleWoche(tag){
+            let week = [];
+            for (let i = 1; i <= 7; i++){
+                let first = aktuellerTag.getDate() - aktuellerTag.getDay() + i;
+                let day = new Date(aktuellerTag.setDate(first)).toISOString().slice(0,10);
+                week.push(day);
+            }
+        }
+        // code to subtract one week from the current week
+        var previousWeek = currentWeek.subtract(1, "week");
+        // and refresh the calendar with the updated week
+        $.ajax({
+            url: "/admin/kalender",
+            type: "GET",
+            data: {week: previousWeek},
+            success: function (data){
+                updateCalendar(data);
+            }
+        })
+    };
+
+    function updateCalendar(termine){
+        $("#kalender td").empty();
+        for(var i = 0; i < termine.length; i++){
+            var termin = termine[i];
+            var tag = new Date(termin.datum)
+            var tableData = $("#kalender td").filter(function (){
+                return $(this).data("day").getDate() === tag.getDate();
+            });
+            tableData.append("<p>" + termin.bezeichnung + "</p>")
+        }
+    }
+</script>
 </body>
 </html>
