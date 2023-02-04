@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Calendar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -191,12 +191,19 @@
         console.log("Ich will nicht mehr");
         var currentWeek = new Date();
         var previousWeek = new Date(currentWeek.getTime() - 7 * 24 * 60 * 60 * 1000);
+        //find the year of the current date
+        var oneJan =  new Date(previousWeek.getFullYear(), 0, 1);
 
+        // calculating number of days in given year before a given date
+        var numberOfDays =  Math.floor((previousWeek - oneJan) / (24 * 60 * 60 * 1000));
+
+        // adding 1 since to current date and returns value starting from 0
+        var wochennummer = Math.ceil(( previousWeek.getDay() + 1 + numberOfDays) / 7);
         // and refresh the calendar with the updated week
         $.ajax({
-            url: "/admin/kalender",
+            url: "/admin/kalender/" + wochennummer,
             data: {week: previousWeek},
-            success: function (data){
+            success: function (termine){
                 $("#kalender td").empty();
                 for(var i = 0; i < termine.length; i++){
                     var termin = termine[i];

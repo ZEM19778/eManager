@@ -5,10 +5,12 @@ import com.emanager.emanager_demo.repository.TermineRepository;
 import com.emanager.emanager_demo.service.*;
 import com.emanager.emanager_demo.utility.Temporals;
 import com.lowagie.text.DocumentException;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +28,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.time.temporal.WeekFields;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
