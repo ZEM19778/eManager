@@ -152,10 +152,10 @@
                 <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Delete</button>
             </a>
             -->
-                <button id="previousWeek" style="display:inline-block" type="button" onclick="decrement()"><</button>
+                <button id="previousWeek" style="display:inline-block" type="button"><</button>
                 <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
-                <input id="weekCounter" style="display:inline-block; margin-right: 20px" th:value="${temporals.wochenNummer}" readonly>
-                <button id="nextWeek" style="display:inline-block" type="button" onclick="increment()">></button>
+                <input id="weekCounter" style="display:inline-block; margin-right: 20px" th:value="${wochennummer}" readonly>
+                <button id="nextWeek" style="display:inline-block" type="button">></button>
                 <br>
                 <div>
                     <table id="kalender">
@@ -196,35 +196,37 @@
 <script th:inline="javascript">
     let vorigeWoche = document.getElementById("previousWeek");
     let naechsteWoche = document.getElementById("nextWeek");
-    var kw = $('#weekCounter').val();
+    let kw = parseInt($('#weekCounter').val(), 10);
 
     vorigeWoche.addEventListener("click", decrement);
     naechsteWoche.addEventListener("click", increment);
 
     function decrement(){
+        console.log("Decremente")
         if(kw > 1){
-            window.location.href = '/admin/kalender' + kw;
-            kw--;
+            kw = kw - 1;
+            let wnr = kw.toString();
+            document.getElementById("weekCounter").value = wnr;
+            window.location.href = '/admin/kalender' + wnr;
         }
         else{
             document.getElementById("weekCounter").value = "52";
-            window.location.href = '/admin/kalender' + kw;
-            //window.location.href = '/admin/kalender' + kw;
+            window.location.href = '/admin/kalender52';
         }
     }
     function increment(){
+        console.log("Increment")
         if(kw < 52){
-            kw.value++;
-            window.location.href = '/admin/kalender' + kw;
-            //window.location.href = '/admin/kalender' + kw;
+            kw = kw + 1;
+            let wnr = kw.toString();
+            document.getElementById("weekCounter").value = wnr;
+            window.location.href = '/admin/kalender' + wnr;
         }
         else{
             document.getElementById("weekCounter").value = "1";
-            window.location.href = '/admin/kalender' + kw;
-            //window.location.href = '/admin/kalender' + kw;
+            window.location.href = '/admin/kalender1';
         }
     }
-
 </script>
 </body>
 </html>
