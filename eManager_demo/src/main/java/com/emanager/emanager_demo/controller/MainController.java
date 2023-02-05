@@ -82,7 +82,9 @@ public class MainController {
         model.addAttribute("listNachrichten", listNachrichten);
 
         List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
+        Temporals temporals = new Temporals();
         model.addAttribute("listUrlaub", listUrlaub);
+        model.addAttribute("temporals", temporals);
         return "homepageAdmin";
     }
 
@@ -151,10 +153,13 @@ public class MainController {
     }
 
 
-    @GetMapping("/admin/kalender")
-    public String kalenderAdmin(Model model) {
+    @GetMapping("/admin/kalender{wochennummer}")
+    public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
-        LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate now = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
+        //LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
@@ -194,7 +199,8 @@ public class MainController {
     public String saveTermin(Termin termin) {
         //if(termin.get)
         termineService.saveTermin(termin);
-        return "redirect:/admin/kalender";
+        Temporals temporals = new Temporals();
+        return "redirect:/admin/kalender" + temporals.wochenNummer;
     }
 
     @PostMapping("/admin/saveUrlaub")

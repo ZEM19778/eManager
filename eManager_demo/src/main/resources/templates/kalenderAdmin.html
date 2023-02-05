@@ -147,10 +147,15 @@
             <br>
             <br>
             <!-- Kalender -->
-                <button id="previousWeek" style="display:inline-block" type="button" th:onclick="vorigeWoche()"><</button>
+            <!--
+            <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}">
+                <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Delete</button>
+            </a>
+            -->
+                <button id="previousWeek" style="display:inline-block" type="button" onclick="decrement()"><</button>
                 <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
-                <p id="weekCounter" style="display:inline-block; margin-right: 20px" th:text="${temporals.wochenNummer}"></p>
-                <button id="nextWeek" style="display:inline-block" type="button" th:onclick="naechsteWoche()">></button>
+                <input id="weekCounter" style="display:inline-block; margin-right: 20px" th:value="${temporals.wochenNummer}" readonly>
+                <button id="nextWeek" style="display:inline-block" type="button" onclick="increment()">></button>
                 <br>
                 <div>
                     <table id="kalender">
@@ -168,7 +173,7 @@
                         <tbody>
                         <tr>
                             <td th:block th:each="day:${weekDays}">
-                                <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, temporals.wochenNummer, day)}">
+                                <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
                                     <div th:text="${Termin.beschreibung}"></div>
                                     <div th:text="${Termin.beginn}"></div>
                                     <div th:text="${Termin.betrifft}"></div>
@@ -189,64 +194,36 @@
     </div>
 </footer>
 <script th:inline="javascript">
-    function vorigeWoche() {
-        console.log("Ich will nicht mehr");
-        var currentWeek = new Date();
-        var previousWeek = new Date(currentWeek.getTime() - 7 * 24 * 60 * 60 * 1000);
-        $.ajax({
-            url: '/admin/kalender',
-            type: 'GET',
-            success: function (termine){
-                console.log("Hilfe");
-                $("#kalender td").empty();
-                for(var i = 0; i < termine.length; i++){
-                    var termin = termine[i];
-                    var tag = new Date(termin.datum)
+    let vorigeWoche = document.getElementById("previousWeek");
+    let naechsteWoche = document.getElementById("nextWeek");
+    var kw = $('#weekCounter').val();
 
-                    if(tag >= previousWeek && tag < currentWeek){
-                        $("#kalender td[data-date='" + tag.toISOString() + "']").append(
-                            "<div>" + termin.beschreibung + "</div>"
-                        );
-                    }
-                }
-            }
-        })
-    };
-    function naechsteWoche() {
-        console.log("Ich will nicht mehr");
-        var currentWeek = new Date();
-        var nextWeek = new Date(currentWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
-        //find the year of the current date
-        var oneJan =  new Date(nextWeek.getFullYear(), 0, 1);
+    vorigeWoche.addEventListener("click", decrement);
+    naechsteWoche.addEventListener("click", increment);
 
-        // calculating number of days in given year before a given date
-        var numberOfDays =  Math.floor((nextWeek - oneJan) / (24 * 60 * 60 * 1000));
-
-        // adding 1 since to current date and returns value starting from 0
-        var wochennummer = Math.ceil(( nextWeek.getDay() + 1 + numberOfDays) / 7);
-        // and refresh the calendar with the updated week
-        $.ajax({
-            type: "GET",
-            url: "/admin/kalender/" + wochennummer,
-            data: {week: previousWeek},
-            success: function (termine){
-                $("#kalender td").empty();
-                for(var i = 0; i < termine.length; i++){
-                    var termin = termine[i];
-                    var tag = new Date(termin.datum)
-
-                    if(tag >= nextWeek && tag < currentWeek){
-                        $("#kalender td[data-date='" + tag.toISOString() + "']").append(
-                            "<div>" + termin.datum + "</div>"
-                        );
-                    }
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error("Failed to retrieve events: " + textStatus + " " + errorThrown);
-            }
-        })
-    };
+    function decrement(){
+        if(kw > 1){
+            window.location.href = '/admin/kalender' + kw;
+            kw--;
+        }
+        else{
+            document.getElementById("weekCounter").value = "52";
+            window.location.href = '/admin/kalender' + kw;
+            //window.location.href = '/admin/kalender' + kw;
+        }
+    }
+    function increment(){
+        if(kw < 52){
+            kw.value++;
+            window.location.href = '/admin/kalender' + kw;
+            //window.location.href = '/admin/kalender' + kw;
+        }
+        else{
+            document.getElementById("weekCounter").value = "1";
+            window.location.href = '/admin/kalender' + kw;
+            //window.location.href = '/admin/kalender' + kw;
+        }
+    }
 
 </script>
 </body>
