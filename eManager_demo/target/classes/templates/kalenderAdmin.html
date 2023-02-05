@@ -147,8 +147,10 @@
             <br>
             <br>
             <!-- Kalender -->
-                <button id="previousWeek" type="button" th:onclick="vorigeWoche()"><</button>
-                <button id="nextWeek">></button>
+                <button id="previousWeek" style="display:inline-block" type="button" th:onclick="vorigeWoche()"><</button>
+                <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
+                <p id="weekCounter" style="display:inline-block; margin-right: 20px" th:text="${temporals.wochenNummer}"></p>
+                <button id="nextWeek" style="display:inline-block" type="button" th:onclick="naechsteWoche()">></button>
                 <br>
                 <div>
                     <table id="kalender">
@@ -166,7 +168,7 @@
                         <tbody>
                         <tr>
                             <td th:block th:each="day:${weekDays}">
-                                <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, day)}">
+                                <div th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, temporals.wochenNummer, day)}">
                                     <div th:text="${Termin.beschreibung}"></div>
                                     <div th:text="${Termin.beginn}"></div>
                                     <div th:text="${Termin.betrifft}"></div>
@@ -191,16 +193,40 @@
         console.log("Ich will nicht mehr");
         var currentWeek = new Date();
         var previousWeek = new Date(currentWeek.getTime() - 7 * 24 * 60 * 60 * 1000);
+        $.ajax({
+            url: '/admin/kalender',
+            type: 'GET',
+            success: function (termine){
+                console.log("Hilfe");
+                $("#kalender td").empty();
+                for(var i = 0; i < termine.length; i++){
+                    var termin = termine[i];
+                    var tag = new Date(termin.datum)
+
+                    if(tag >= previousWeek && tag < currentWeek){
+                        $("#kalender td[data-date='" + tag.toISOString() + "']").append(
+                            "<div>" + termin.beschreibung + "</div>"
+                        );
+                    }
+                }
+            }
+        })
+    };
+    function naechsteWoche() {
+        console.log("Ich will nicht mehr");
+        var currentWeek = new Date();
+        var nextWeek = new Date(currentWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
         //find the year of the current date
-        var oneJan =  new Date(previousWeek.getFullYear(), 0, 1);
+        var oneJan =  new Date(nextWeek.getFullYear(), 0, 1);
 
         // calculating number of days in given year before a given date
-        var numberOfDays =  Math.floor((previousWeek - oneJan) / (24 * 60 * 60 * 1000));
+        var numberOfDays =  Math.floor((nextWeek - oneJan) / (24 * 60 * 60 * 1000));
 
         // adding 1 since to current date and returns value starting from 0
-        var wochennummer = Math.ceil(( previousWeek.getDay() + 1 + numberOfDays) / 7);
+        var wochennummer = Math.ceil(( nextWeek.getDay() + 1 + numberOfDays) / 7);
         // and refresh the calendar with the updated week
         $.ajax({
+            type: "GET",
             url: "/admin/kalender/" + wochennummer,
             data: {week: previousWeek},
             success: function (termine){
@@ -209,15 +235,19 @@
                     var termin = termine[i];
                     var tag = new Date(termin.datum)
 
-                    if(tag >= previousWeek && tag < currentWeek){
+                    if(tag >= nextWeek && tag < currentWeek){
                         $("#kalender td[data-date='" + tag.toISOString() + "']").append(
-                            "<div th:text='${Termin.beschreibung}'>" + "</div>"
+                            "<div>" + termin.datum + "</div>"
                         );
                     }
                 }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Failed to retrieve events: " + textStatus + " " + errorThrown);
             }
         })
     };
+
 </script>
 </body>
 </html>

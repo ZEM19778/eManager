@@ -150,10 +150,10 @@ public class MainController {
         return "updateUrlaub";
     }
 
+
     @GetMapping("/admin/kalender")
     public String kalenderAdmin(Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
-        LocalDate weekReference = LocalDate.now();
         LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
@@ -166,10 +166,13 @@ public class MainController {
         return "kalenderAdmin";
     }
 
-    //@GetMapping("/admin/kalender/{weekNumber}")
-    //public List<Termin> getTermineForPreviousWeek(@PathVariable int weekNumber){
-    //    return "/admin/kalender";
-    //}
+//    @GetMapping("/admin/kalender/{wochennummer}")
+//    public List<Termin> getTermineForPreviousWeek(@PathVariable int wochennummer){
+//        LocalDate start = LocalDate.now().with(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear(), wochennummer - 1).with(DayOfWeek.MONDAY);
+//        LocalDate ende = start.plusDays(6);
+//
+//       return termineService.getTermineInSpan(start, ende);
+//    }
 
     @GetMapping("/admin/terminErstellen")
     public String termin(Model model) {
