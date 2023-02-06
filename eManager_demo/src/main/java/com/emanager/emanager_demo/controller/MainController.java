@@ -253,6 +253,7 @@ public class MainController {
 
         User user = service.getUserById(id);
         model.addAttribute("user", user);
+        model.addAttribute("temporals", temporals);
         return "updateuser";
     }
 
