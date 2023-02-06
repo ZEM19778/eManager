@@ -1,34 +1,43 @@
-// Add event listener for "Letzte Woche" button
+let vorigeWoche = document.getElementById("previousWeek");
+let naechsteWoche = document.getElementById("nextWeek");
+let kw = parseInt($('#weekCounter').val(), 10);
+var currentYear = new Date().getFullYear();
+var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
 
-function vorigeWoche() {
-    console.log("Ich will nicht mehr");
-    var currentWeek = moment().startOf("week");
-    // TODO: Add code to change displayed week to previous week
-    // code to subtract one week from the current week
-    var previousWeek = currentWeek.subtract(1, "week");
-    // and refresh the calendar with the updated week
-    $.ajax({
-        url: "/admin/kalender",
-        type: "GET",
-        data: {week: previousWeek},
-        success: function (data){
-            updateCalendar(data);
-        }
-    })
-};
+document.getElementById("yearCounter").value = updatedYear;
 
-function updateCalendar(termine){
-    $("#kalender td").empty();
-    for(var i = 0; i < termine.length; i++){
-        var termin = termine[i];
-        var tag = new Date(termin.datum)
-        var tableData = $("#kalender td").filter(function (){
-            return $(this).data("day").getDate() === tag.getDate();
-        });
-        tableData.append("<p>" + termin.bezeichnung + "</p>")
+vorigeWoche.addEventListener("click", decrement);
+naechsteWoche.addEventListener("click", increment);
+
+function decrement(){
+    console.log("Decrement")
+    if(kw > 1){
+        kw = kw - 1;
+        let wnr = kw.toString();
+        document.getElementById("weekCounter").value = wnr;
+        window.location.href = '/admin/kalender' + wnr;
+    }
+    else{
+        document.getElementById("weekCounter").value = "52";
+        updatedYear = updatedYear - 1;
+        localStorage.setItem('updatedYear', updatedYear)
+        document.getElementById("yearCounter").value = updatedYear.toString();
+        window.location.href = '/admin/kalender52';
     }
 }
-// Add event listener for "Nächste Woche" button
-document.getElementById("nextWeek").addEventListener("click", function() {
-    // TODO: Add code to change displayed week to next week
-});
+function increment(){
+    console.log("Increment")
+    if(kw < 52){
+        kw = kw + 1;
+        let wnr = kw.toString();
+        document.getElementById("weekCounter").value = wnr;
+        window.location.href = '/admin/kalender' + wnr;
+    }
+    else{
+        document.getElementById("weekCounter").value = "1";
+        updatedYear = updatedYear + 1;
+        localStorage.setItem('updatedYear', updatedYear)
+        document.getElementById("yearCounter").value = updatedYear.toString();
+        window.location.href = '/admin/kalender1';
+    }
+}
