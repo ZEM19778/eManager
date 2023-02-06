@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Temporals {
@@ -26,4 +27,7 @@ public class Temporals {
 
     public LocalDate heute = LocalDate.now();
     public int wochenNummer = heute.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
+
+    public Calendar now = Calendar.getInstance();
+    public int jahr = now.get(Calendar.YEAR);
 }
