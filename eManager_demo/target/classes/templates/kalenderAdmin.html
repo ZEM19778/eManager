@@ -200,7 +200,6 @@
 </footer>
 <script th:inline="javascript">
     //Modal-Window
-
     $('.open-modal-button').click(function() {
         console.log("success")
         var modalId = $(this).data('target');
@@ -220,9 +219,9 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
+    var updatedYear = currentYear;
 
-    document.getElementById("yearCounter").value = updatedYear + 1;
+    document.getElementById("yearCounter").value = updatedYear;
 
     vorigeWoche.addEventListener("click", decrement);
     naechsteWoche.addEventListener("click", increment);

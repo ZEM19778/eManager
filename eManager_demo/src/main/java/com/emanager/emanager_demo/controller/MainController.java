@@ -225,7 +225,7 @@ public class MainController {
         model.addAttribute("listTermine", listTermine);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
-        model.addAttribute("updatedYear", updatedYear);
+        model.addAttribute("updatedYear", updatedYear);;
         return "kalenderUser";
     }
 
