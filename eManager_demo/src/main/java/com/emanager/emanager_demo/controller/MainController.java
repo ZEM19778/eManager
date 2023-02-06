@@ -212,11 +212,20 @@ public class MainController {
 
 
     @GetMapping("/user/kalender{wochennummer}")
-    public String kalenderUser(Model model) {
-
+    public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
+        LocalDate now = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
+        LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
+        //LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        List<LocalDate> weekDays = IntStream.range(0, 7)
+                .mapToObj(i -> currentMonday.plusDays(i))
+                .collect(Collectors.toList());
+
         model.addAttribute("listTermine", listTermine);
         model.addAttribute("temporals", temporals);
+        model.addAttribute("weekDays", weekDays);
+        model.addAttribute("updatedYear", updatedYear);
         return "kalenderUser";
     }
 

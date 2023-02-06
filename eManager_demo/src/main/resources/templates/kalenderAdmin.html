@@ -117,34 +117,6 @@
             <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Termin erstellen</button></a>
         <br><br>
         <div style="overflow-x:auto; height: 220px" class="container">
-            <table>
-                <!--rules=rows; rules=cols-->
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Beschreibung</th>
-                    <th scope="col">Datum</th>
-                    <th scope="col">Beginn</th>
-                    <th scope="col">Ende</th>
-                    <th scope="col">Betrifft</th>
-                    <th scope="col">Löschen</th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="Termin : ${listTermine} ">
-                    <tr>
-                        <td align=center>[[${Termin.beschreibung}]]</td>
-                        <td align=center>[[${Termin.datum}]]</td>
-                        <td align=center>[[${Termin.beginn}]]</td>
-                        <td align=center>[[${Termin.ende}]]</td>
-                        <td align=center>[[${Termin.betrifft}]]</td>
-                        <td align="center"> <a th:href="@{/admin/deletetermin/{id}(id=${Termin.id})}">
-                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Delete</button></a>
-                        </td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
-            <br>
             <br>
             <!-- Kalender -->
                 <button id="previousWeek" style="display:inline-block" type="button"><</button>
@@ -179,9 +151,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
+</div>
 <br>
 <footer class="footer">
     <div class="footer-content">

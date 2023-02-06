@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='/kalender.css'/>
-    <link rel="stylesheet" href='/userurlaub.css'/>
+    <link rel="stylesheet" href='/homepageUser.css'/>
     <link rel="stylesheet" href='/navbar.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Calendar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <script src="/js/script.js" defer></script>
 </head>
 <style>
     footer{
@@ -98,62 +99,102 @@
         </ul>
     </nav>
 </header>
-
-
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
-    <h3 align="center">Kalender & Termine</h3>
+    <h3 align="center">Terminüberblick</h3>
 
     <br>
-    <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
-        <p>Hier können Sie die Termine sehen</p>
-        <div style="overflow-x:auto;" class="container">
-            <table>
-                <!--rules=rows; rules=cols-->
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Beschreibung</th>
-                    <th scope="col">Datum</th>
-                    <th scope="col">Beginn</th>
-                    <th scope="col">Ende</th>
-                    <th scope="col">Betrifft</th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="Termin : ${listTermine} ">
+    <div style="width:70%;height:330px;border:1px solid #000; border-radius: 10px">
+        <p>Kalender</p>
+        <br><br>
+        <div style="overflow-x:auto; height: 220px" class="container">
+            <br>
+            <!-- Kalender -->
+            <button id="previousWeek" style="display:inline-block" type="button"><</button>
+            <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
+            <input id="weekCounter" style="display:inline-block; margin-right: 20px" th:value="${wochennummer}" readonly>
+            <input id="yearCounter" style="display:inline-block; margin-right: 20px" readonly>
+            <button id="nextWeek" style="display:inline-block" type="button">></button>
+            <br>
+            <div>
+                <table id="kalender">
+                    <thead>
                     <tr>
-                        <td align=center>[[${Termin.beschreibung}]]</td>
-                        <td align=center>[[${Termin.datum}]]</td>
-                        <td align=center>[[${Termin.beginn}]]</td>
-                        <td align=center>[[${Termin.ende}]]</td>
-                        <td align=center>[[${Termin.betrifft}]]</td>
+                        <th>Montag</th>
+                        <th>Dienstag</th>
+                        <th>Mittwoch</th>
+                        <th>Donnerstag</th>
+                        <th>Freitag</th>
+                        <th>Samstag</th>
+                        <th>Sonntag</th>
                     </tr>
-                </th:block>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:block th:each="day:${weekDays}">
+                            <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
+                                <div th:text="${Termin.beschreibung}"></div>
+                                <div th:text="${Termin.beginn}"></div>
+                                <div th:text="${Termin.betrifft}"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <br>
 </div>
-
-
-
-<div class="wrapper">
-    <header>
-        <p class="current-date" align="center"></p>
-        <div class="icons" align="center">
-            <span id="prev" class="material-symbols-rounded">chevron_left</span>
-            <span id="next" class="material-symbols-rounded">chevron_right</span>
-        </div>
-    </header>
-    <div class="calendar" style="line-height: 130%">
-
-    </div>
-</div>
+<br>
 <footer class="footer">
     <div class="footer-content">
         <h4>eManager - Mitarbeiterverwaltungssystem</h4>
         <br>
     </div>
 </footer>
+<script th:inline="javascript">
+    let vorigeWoche = document.getElementById("previousWeek");
+    let naechsteWoche = document.getElementById("nextWeek");
+    let kw = parseInt($('#weekCounter').val(), 10);
+    var currentYear = new Date().getFullYear();
+    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
+
+    document.getElementById("yearCounter").value = updatedYear;
+
+    vorigeWoche.addEventListener("click", decrement);
+    naechsteWoche.addEventListener("click", increment);
+
+    function decrement(){
+        console.log("Decrement")
+        if(kw > 1){
+            kw = kw - 1;
+            let wnr = kw.toString();
+            document.getElementById("weekCounter").value = wnr;
+            window.location.href = '/user/kalender' + wnr;
+        }
+        else{
+            document.getElementById("weekCounter").value = "52";
+            updatedYear = updatedYear - 1;
+            localStorage.setItem('updatedYear', updatedYear)
+            document.getElementById("yearCounter").value = updatedYear.toString();
+            window.location.href = '/user/kalender52';
+        }
+    }
+    function increment(){
+        console.log("Increment")
+        if(kw < 52){
+            kw = kw + 1;
+            let wnr = kw.toString();
+            document.getElementById("weekCounter").value = wnr;
+            window.location.href = '/user/kalender' + wnr;
+        }
+        else{
+            document.getElementById("weekCounter").value = "1";
+            updatedYear = updatedYear + 1;
+            localStorage.setItem('updatedYear', updatedYear)
+            document.getElementById("yearCounter").value = updatedYear.toString();
+            window.location.href = '/user/kalender1';
+        }
+    }
+</script>
 </body>
 </html>
