@@ -164,7 +164,7 @@ public class MainController {
     public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
-        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
         LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
         //LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
@@ -199,7 +199,7 @@ public class MainController {
         //if(termin.get)
         termineService.saveTermin(termin);
         model.addAttribute("temporals", temporals);
-        return "redirect:/admin/kalender{wochennummer}" + temporals.wochenNummer;
+        return "redirect:/admin/kalender" + temporals.wochenNummer;
     }
 
     @PostMapping("/admin/saveUrlaub")

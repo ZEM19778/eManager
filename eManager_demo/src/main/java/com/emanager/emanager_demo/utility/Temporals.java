@@ -10,15 +10,12 @@ import java.util.Locale;
 
 public class Temporals {
     public static boolean isWithinWeek(LocalDate terminDatum, int wochenNummer, LocalDate reference) {
-        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
         LocalDate now = LocalDate.now();
         LocalDate start = now.with(weekFields.weekOfWeekBasedYear(), wochenNummer).with(DayOfWeek.MONDAY);
         LocalDate end = now.with(weekFields.weekOfWeekBasedYear(), wochenNummer).with(DayOfWeek.SUNDAY);
-        //LocalDate startOfWeek = weekReference.with(DayOfWeek.MONDAY);
-        //LocalDate endOfWeek = weekReference.with(DayOfWeek.SUNDAY);
         LocalDate tDate = terminDatum.atStartOfDay().toLocalDate();
-        //return tDate.compareTo(startOfWeek) >= 0 && tDate.compareTo(endOfWeek) <= 0 && terminDatum.equals(weekReference);
-        if(tDate.isAfter(start) && tDate.isBefore(end) && terminDatum.equals(reference)) {
+        if(tDate.compareTo(start) >= 0 && tDate.compareTo(end) <= 0 && terminDatum.equals(reference)) {
             return true;
         }
         else{
