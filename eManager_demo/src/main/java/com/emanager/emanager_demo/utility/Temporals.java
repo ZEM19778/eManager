@@ -25,6 +25,4 @@ public class Temporals {
 
     public LocalDate heute = LocalDate.now();
     public int wochenNummer = heute.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
-
-    public Calendar now = Calendar.getInstance();
 }

@@ -4,6 +4,7 @@ import com.emanager.emanager_demo.model.Baustelle;
 import com.emanager.emanager_demo.model.Dienste;
 import com.emanager.emanager_demo.model.User;
 
+import com.emanager.emanager_demo.utility.Temporals;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
@@ -20,10 +21,25 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.TextStyle;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class UserPDFExporter {
+    //Aktuelle Wochendaten herausfinden
+    public Temporals temporals = new Temporals();
+    int kw = temporals.wochenNummer;
+    WeekFields weekFields = WeekFields.of(Locale.GERMAN);
+    LocalDate now = LocalDate.now();
+    LocalDate montag = now.with(weekFields.weekOfWeekBasedYear(),kw).with(weekFields.dayOfWeek(), 1);
+    LocalDate sonntag = now.with(weekFields.weekOfWeekBasedYear(), kw).with(weekFields.dayOfWeek(), 7);
+    //Dienste
     private List<Dienste> listDienste = new ArrayList<>();
     private List<Dienste> dienstes = new ArrayList<>();
     public UserPDFExporter(List<Dienste> listDienste){
@@ -39,8 +55,8 @@ public class UserPDFExporter {
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         font.setColor(Color.BLACK);
 
-        //cell.setPhrase(new Phrase("Tag", font));
-        //table.addCell(cell);
+        cell.setPhrase(new Phrase("Tag", font));
+        table.addCell(cell);
 
         cell.setPhrase(new Phrase("Datum", font));
         table.addCell(cell);
@@ -66,6 +82,11 @@ public class UserPDFExporter {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
     private void writeTableData(PdfPTable table) {
         for (Dienste dienste : listDienste) {
+            Instant instant = dienste.getDatumvon().toInstant();
+            LocalDate datum = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+            //Wochentag
+            DayOfWeek dayOfWeek = datum.getDayOfWeek();
+            table.addCell(dayOfWeek.getDisplayName(TextStyle.FULL, Locale.GERMAN));
             //Datum
             String date = simpleDateFormat.format(dienste.getDatumvon());
             table.addCell(date);
@@ -90,9 +111,9 @@ public class UserPDFExporter {
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
 
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(7);
         table.setWidthPercentage(90f);
-        table.setWidths(new float[] {1.5f, 2.5f, 1.5f, 1.5f, 1.0f,1.0f});
+        table.setWidths(new float[] {1.0f, 1.0f, 2.0f, 1.0f, 1.0f, 1.0f,1.0f});
         table.setSpacingBefore(10);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 
@@ -111,7 +132,8 @@ public class UserPDFExporter {
         img.setSpacingBefore(0);
         img.setSpacingAfter(0);
 
-        Phrase ph = new Phrase("Wochenzettel", font);
+        Phrase ph = new Phrase("Wochenzettel für KW: ", font);
+        ph.add(String.valueOf(kw));
 
         Paragraph p = new Paragraph();
         p.add(ph);

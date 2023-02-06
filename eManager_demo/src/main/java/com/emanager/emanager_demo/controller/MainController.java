@@ -22,10 +22,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
@@ -276,6 +273,7 @@ public class MainController {
 
     @GetMapping("/admin/wochenzettel/pdf")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException{
+        List<Dienste> alleDienste = diensteService.getAllDienste();
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         String currentDateTime = dateFormat.format(new Date());
@@ -283,8 +281,29 @@ public class MainController {
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=wochenzettel_"+currentDateTime+".pdf";
         response.setHeader(headerKey, headerValue);
-
-        UserPDFExporter exporter = new UserPDFExporter(individuelleDienste);
+        //Filterung nach Wochennummer
+        List<Dienste> gefilterteDienste = new ArrayList<>();
+        int kw = temporals.wochenNummer;
+        WeekFields weekFields = WeekFields.of(Locale.GERMAN);
+        LocalDate now = LocalDate.now();
+        LocalDate start = now.with(weekFields.weekOfWeekBasedYear(), kw).with(DayOfWeek.MONDAY);
+        LocalDate end = now.with(weekFields.weekOfWeekBasedYear(), kw).with(DayOfWeek.SUNDAY);
+        for(Dienste d : individuelleDienste){
+            Instant instant = d.getDatumvon().toInstant();
+            LocalDate datum = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+            if(datum.compareTo(start) >= 0 && datum.compareTo(end) <= 0){
+                gefilterteDienste.add(d);
+            }
+        }
+        //Sortierung
+        Collections.sort(gefilterteDienste, new Comparator<Dienste>() {
+            @Override
+            public int compare(Dienste o1, Dienste o2) {
+                return o1.getDatumvon().compareTo(o2.getDatumvon());
+            }
+        });
+        //PDF-Erstellung
+        UserPDFExporter exporter = new UserPDFExporter(gefilterteDienste);
         individuelleDienste = new ArrayList<>();
         exporter.export(response);
     }
