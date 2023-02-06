@@ -1,5 +1,6 @@
 package com.emanager.emanager_demo.utility;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,5 +30,4 @@ public class Temporals {
     public int wochenNummer = heute.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
 
     public Calendar now = Calendar.getInstance();
-    public int jahr = now.get(Calendar.YEAR);
 }

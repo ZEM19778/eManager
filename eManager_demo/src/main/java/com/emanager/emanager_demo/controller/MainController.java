@@ -61,6 +61,8 @@ public class MainController {
 
     private List<Dienste> individuelleDienste;
 
+    Temporals temporals = new Temporals();
+
     @GetMapping("")
     public String viewHomePage() {
         return "index";
@@ -82,7 +84,6 @@ public class MainController {
         model.addAttribute("listNachrichten", listNachrichten);
 
         List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
-        Temporals temporals = new Temporals();
         model.addAttribute("listUrlaub", listUrlaub);
         model.addAttribute("temporals", temporals);
         return "homepageAdmin";
@@ -98,6 +99,7 @@ public class MainController {
     public String user(Model model) {
         List<Nachrichten> listNachrichten = nachrichtenService.getAllNachrichten();
         model.addAttribute("listNachrichten", listNachrichten);
+        model.addAttribute("temporals", temporals);
         return "homepageUser";
     }
 
@@ -105,6 +107,7 @@ public class MainController {
     public String urlaubuser(Model model) {
         List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
         model.addAttribute("listUrlaub", listUrlaub);
+        model.addAttribute("temporals", temporals);
         return "urlaubsehenuser";
     }
 
@@ -115,18 +118,20 @@ public class MainController {
 
         Urlaub urlaub = new Urlaub();
         model.addAttribute("urlaub", urlaub);
+        model.addAttribute("temporals", temporals);
 
         return "urlaubErstellen";
     }
 
     @GetMapping("/user/urlaubloeschen/{id}")
-    public String deleteurlaub(@PathVariable(value = "id") long id) {
+    public String deleteurlaub(@PathVariable(value = "id") long id, Model model) {
         this.urlaubService.deleteUrlaubById(id);
+        model.addAttribute("temporals", temporals);
         return "redirect:/user/urlaub";
     }
 
     @PostMapping("/user/saveUrlaub")
-    public String saveUrlaub(Urlaub urlaub) {
+    public String saveUrlaub(Urlaub urlaub, Model model) {
 
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -139,6 +144,7 @@ public class MainController {
         urlaub.setBeantragtMitarbeiter(username);
 
         urlaubService.saveUrlaub(urlaub);
+        model.addAttribute("temporals", temporals);
         return "redirect:/user/urlaub";
     }
 
@@ -149,12 +155,13 @@ public class MainController {
         // get employee from the service
         Urlaub urlaub = urlaubService.getUrlaubById(id);
         model.addAttribute("urlaub", urlaub);
+        model.addAttribute("temporals", temporals);
         return "updateUrlaub";
     }
 
 
     @GetMapping("/admin/kalender{wochennummer}")
-    public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, Model model) {
+    public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
         List<Termin> listTermine = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -163,60 +170,53 @@ public class MainController {
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
-        Temporals t = new Temporals();
 
         model.addAttribute("listTermine", listTermine);
-        model.addAttribute("temporals", t);
+        model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
+        model.addAttribute("updatedYear", updatedYear);
         return "kalenderAdmin";
     }
 
-//    @GetMapping("/admin/kalender/{wochennummer}")
-//    public List<Termin> getTermineForPreviousWeek(@PathVariable int wochennummer){
-//        LocalDate start = LocalDate.now().with(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear(), wochennummer - 1).with(DayOfWeek.MONDAY);
-//        LocalDate ende = start.plusDays(6);
-//
-//       return termineService.getTermineInSpan(start, ende);
-//    }
-
     @GetMapping("/admin/terminErstellen")
     public String termin(Model model) {
-
         Termin termin = new Termin();
         model.addAttribute("termin", termin);
-
+        model.addAttribute("temporals", temporals);
         return "terminErstellen";
     }
 
 
     @GetMapping("/admin/deletetermin/{id}")
-    public String deletetermin(@PathVariable(value = "id") long id) {
+    public String deletetermin(@PathVariable(value = "id") long id, Model model) {
         this.termineService.deleteTerminById(id);
-        return "redirect:/admin/kalender";
+        model.addAttribute("temporals", temporals);
+        return "redirect:/admin/kalender{wochennummer}";
     }
 
     @PostMapping("/admin/saveTermin")
-    public String saveTermin(Termin termin) {
+    public String saveTermin(Termin termin, Model model) {
         //if(termin.get)
         termineService.saveTermin(termin);
-        Temporals temporals = new Temporals();
-        return "redirect:/admin/kalender" + temporals.wochenNummer;
+        model.addAttribute("temporals", temporals);
+        return "redirect:/admin/kalender{wochennummer}" + temporals.wochenNummer;
     }
 
     @PostMapping("/admin/saveUrlaub")
-    public String saveUpdateUser(Urlaub urlaub) {
+    public String saveUpdateUser(Urlaub urlaub, Model model) {
         //if(termin.get)
         urlaubService.saveUrlaub(urlaub);
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/home";
     }
 
 
-    @GetMapping("/user/kalender")
+    @GetMapping("/user/kalender{wochennummer}")
     public String kalenderUser(Model model) {
 
         List<Termin> listTermine = termineService.getAllTermine();
         model.addAttribute("listTermine", listTermine);
-
+        model.addAttribute("temporals", temporals);
         return "kalenderUser";
     }
 
@@ -225,6 +225,7 @@ public class MainController {
     public String userverwaltung(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);
+        model.addAttribute("temporals", temporals);
         return "userverwaltung";
     }
 
@@ -234,7 +235,7 @@ public class MainController {
         // create model attribute to bind form data
         User user = new User();
         model.addAttribute("user", user);
-
+        model.addAttribute("temporals", temporals);
         return "newuser";
     }
 
@@ -259,6 +260,7 @@ public class MainController {
     public String wochenzettel(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);
+        model.addAttribute("temporals", temporals);
         return "wochenzettel";
     }
 
@@ -281,27 +283,12 @@ public class MainController {
     public String wochenzettelView(@RequestParam("user") String username,  Model model) {
         individuelleDienste = diensteService.findDiensteByMitarbeiterLike(username);
         model.addAttribute("listDienste",individuelleDienste);
+        model.addAttribute("temporals", temporals);
         return "wochenzettelView";
     }
 
-    //Update User
-
-    //@RequestMapping(method = RequestMethod.PUT, value = "/admin/updateUser{id}")
-    //public void updateuser(@RequestBody User user) {
-    //  service.updateUser(user);
-    //}
-
-    //@PutMapping(path = "/admin/updateUser")
-    //public @ResponseBody String updateUser(@RequestBody User user, @PathVariable Long id ) {
-    //    User existingData = service.getUserById(id);
-    //   existingData.setUsername(user.getUsername());
-    //   existingData.setRole(user.getRole());
-
-    // return "redirect:/admin/userverwaltung";
-    //  }
-
     @GetMapping("/admin/deleteuser/{id}")
-    public String deleteuser(@PathVariable (value = "id") long id) {
+    public String deleteuser(@PathVariable (value = "id") long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String eingeloggt = authentication.getName();
         User user = service.getUserById(id);
@@ -310,6 +297,7 @@ public class MainController {
             this.service.deleteUsereById(id);
             return "redirect:/admin/userverwaltung";
         }
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/userverwaltung";
     }
 
@@ -322,7 +310,7 @@ public class MainController {
         String benutzername = authentication.getName();
         List<Dienste> listDienste = diensteService.findDiensteByMitarbeiterLike(benutzername);
         model.addAttribute("listDienste",listDienste);
-
+        model.addAttribute("temporals", temporals);
 
         return "diensteEintragen";
     }
@@ -337,11 +325,12 @@ public class MainController {
         List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
         model.addAttribute("listBaustelle", listBaustelle);
 
+        model.addAttribute("temporals", temporals);
         return "diensteerstellen";
     }
 
     @PostMapping("/user/saveDienste")
-    public String saveDienste( Dienste dienste) {
+    public String saveDienste( Dienste dienste, Model model) {
         String username;
         LocalTime von = dienste.getZeitvon();
         LocalTime bis = dienste.getZeitbis();
@@ -367,29 +356,8 @@ public class MainController {
         else {
             return "exceptionTime";
         }
-
-
-
-
-       /*
-        if(stundenzahl > 0){
-            throw new RuntimeException(" Zweite Zeit darf nicht vor der ersten sein " );
-        }
-        else{
-            dienste.setDauer(stundenzahl);
-        }
-
-
-       String vonneu = (String) dienste.getZeitvon().toString();
-        int compare = dienste.getZeitvon().compareTo(dienste.getZeitvon());
-
-        System.out.println(compare);'*/
-
-
-
-
         diensteService.saveDienste(dienste);
-
+        model.addAttribute("temporals", temporals);
         return "redirect:/user/diensteEintragen";
     }
 
@@ -401,12 +369,13 @@ public class MainController {
         // create model attribute to bind form data
         Nachrichten nachrichten = new Nachrichten();
         model.addAttribute("nachrichten", nachrichten);
+        model.addAttribute("temporals", temporals);
         return "nachrichtenerstellen";
     }
 
 
     @PostMapping("/admin/saveNachrichten")
-    public String saveNachrichten( Nachrichten nachrichten) {
+    public String saveNachrichten( Nachrichten nachrichten, Model model) {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -418,14 +387,16 @@ public class MainController {
         nachrichten.setsenderAdmin(username);
 
         nachrichtenService.saveNachrichten(nachrichten);
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/home";
     }
 
 
 
     @GetMapping("/admin/deletenachricht/{id}")
-    public String deletenachricht(@PathVariable (value = "id") long id) {
+    public String deletenachricht(@PathVariable (value = "id") long id, Model model) {
         this.nachrichtenService.deleteNachrichtById(id);
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/home";
     }
 
@@ -434,9 +405,9 @@ public class MainController {
 
 
     @GetMapping("/user/deletedienst/{id}")
-    public String deletedienst(@PathVariable (value = "id") long id) {
+    public String deletedienst(@PathVariable (value = "id") long id, Model model) {
         this.diensteService.deleteDienstById(id);
-
+        model.addAttribute("temporals", temporals);
         return "redirect:/user/diensteEintragen";
     }
 
@@ -449,7 +420,7 @@ public class MainController {
         String benutzername = authentication.getName();
         User user = service.finduserByMitarbeiterLike(benutzername);
         model.addAttribute("listUsers",user);
-
+        model.addAttribute("temporals", temporals);
         return "passwortaendern";
     }
 
@@ -458,7 +429,7 @@ public class MainController {
         // create model attribute to bind form data
         User user = new User();
         model.addAttribute("user", user);
-
+        model.addAttribute("temporals", temporals);
         return "newuser";
     }
 
@@ -470,22 +441,17 @@ public class MainController {
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("user", user);
+        model.addAttribute("temporals", temporals);
         return "updatepassword";
     }
 
     @PostMapping("/user/savePassword")
-    public String savePassword( User user) {
+    public String savePassword( User user, Model model) {
 
         service.saveUser(user);
-
+        model.addAttribute("temporals", temporals);
         return "redirect:/user/passwortaendern";
     }
-
-
-
-
-
-
 
     //ADMIN Passwortändern
     @GetMapping("/admin/passwortaendernadmin")
@@ -494,7 +460,7 @@ public class MainController {
         String benutzername = authentication.getName();
         User user = service.finduserByMitarbeiterLike(benutzername);
         model.addAttribute("listUsers",user);
-
+        model.addAttribute("temporals", temporals);
         return "adminpasswortaendern";
     }
 
@@ -503,7 +469,7 @@ public class MainController {
         // create model attribute to bind form data
         User user = new User();
         model.addAttribute("user", user);
-
+        model.addAttribute("temporals", temporals);
         return "newuser";
     }
 
@@ -515,14 +481,15 @@ public class MainController {
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("user", user);
+        model.addAttribute("temporals", temporals);
         return "adminupdatepassword";
     }
 
     @PostMapping("/admin/adminsavePassword")
-    public String adminsavePassword( User user) {
+    public String adminsavePassword( User user, Model model) {
 
         service.saveUser(user);
-
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/passwortaendernadmin";
     }
 
@@ -531,6 +498,7 @@ public class MainController {
     public String baustelle(Model model) {
         List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
         model.addAttribute("listBaustelle", listBaustelle);
+        model.addAttribute("temporals", temporals);
         return "baustellesehen";
     }
 
@@ -540,14 +508,15 @@ public class MainController {
         // create model attribute to bind form data
         Baustelle baustelle = new Baustelle();
         model.addAttribute("baustelle", baustelle);
-
+        model.addAttribute("temporals", temporals);
         return "baustelleneu";
     }
 
     @PostMapping("/admin/saveBaustelle")
-    public String saveBaustelle(Baustelle baustelle, RedirectAttributes ra) {
+    public String saveBaustelle(Baustelle baustelle, RedirectAttributes ra, Model model) {
 
         baustelleService.saveBaustelle(baustelle);
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/baustelle";
 
     }
@@ -558,12 +527,14 @@ public class MainController {
         Baustelle baustelle = baustelleService.getBaustelleById(id);
 
         model.addAttribute("baustelle", baustelle);
+        model.addAttribute("temporals", temporals);
         return "baustelleupdate";
     }
 
     @GetMapping("/admin/baustelleDelete/{id}")
-    public String baustelleDelete(@PathVariable(value = "id") long id) {
+    public String baustelleDelete(@PathVariable(value = "id") long id, Model model) {
         this.baustelleService.deleteBaustelleById(id);
+        model.addAttribute("temporals", temporals);
         return "redirect:/admin/baustelle";
     }
 
@@ -576,6 +547,7 @@ public class MainController {
 
         List<Baustelle> listBaustelle = baustelleService.getAllBaustelle();
         model.addAttribute("listBaustelle", listBaustelle);
+        model.addAttribute("temporals", temporals);
         return "updateDienst";
     }
 }

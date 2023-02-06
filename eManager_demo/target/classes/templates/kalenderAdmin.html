@@ -155,6 +155,7 @@
                 <button id="previousWeek" style="display:inline-block" type="button"><</button>
                 <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
                 <input id="weekCounter" style="display:inline-block; margin-right: 20px" th:value="${wochennummer}" readonly>
+                <input id="yearCounter" style="display:inline-block; margin-right: 20px" readonly>
                 <button id="nextWeek" style="display:inline-block" type="button">></button>
                 <br>
                 <div>
@@ -197,12 +198,16 @@
     let vorigeWoche = document.getElementById("previousWeek");
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
+    var currentYear = new Date().getFullYear();
+    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
+
+    document.getElementById("yearCounter").value = updatedYear;
 
     vorigeWoche.addEventListener("click", decrement);
     naechsteWoche.addEventListener("click", increment);
 
     function decrement(){
-        console.log("Decremente")
+        console.log("Decrement")
         if(kw > 1){
             kw = kw - 1;
             let wnr = kw.toString();
@@ -211,6 +216,9 @@
         }
         else{
             document.getElementById("weekCounter").value = "52";
+            updatedYear = updatedYear - 1;
+            localStorage.setItem('updatedYear', updatedYear)
+            document.getElementById("yearCounter").value = updatedYear.toString();
             window.location.href = '/admin/kalender52';
         }
     }
@@ -224,6 +232,9 @@
         }
         else{
             document.getElementById("weekCounter").value = "1";
+            updatedYear = updatedYear + 1;
+            localStorage.setItem('updatedYear', updatedYear)
+            document.getElementById("yearCounter").value = updatedYear.toString();
             window.location.href = '/admin/kalender1';
         }
     }

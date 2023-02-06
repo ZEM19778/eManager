@@ -199,7 +199,7 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear
+    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
 
     document.getElementById("yearCounter").value = updatedYear;
 
