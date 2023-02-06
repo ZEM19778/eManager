@@ -168,7 +168,7 @@
     var currentYear = new Date().getFullYear();
     var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
 
-    document.getElementById("yearCounter").value = updatedYear;
+    document.getElementById("yearCounter").value = updatedYear + 1;
 
     vorigeWoche.addEventListener("click", decrement);
     naechsteWoche.addEventListener("click", increment);
