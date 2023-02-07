@@ -164,28 +164,26 @@ public class MainController {
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
         LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
-        //LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
+        List<Termin> gefiltert = new ArrayList<>();
+        for(Termin t : terminListe){
+            if(t.getDatum().getYear() == yearCounter){
+                gefiltert.add(t);
+            }
+        }
         Collections.sort(terminListe, new Comparator<Termin>() {
             @Override
             public int compare(Termin o1, Termin o2) {
                 return o1.getBeginn().compareTo(o2.getBeginn());
             }
         });
-        //Filterung nach Jahr
-        List<Termin> gefilterteTermine = new ArrayList<>();
-        for(Termin t : terminListe){
-            int tjahr = t.getDatum().getYear();
-            if(tjahr == yearCounter){
-                gefilterteTermine.add(t);
-            }
-        }
-        System.out.println(gefilterteTermine);
-        model.addAttribute("listTermine", gefilterteTermine);
+        System.out.println(gefiltert);
+        model.addAttribute("listTermine", gefiltert);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
+        model.addAttribute("yearcounter", yearCounter);
         return "kalenderAdmin";
     }
 

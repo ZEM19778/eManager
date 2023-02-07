@@ -237,7 +237,6 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var yearCounter = $('#yearCounter').val();
     var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;;
 
     document.getElementById("yearCounter").value = updatedYear;
@@ -278,6 +277,7 @@
         }
     }
     //Filterung nach Jahr
+    var yearCounter = $('#yearCounter').val();
     $.ajax({
         type: "GET",
         url: "/admin/kalender" + kw.toString() + "/" + yearCounter,
