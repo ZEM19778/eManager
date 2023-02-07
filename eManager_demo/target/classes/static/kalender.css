@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 *{
     margin: 0;
     padding: 0;
@@ -159,4 +158,20 @@ li a:hover {
     z-index: -1;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+}
+
+.open-modal-button{
+    font-size: 15px;
+    width: 150px;
+    text-align: center;
+    padding: 1px 5px 5px 1px;
+}
+
+.wochenButton{
+    background-color: #f48324;
+}
+
+h4{
+    font-size: 20px;
+    text-align: center;
 }

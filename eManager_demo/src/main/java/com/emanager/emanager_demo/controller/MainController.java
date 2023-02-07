@@ -188,7 +188,7 @@ public class MainController {
     public String deletetermin(@PathVariable(value = "id") long id, Model model) {
         this.termineService.deleteTerminById(id);
         model.addAttribute("temporals", temporals);
-        return "redirect:/admin/kalender{wochennummer}";
+        return "redirect:/admin/kalender" + temporals.wochenNummer;
     }
 
     @PostMapping("/admin/saveTermin")

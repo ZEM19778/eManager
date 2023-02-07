@@ -150,23 +150,23 @@
         <div style="overflow-x:auto; height: 220px" class="container">
             <br>
             <!-- Kalender -->
-                <button id="previousWeek" class="wochenButton" style="display:inline-block; width:20px"><</button>
+                <button id="previousWeek" style="display:inline-block" type="button"><</button>
                 <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
                 <input id="weekCounter" class="inputs" style="display:inline-block; margin-right: 20px; width: 40px; border: none" th:value="${wochennummer}" readonly>
                 <input id="yearCounter" class="inputs" style="display:inline-block; margin-right: 20px; width: 40px; border: none" readonly>
-                <button id="nextWeek" class="wochenButton" style="display:inline-block" type="button">></button>
+                <button id="nextWeek" style="display:inline-block" type="button">></button>
                 <br>
                 <div>
                     <table id="kalender">
                         <thead>
                         <tr>
-                            <th>Montag</th>
-                            <th>Dienstag</th>
-                            <th>Mittwoch</th>
-                            <th>Donnerstag</th>
-                            <th>Freitag</th>
-                            <th>Samstag</th>
-                            <th>Sonntag</th>
+                            <th style="text-align: center">Montag</th>
+                            <th style="text-align: center">Dienstag</th>
+                            <th style="text-align: center">Mittwoch</th>
+                            <th style="text-align: center">Donnerstag</th>
+                            <th style="text-align: center">Freitag</th>
+                            <th style="text-align: center">Samstag</th>
+                            <th style="text-align: center">Sonntag</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -175,11 +175,15 @@
                                 <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
                                     <button class="open-modal-button" th:data-target="'modal-' + ${Termin.id}"  th:text="${Termin.beschreibung}"></button>
                                     <div class="modal" th:id="'modal-' + ${Termin.id}">
-                                        <div class="modal-content">
+                                        <div class="modal-content" style="width: 250px">
                                             <span class="close-modal-button">&times;</span>
-                                            <p th:text="${Termin.beschreibung}"></p>
-                                            <p th:text="${Termin.beginn}"></p>
-                                            <p th:text="${Termin.ende}"></p>
+                                            <h4 th:text="${Termin.beschreibung}"></h4>
+                                            <p style="text-align: center" th:text="'Von: ' + ${Termin.beginn}"></p>
+                                            <p style="text-align: center" th:text="'Bis: ' + ${Termin.ende}"></p>
+                                            <p style="text-align: center" th:text="'Betrifft: ' + ${Termin.betrifft}"></p>
+                                            <a th:href="@{/admin/deletetermin/{id}(id=${Termin.id})}">
+                                                <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Löschen</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -210,6 +214,7 @@
         var randomIndex = Math.floor(Math.random() * color.length);
         return color[randomIndex];
     }
+
     //Modal-Window
     $('.open-modal-button').click(function() {
         console.log("success")
@@ -230,7 +235,7 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var updatedYear = currentYear;
+    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;;
 
     document.getElementById("yearCounter").value = updatedYear;
 
