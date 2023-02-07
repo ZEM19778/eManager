@@ -217,16 +217,27 @@ public class MainController {
 
     @GetMapping("/user/kalender{wochennummer}")
     public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
-        List<Termin> listTermine = termineService.getAllTermine();
+        List<Termin> terminListe = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
         LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
-        //LocalDate currentMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
+        List<Termin> mitarbeiterTermine = new ArrayList<>();
+        for(Termin t : terminListe){
+            if(Objects.equals(t.getBetrifft(), "Mitarbeiter" )|| Objects.equals(t.getBetrifft(), "Alle")){
+                mitarbeiterTermine.add(t);
+            }
+        }
+        Collections.sort(mitarbeiterTermine, new Comparator<Termin>() {
+            @Override
+            public int compare(Termin o1, Termin o2) {
+                return o1.getBeginn().compareTo(o2.getBeginn());
+            }
+        });
 
-        model.addAttribute("listTermine", listTermine);
+        model.addAttribute("listTermine", mitarbeiterTermine);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
         model.addAttribute("updatedYear", updatedYear);;
