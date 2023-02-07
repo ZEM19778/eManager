@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href='/kalender.css'/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
     footer{
@@ -153,7 +154,7 @@
                 <button id="previousWeek" style="display:inline-block" type="button"><</button>
                 <p style="display:inline-block; margin-left: 20px;" th:text="KW + ' '"></p>
                 <input id="weekCounter" class="inputs" style="display:inline-block; margin-right: 20px; width: 40px; border: none" th:value="${wochennummer}" readonly>
-                <input id="yearCounter" class="inputs" style="display:inline-block; margin-right: 20px; width: 40px; border: none" readonly>
+                <input id="yearCounter" style="display:inline-block; margin-right: 20px; width: 40px; border: none" readonly>
                 <button id="nextWeek" style="display:inline-block" type="button">></button>
                 <br>
                 <div>
@@ -203,6 +204,7 @@
     </div>
 </footer>
 <script th:inline="javascript">
+
     //Termin-Farben
     let buttons = document.querySelectorAll('.open-modal-button');
     buttons.forEach(function (openModalButton){
@@ -235,6 +237,7 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
+    var yearCounter = $('#yearCounter').val();
     var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;;
 
     document.getElementById("yearCounter").value = updatedYear;
@@ -248,14 +251,14 @@
             kw = kw - 1;
             let wnr = kw.toString();
             document.getElementById("weekCounter").value = wnr;
-            window.location.href = '/admin/kalender' + wnr;
+            window.location.href = '/admin/kalender' + wnr + "/" + updatedYear;
         }
         else{
             document.getElementById("weekCounter").value = "52";
             updatedYear = updatedYear - 1;
             localStorage.setItem('updatedYear', updatedYear)
             document.getElementById("yearCounter").value = updatedYear.toString();
-            window.location.href = '/admin/kalender52';
+            window.location.href = '/admin/kalender52' + "/" + updatedYear;
         }
     }
     function increment(){
@@ -264,16 +267,24 @@
             kw = kw + 1;
             let wnr = kw.toString();
             document.getElementById("weekCounter").value = wnr;
-            window.location.href = '/admin/kalender' + wnr;
+            window.location.href = '/admin/kalender' + wnr + "/" + updatedYear;
         }
         else{
             document.getElementById("weekCounter").value = "1";
             updatedYear = updatedYear + 1;
             localStorage.setItem('updatedYear', updatedYear)
             document.getElementById("yearCounter").value = updatedYear.toString();
-            window.location.href = '/admin/kalender1';
+            window.location.href = '/admin/kalender1'+ "/" + updatedYear;
         }
     }
+    //Filterung nach Jahr
+    $.ajax({
+        type: "GET",
+        url: "/admin/kalender" + kw.toString() + "/" + yearCounter,
+        success: function (response){
+            console.log("Erfolgreich geschickt")
+        }
+    })
 </script>
 </body>
 </html>

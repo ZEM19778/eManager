@@ -22,7 +22,17 @@ public class Temporals {
             return false;
         }
     }
+    public static boolean isWithinYear(LocalDate termin, int referenceYear){
+        int terminJahr = termin.getYear();
+        if(terminJahr == referenceYear){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public LocalDate heute = LocalDate.now();
     public int wochenNummer = heute.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
+    public int jahr = heute.getYear();
 }

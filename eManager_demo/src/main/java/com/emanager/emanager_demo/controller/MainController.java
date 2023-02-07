@@ -158,8 +158,8 @@ public class MainController {
     }
 
 
-    @GetMapping("/admin/kalender{wochennummer}")
-    public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
+    @GetMapping("/admin/kalender{wochennummer}/{yearCounter}")
+    public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, @PathVariable(name="yearCounter") int yearCounter, Model model) {
         List<Termin> terminListe = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
@@ -174,11 +174,18 @@ public class MainController {
                 return o1.getBeginn().compareTo(o2.getBeginn());
             }
         });
-        System.out.println(terminListe);
-        model.addAttribute("listTermine", terminListe);
+        //Filterung nach Jahr
+        List<Termin> gefilterteTermine = new ArrayList<>();
+        for(Termin t : terminListe){
+            int tjahr = t.getDatum().getYear();
+            if(tjahr == yearCounter){
+                gefilterteTermine.add(t);
+            }
+        }
+        System.out.println(gefilterteTermine);
+        model.addAttribute("listTermine", gefilterteTermine);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
-        model.addAttribute("updatedYear", updatedYear);
         return "kalenderAdmin";
     }
 
@@ -195,7 +202,7 @@ public class MainController {
     public String deletetermin(@PathVariable(value = "id") long id, Model model) {
         this.termineService.deleteTerminById(id);
         model.addAttribute("temporals", temporals);
-        return "redirect:/admin/kalender" + temporals.wochenNummer;
+        return "redirect:/admin/kalender" + temporals.wochenNummer + "/" + temporals.jahr;
     }
 
     @PostMapping("/admin/saveTermin")
@@ -203,7 +210,7 @@ public class MainController {
         //if(termin.get)
         termineService.saveTermin(termin);
         model.addAttribute("temporals", temporals);
-        return "redirect:/admin/kalender" + temporals.wochenNummer;
+        return "redirect:/admin/kalender" + temporals.wochenNummer + "/" + temporals.jahr;
     }
 
     @PostMapping("/admin/saveUrlaub")
@@ -216,7 +223,7 @@ public class MainController {
 
 
     @GetMapping("/user/kalender{wochennummer}")
-    public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
+    public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="yearCounter", required = false) int year, Model model) {
         List<Termin> terminListe = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
@@ -240,7 +247,7 @@ public class MainController {
         model.addAttribute("listTermine", mitarbeiterTermine);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
-        model.addAttribute("updatedYear", updatedYear);;
+        model.addAttribute("year", year);;
         return "kalenderUser";
     }
 
