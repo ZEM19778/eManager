@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
+import java.io.Console;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -159,7 +160,7 @@ public class MainController {
 
     @GetMapping("/admin/kalender{wochennummer}")
     public String kalenderAdmin(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="updatedYear", required = false) Integer updatedYear, Model model) {
-        List<Termin> listTermine = termineService.getAllTermine();
+        List<Termin> terminListe = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
         LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
@@ -167,8 +168,14 @@ public class MainController {
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
-
-        model.addAttribute("listTermine", listTermine);
+        Collections.sort(terminListe, new Comparator<Termin>() {
+            @Override
+            public int compare(Termin o1, Termin o2) {
+                return o1.getBeginn().compareTo(o2.getBeginn());
+            }
+        });
+        System.out.println(terminListe);
+        model.addAttribute("listTermine", terminListe);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
         model.addAttribute("updatedYear", updatedYear);
