@@ -173,7 +173,7 @@
                         <tbody>
                         <tr>
                             <td th:block th:each="day:${weekDays}">
-                                <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
+                                <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day, yearcounter)}">
                                     <button class="open-modal-button" th:data-target="'modal-' + ${Termin.id}"  th:text="${Termin.beschreibung}"></button>
                                     <div class="modal" th:id="'modal-' + ${Termin.id}">
                                         <div class="modal-content" style="width: 250px">
@@ -237,7 +237,6 @@
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var yearCounter = $('#yearCounter').val();
     var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;;
 
     document.getElementById("yearCounter").value = updatedYear;
@@ -278,6 +277,7 @@
         }
     }
     //Filterung nach Jahr
+    var yearCounter = $('#yearCounter').val();
     $.ajax({
         type: "GET",
         url: "/admin/kalender" + kw.toString() + "/" + yearCounter,

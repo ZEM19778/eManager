@@ -173,7 +173,7 @@
                         <tbody>
                         <tr>
                             <td th:block th:each="day:${weekDays}">
-                                <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
+                                <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day, yearcounter)}">
                                     <button class="open-modal-button" th:data-target="'modal-' + ${Termin.id}"  th:text="${Termin.beschreibung}"></button>
                                     <div class="modal" th:id="'modal-' + ${Termin.id}">
                                         <div class="modal-content" style="width: 250px">
