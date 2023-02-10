@@ -1,5 +1,6 @@
 package com.emanager.emanager_demo.service;
 
+import com.emanager.emanager_demo.model.Dienste;
 import com.emanager.emanager_demo.model.Urlaub;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +15,7 @@ public interface UrlaubServiceIn {
 
     void deleteUrlaubById(long id);
 
+
+    @Query("SELECT u from Urlaub u where u.beantragtMitarbeiter like %:nutzername%")
+    List<Urlaub> findUrlaubByMitarbeiterLike(@Param("nutzername") String nutzername);
 }

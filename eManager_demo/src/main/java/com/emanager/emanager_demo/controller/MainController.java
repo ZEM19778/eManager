@@ -101,11 +101,18 @@ public class MainController {
         return "homepageUser";
     }
 
+
     @GetMapping("/user/urlaub")
     public String urlaubuser(Model model) {
-        List<Urlaub> listUrlaub = urlaubService.getAllUrlaub();
-        model.addAttribute("listUrlaub", listUrlaub);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String benutzername = authentication.getName();
+        List<Urlaub> listUrlaub = urlaubService.findUrlaubByMitarbeiterLike(benutzername);
+        model.addAttribute("listUrlaub",listUrlaub);
         model.addAttribute("temporals", temporals);
+
+
+
         return "urlaubsehenuser";
     }
 

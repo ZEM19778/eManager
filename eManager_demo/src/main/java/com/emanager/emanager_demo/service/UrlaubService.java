@@ -1,5 +1,6 @@
 package com.emanager.emanager_demo.service;
 
+import com.emanager.emanager_demo.model.Dienste;
 import com.emanager.emanager_demo.model.Urlaub;
 import com.emanager.emanager_demo.repository.UrlaubeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class UrlaubService implements UrlaubServiceIn{
             throw new RuntimeException(" urlaub not found for id :: " + id);
         }
         return urlaub;
+    }
+
+    @Override
+    public List<Urlaub> findUrlaubByMitarbeiterLike(String nutzername) {
+        return urlaubeRepository.findUrlaubByBeantragtMitarbeiter(nutzername);
     }
 
 
