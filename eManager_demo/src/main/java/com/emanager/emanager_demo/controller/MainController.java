@@ -220,32 +220,34 @@ public class MainController {
     }
 
 
-    @GetMapping("/user/kalender{wochennummer}")
-    public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @RequestParam(name="yearCounter", required = false) int year, Model model) {
+    @GetMapping("/user/kalender{wochennummer}/{yearCounter}")
+    public String kalenderUser(@PathVariable(value = "wochennummer") int wochennummer, @PathVariable(name="yearCounter") int yearCounter, Model model) {
         List<Termin> terminListe = termineService.getAllTermine();
         LocalDate now = LocalDate.now();
         WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 7);
-        LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY);
+        LocalDate currentMonday = now.with(weekFields.weekOfWeekBasedYear(), wochennummer).with(DayOfWeek.MONDAY).withYear(yearCounter);
         List<LocalDate> weekDays = IntStream.range(0, 7)
                 .mapToObj(i -> currentMonday.plusDays(i))
                 .collect(Collectors.toList());
         List<Termin> mitarbeiterTermine = new ArrayList<>();
         for(Termin t : terminListe){
             if(Objects.equals(t.getBetrifft(), "Mitarbeiter" )|| Objects.equals(t.getBetrifft(), "Alle")){
-                mitarbeiterTermine.add(t);
+                if(t.getDatum().getYear() == yearCounter){
+                    mitarbeiterTermine.add(t);
+                }
             }
         }
-        Collections.sort(mitarbeiterTermine, new Comparator<Termin>() {
+        Collections.sort(terminListe, new Comparator<Termin>() {
             @Override
             public int compare(Termin o1, Termin o2) {
                 return o1.getBeginn().compareTo(o2.getBeginn());
             }
         });
-
+        System.out.println(mitarbeiterTermine);
         model.addAttribute("listTermine", mitarbeiterTermine);
         model.addAttribute("temporals", temporals);
         model.addAttribute("weekDays", weekDays);
-        model.addAttribute("year", year);;
+        model.addAttribute("yearcounter", yearCounter);
         return "kalenderUser";
     }
 

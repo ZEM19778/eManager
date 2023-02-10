@@ -79,16 +79,16 @@
         <input type="checkbox" id="toggle">
         <ul class="menu">
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
+                <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/admin/wochenzettel}"><b>Wochenzettel</b></a>
+                <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/admin/kalender{wochennummer}(wochennummer=${temporals.wochenNummer})}">Kalender & Termine</a>
+                <a class="nav-link active" th:href = "@{/admin/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr = ${temporals.jahr})}">Kalender & Termine</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/passwortaendernadmin}">Passwort ändern</a>

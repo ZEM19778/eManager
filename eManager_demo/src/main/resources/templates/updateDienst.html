@@ -44,27 +44,31 @@
     <br>
     <br>
 </div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/home}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/diensteEintragen}"><b>Dienste</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}(wochennummer=${temporals.wochenNummer})}">Kalender</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
-            </li>
-
-        </ul>
-    </div>
+<nav class="navbar">
+    <a href="#" class="brand">eManager</a>
+    <label for="toggle" class="toggle-container">
+        <span class="toggle"></span>
+        <span class="toggle"></span>
+        <span class="toggle"></span>
+    </label>
+    <input type="checkbox" id="toggle">
+    <ul class="menu">
+        <li class="nav-item">
+            <a class="nav-link active" th:href = "@{/user/home}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/jahr(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
+        </li>
+    </ul>
 </nav>
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Bearbeiten</h3>
