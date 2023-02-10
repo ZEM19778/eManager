@@ -119,7 +119,7 @@
                 <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}(wochennummer=${temporals.wochenNummer})}">Kalender</a>
+                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
@@ -161,7 +161,7 @@
                     <tbody>
                     <tr>
                         <td th:block th:each="day:${weekDays}">
-                            <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day)}">
+                            <div id="terminListe" th:each="Termin : ${listTermine}"  th:if="${temporals.isWithinWeek(Termin.datum, wochennummer, day, yearcounter)}">
                                 <button class="open-modal-button" th:data-target="'modal-' + ${Termin.id}"  th:text="${Termin.beschreibung}"></button>
                                 <div class="modal" th:id="'modal-' + ${Termin.id}">
                                     <div class="modal-content" style="width: 250px">
@@ -170,6 +170,9 @@
                                         <p style="text-align: center" th:text="'Von: ' + ${Termin.beginn}"></p>
                                         <p style="text-align: center" th:text="'Bis: ' + ${Termin.ende}"></p>
                                         <p style="text-align: center" th:text="'Betrifft: ' + ${Termin.betrifft}"></p>
+                                        <a th:href="@{/admin/deletetermin/{id}(id=${Termin.id})}">
+                                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Löschen</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +192,7 @@
     </div>
 </footer>
 <script th:inline="javascript">
+
     //Termin-Farben
     let buttons = document.querySelectorAll('.open-modal-button');
     buttons.forEach(function (openModalButton){
@@ -215,13 +219,15 @@
             modals[i].style.display = "none";
         }
     });
+
+    //Kalender
     let vorigeWoche = document.getElementById("previousWeek");
     let naechsteWoche = document.getElementById("nextWeek");
     let kw = parseInt($('#weekCounter').val(), 10);
     var currentYear = new Date().getFullYear();
-    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;
+    var updatedYear = parseInt(localStorage.getItem('updatedYear')) || currentYear;;
 
-    document.getElementById("yearCounter").value = updatedYear + 1;
+    document.getElementById("yearCounter").value = updatedYear;
 
     vorigeWoche.addEventListener("click", decrement);
     naechsteWoche.addEventListener("click", increment);
@@ -232,14 +238,14 @@
             kw = kw - 1;
             let wnr = kw.toString();
             document.getElementById("weekCounter").value = wnr;
-            window.location.href = '/user/kalender' + wnr;
+            window.location.href = '/user/kalender' + wnr + "/" + updatedYear;
         }
         else{
             document.getElementById("weekCounter").value = "52";
             updatedYear = updatedYear - 1;
             localStorage.setItem('updatedYear', updatedYear)
             document.getElementById("yearCounter").value = updatedYear.toString();
-            window.location.href = '/user/kalender52';
+            window.location.href = '/user/kalender52' + "/" + updatedYear;
         }
     }
     function increment(){
@@ -248,16 +254,25 @@
             kw = kw + 1;
             let wnr = kw.toString();
             document.getElementById("weekCounter").value = wnr;
-            window.location.href = '/user/kalender' + wnr;
+            window.location.href = '/user/kalender' + wnr + "/" + updatedYear;
         }
         else{
             document.getElementById("weekCounter").value = "1";
             updatedYear = updatedYear + 1;
             localStorage.setItem('updatedYear', updatedYear)
             document.getElementById("yearCounter").value = updatedYear.toString();
-            window.location.href = '/user/kalender1';
+            window.location.href = '/user/kalender1'+ "/" + updatedYear;
         }
     }
+    //Filterung nach Jahr
+    var yearCounter = $('#yearCounter').val();
+    $.ajax({
+        type: "GET",
+        url: "/user/kalender" + kw.toString() + "/" + yearCounter,
+        success: function (response){
+            console.log("Erfolgreich geschickt")
+        }
+    })
 </script>
 </body>
 </html>

@@ -71,7 +71,7 @@
                 <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/jahr(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
+                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
