@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Termin eintragen</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href='/homepageUser.css'/>
+    <link rel="stylesheet" href='/homepageAdmin.css'/>
+    <link rel="stylesheet" href='/navbar.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 <style>
     footer{
         position: -ms-device-fixed;
-        bottom: 0; left: 0; right: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: #111;
         height: auto;
         width: 100%;
+
         padding-top: 40px;
         color: #fff;
     }
@@ -22,20 +28,29 @@
         justify-content: center;
         flex-direction: column;
         text-align: center;
-
-        bottom: 0;
-        float: left;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
         width: 100%;
-        height: 100px; /* Height of the footer */
-        background: #111;
-        margin-top: auto;
-        clear: both;
+        border: 1px solid #ddd;
     }
-    html, body {
-        height: 100%;
-        margin: 0;
+
+    th, td {
+        text-align: left;
+        padding: 8px;
     }
+    .toggle {
+        background-color: #f48324;
+        width: 30px;
+        height: 5px;
+        margin: 5px;
+        display: block;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
+
 </style>
+
 
 <body>
 <div align="center" style="background-color: #f48324">
@@ -44,36 +59,37 @@
     <br>
     <br>
 </div>
-
-<nav class="navbar">
-    <a href="#" class="brand">eManager</a>
-    <label for="toggle" class="toggle-container">
-        <span class="toggle"></span>
-        <span class="toggle"></span>
-        <span class="toggle"></span>
-    </label>
-    <input type="checkbox" id="toggle">
-    <ul class="menu">
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr = ${temporals.jahr})}">Kalender & Termine</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/passwortaendernadmin}">Passwort ändern</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/admin/baustelle}">Baustellenverwaltung</a>
-        </li>
-    </ul>
-</nav>
+<header>
+    <nav class="navbar">
+        <a href="#" class="brand">eManager</a>
+        <label for="toggle" class="toggle-container">
+            <span class="toggle"></span>
+            <span class="toggle"></span>
+            <span class="toggle"></span>
+        </label>
+        <input type="checkbox" id="toggle">
+        <ul class="menu">
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr = ${temporals.jahr})}">Kalender & Termine</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/passwortaendernadmin}">Passwort ändern</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/admin/baustelle}">Baustellenverwaltung</a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Termin eintragen</h3>

@@ -305,6 +305,8 @@ public class MainController {
 
     @GetMapping("/admin/wochenzettel/pdf")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException{
+
+        
         List<Dienste> alleDienste = diensteService.getAllDienste();
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");

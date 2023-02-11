@@ -2,42 +2,85 @@
 <html lang="en">
 <head>
     <title>Urlaub eintragen</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href='/homepageUser.css'/>
-    <link rel="stylesheet" href='/userurlaub.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href='/homepageUser.css'/>
+    <link rel="stylesheet" href='/navbar.css'/>
+
+    <style>
+        .container {
+            height: 305px;
+            overflow-y: scroll;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #df5308;
+        }
+
+        footer{
+            position: -ms-device-fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111;
+            height: auto;
+            width: 100%;
+
+            padding-top: 40px;
+            color: #fff;
+        }
+        .footer-content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        .toggle {
+            background-color: #f48324;
+            width: 30px;
+            height: 5px;
+            margin: 5px;
+            display: block;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
 </head>
-<style>
-    footer{
-        position: -ms-device-fixed;
-        bottom: 0;left: 0;right: 0;
-        background: #111;
-        height: auto;
-        width: 100%;
-        padding-top: 40px;
-        color: #fff;
-    }
-    .footer-content{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
 
-        bottom: 0;
-        float: left;
-        width: 100%;
-        height: 100px; /* Height of the footer */
-        background: #111;
-        margin-top: auto;
-        clear: both;
-    }
-
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
-</style>
 <body>
 <div align="center" style="background-color: #f48324">
     <h1 style="color: white">eManager - User</h1>
@@ -45,33 +88,34 @@
     <br>
     <br>
 </div>
-<nav class="navbar">
-    <a href="#" class="brand">eManager</a>
-    <label for="toggle" class="toggle-container">
-        <span class="toggle"></span>
-        <span class="toggle"></span>
-        <span class="toggle"></span>
-    </label>
-    <input type="checkbox" id="toggle">
-    <ul class="menu">
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/user/home}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
-        </li>
-    </ul>
-</nav>
-
+<header>
+    <nav class="navbar">
+        <a href="#" class="brand">eManager</a>
+        <label for="toggle" class="toggle-container">
+            <span class="toggle"></span>
+            <span class="toggle"></span>
+            <span class="toggle"></span>
+        </label>
+        <input type="checkbox" id="toggle">
+        <ul class="menu">
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/home}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
+            </li>
+        </ul>
+    </nav>
+</header>
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Urlaub eintragen</h3>
     <br>
