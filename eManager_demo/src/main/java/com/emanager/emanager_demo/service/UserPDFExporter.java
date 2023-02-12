@@ -127,14 +127,15 @@ public class UserPDFExporter {
         Font f1 = FontFactory.getFont(FontFactory.HELVETICA);
         f1.setSize(18);
 
-        Image img = Image.getInstance("eManager_demo/src/main/resources/templates/img/Logo.jpg");
-        img.setAlignment(Image.RIGHT);
-        img.setSpacingBefore(0);
-        img.setSpacingAfter(0);
+        //Image img = Image.getInstance("eManager_demo/src/main/resources/templates/img/Logo.jpg");
+       // img.setAlignment(Image.RIGHT);
+        //img.setSpacingBefore(0);
+        //img.setSpacingAfter(0);
 
         Phrase ph = new Phrase("Wochenzettel für KW: ", font);
         ph.add(String.valueOf(kw));
 
+        Paragraph p1 = new Paragraph(" ");
         Paragraph p = new Paragraph();
         p.add(ph);
         p.setIndentationLeft(43);
@@ -142,7 +143,8 @@ public class UserPDFExporter {
         p.setSpacingAfter(0);
         p.setAlignment(Element.ALIGN_LEFT);
 
-        document.add(img);
+       // document.add(img);
+        document.add(p1);
         document.add(p);
 
         Dienste d = dienstes.get(0);

@@ -321,7 +321,7 @@ public class MainController {
         response.setHeader(headerKey, headerValue);
         //Filterung nach Wochennummer
         List<Dienste> gefilterteDienste = new ArrayList<>();
-        int kw = temporals.wochenNummer + 1;
+        int kw = temporals.wochenNummer;
         WeekFields weekFields = WeekFields.of(Locale.GERMAN);
         LocalDate now = LocalDate.now();
         LocalDate start = now.with(weekFields.weekOfWeekBasedYear(), kw).with(DayOfWeek.MONDAY);
