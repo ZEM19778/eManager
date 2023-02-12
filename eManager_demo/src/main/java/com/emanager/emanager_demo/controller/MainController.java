@@ -298,15 +298,19 @@ public class MainController {
     @GetMapping("/admin/wochenzettel")
     public String wochenzettel(Model model) {
         List<User> listUsers = service.listAll();
-        model.addAttribute("listUsers", listUsers);
+        List<User> mitarbeiterListe = new ArrayList<>();
+        for(User u : listUsers){
+            if(u.getRole().toString() == "USER"){
+                mitarbeiterListe.add(u);
+            }
+        }
+        model.addAttribute("listUsers", mitarbeiterListe);
         model.addAttribute("temporals", temporals);
         return "wochenzettel";
     }
 
     @GetMapping("/admin/wochenzettel/pdf")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException{
-
-        
         List<Dienste> alleDienste = diensteService.getAllDienste();
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -317,7 +321,7 @@ public class MainController {
         response.setHeader(headerKey, headerValue);
         //Filterung nach Wochennummer
         List<Dienste> gefilterteDienste = new ArrayList<>();
-        int kw = temporals.wochenNummer;
+        int kw = temporals.wochenNummer + 1;
         WeekFields weekFields = WeekFields.of(Locale.GERMAN);
         LocalDate now = LocalDate.now();
         LocalDate start = now.with(weekFields.weekOfWeekBasedYear(), kw).with(DayOfWeek.MONDAY);
