@@ -33,8 +33,11 @@
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 2px solid #f48324;
+
   }
+
+
 
   th, td {
     text-align: left;
@@ -91,21 +94,20 @@
 </header>
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
-  <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>
+  <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <form th:action="@{/admin/logout}" method="post">
-    <input type="submit" value="Ausloggen" />
-  </form>
-  <br>
-  <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
+    <input type="submit" value="Ausloggen" /></form>
+  <hr><br>
+
     <a th:href = "@{/admin/nachrichtenerstellen}">
       <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 19px">Nachricht schreiben</button></a>
-      <br>
+      <br><br>
       <div style="overflow-x:auto;" class="container">
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr>
+        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
           <th scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Sender</th>
@@ -117,7 +119,7 @@
         <u>Gesendete Nachrichten</u>
         <th:block th:each="Nachrichten : ${listNachrichten} ">
           <tr>
-            <th scope="row">[[${Nachrichten.id}]]</th>
+            <th align=center>[[${Nachrichten.id}]]</th>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
@@ -128,23 +130,23 @@
           </tr>
         </th:block>
         </tbody>
-
       </table>
 
-      <table width="90%" border=2 rules=rows cellpadding=12 cellspacing=12 class="table">
-        <br>
+      <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr>
+        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
           <th scope="col">Beginn</th>
           <th scope="col">Ende</th>
           <th scope="col">Beschreibung</th>
           <th scope="col">Genehmigt?</th>
-          <th scope="col">User-Name</th>
+          <th scope="col">Name</th>
+          <th scope="col">Genehmigen</th>
         </tr>
         </thead>
         <tbody>
-        <br>
+        <br><hr><br>
+
         <u>Urlaube</u>
         <th:block th:each="Urlaub : ${listUrlaub} ">
           <tr>

@@ -38,13 +38,10 @@
 
         footer{
             position: -ms-device-fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: #111;
             height: auto;
             width: 100%;
-
             padding-top: 40px;
             color: #fff;
         }
@@ -54,7 +51,22 @@
             justify-content: center;
             flex-direction: column;
             text-align: center;
+
+            bottom: 0;
+            float: left;
+            width: 100%;
+            height: 100px; /* Height of the footer */
+            background: #111;
+            margin-top: auto;
+            clear: both;
         }
+        textarea {
+            resize: none;
+            height: 100px;
+            width: 350px;
+        }
+
+
         html, body {
             height: 100%;
             margin: 0;
@@ -108,7 +120,7 @@
                 <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/urlaub}">Urlaub</a>
+                <a class="nav-link active" th:href = "@{/user/urlaub}"><b>Urlaub</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/passwortaendern}">Passwort ändern</a>
@@ -133,14 +145,14 @@
                    placeholder="Zeit-bis" class="form-control mb-4 col-4"> </p>
             <br>
 
-            <textarea style="max-width: 100%" th:field="*{beschreibung}"
+            <textarea th:field="*{beschreibung}"
                        placeholder="Nachricht" class="form-control mb-4 col-4" ></textarea>
             <br>
             <button type="submit" class="btn btn primary">Save</button>
         </form>
     </div>
-    <br>
 </div>
+<br>
 <footer class="footer">
     <div class="footer-content">
         <h4>eManager - Mitarbeiterverwaltungssystem</h4>

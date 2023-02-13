@@ -67,8 +67,9 @@
         }
 
         th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
+
         }
         .toggle {
             background-color: #f48324;
@@ -101,7 +102,7 @@
                 <a class="nav-link active" th:href = "@{/user/home}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
+                <a class="nav-link active" th:href = "@{/user/diensteEintragen}"><b>Dienste</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
@@ -128,8 +129,9 @@
                    placeholder="User  id" class="form-control mb-4 col-4" required minlength="1" maxlength="30">
 
 
-            <input type="date"  th:field="*{datumvon}"
+            <p>Datum: <input type="date"  th:field="*{datumvon}"
                    placeholder="Datum" class="form-control mb-4 col-4" required minlength="2" maxlength="30">
+            </p>
 
 
 
@@ -140,15 +142,14 @@
             </p>
 
 
-            <input type="time" th:field="*{zeitvon}"
+            <p>Von - Bis: <input type="time" th:field="*{zeitvon}"
                    placeholder="Zeit-ab" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
 
             <input type="time" th:field="*{zeitbis}"
                    placeholder="Zeit-bis" class="form-control mb-4 col-4" required minlength="2" maxlength="45">
-            <br>
+            </p><br>
             <hr>
-            <br>
-            <br>
+            <br><br>
             <table border="3">
                 <tr>
                     <th>

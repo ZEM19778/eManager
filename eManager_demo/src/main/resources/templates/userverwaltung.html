@@ -91,10 +91,10 @@
     <input type="checkbox" id="toggle">
     <ul class="menu">
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
+        <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
+        <a class="nav-link active" th:href = "@{/admin/userverwaltung}"><b>Mitarbeiter verwalten</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
@@ -114,10 +114,10 @@
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
   <h3 align="center">Mitarbeiterliste</h3>
-  <br>
-  <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
+  <hr><br>
+
     <a th:href = "@{/admin/showNewUserForm}">
-      <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 20px">Mitarbeiter hinzufügen</button>
+      <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 18px">Mitarbeiter hinzufügen</button>
     </a>
     <br>
     <br>
@@ -125,7 +125,7 @@
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr>
+        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
           <th scope="col">Name</th>
           <th scope="col">Role</th>
           <th scope="col">Anpassen</th>
@@ -139,11 +139,10 @@
             <td align=center>[[${User.username}]]</td>
             <td align=center>[[${User.role}]]</td>
             <td align="center"> <a th:href="@{/admin/showFormForUpdate/{id}(id=${User.id})}">
-              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Update</button></a>
+              <button type="button" class="button" style="padding: 3px 11px 3px; font-size: 16px">Update</button></a>
             </td>
             <td align="center"> <a th:href="@{/admin/deleteuser/{id}(id=${User.id})}">
-              <button type="button" class="button" style="padding: 10px 15px 10px; font-size: 15px">Delete</button>
-            </a>
+              <button type="button" class="button" style="padding: 3px 11px 3px; font-size: 16px">Delete</button></a>
             </td>
           </tr>
         </th:block>
@@ -151,7 +150,6 @@
       </table>
     </div>
   </div>
-</div>
 <br>
 <footer class="footer">
   <div class="footer-content">

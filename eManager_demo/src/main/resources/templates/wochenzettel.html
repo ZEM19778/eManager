@@ -8,7 +8,6 @@
     <link rel="stylesheet" href='/navbar.css'/>
 
 
-
 </head>
 <style>
     footer{
@@ -79,13 +78,13 @@
         <input type="checkbox" id="toggle">
         <ul class="menu">
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/admin/home}"><b>Home</b></a>
+                <a class="nav-link active" th:href = "@{/admin/home}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/userverwaltung}">Mitarbeiter verwalten</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/admin/wochenzettel}">Wochenzettel</a>
+                <a class="nav-link active" th:href = "@{/admin/wochenzettel}"><b>Wochenzettel</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/admin/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr = ${temporals.jahr})}">Kalender & Termine</a>
@@ -110,8 +109,8 @@
             <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
+                <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
+                <th scope="col">Name</th>
                     <th scope="col">Role</th>
                     <th scope="col">Wochenzettel</th>
                 </tr>

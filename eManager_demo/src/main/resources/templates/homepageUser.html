@@ -38,13 +38,10 @@
 
     footer{
       position: -ms-device-fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: #111;
       height: auto;
       width: 100%;
-
       padding-top: 40px;
       color: #fff;
     }
@@ -54,7 +51,16 @@
       justify-content: center;
       flex-direction: column;
       text-align: center;
+
+      bottom: 0;
+      float: left;
+      width: 100%;
+      height: 100px; /* Height of the footer */
+      background: #111;
+      margin-top: auto;
+      clear: both;
     }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -63,7 +69,7 @@
       border-collapse: collapse;
       border-spacing: 0;
       width: 100%;
-      border: 1px solid #ddd;
+      border: 2px solid #f48324;
     }
 
     th, td {
@@ -99,7 +105,7 @@
     <input type="checkbox" id="toggle">
     <ul class="menu">
       <li class="nav-item">
-        <a class="nav-link active" th:href = "@{/user/home}">Home</a>
+        <a class="nav-link active" th:href = "@{/user/home}"><b>Home</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
@@ -117,19 +123,18 @@
   </nav>
 </header>
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
-  <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <h3 align="center">Benachrichtigungen</h3>
+  <h2 style="color: orange">Hallo, <span sec:authentication="name"></span></h2>
   <form th:action="@{/user/logout}" method="post">
-    <input type="submit" value="Ausloggen" />
-  </form>
-  <br>
-  <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
-    <div style="overflow-x:auto;" class="container">
+    <input type="submit" value="Ausloggen" /></form>
+  <hr><br>
+
+  <div style="overflow-x:auto;" class="container">
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr align="center">
-          <th scope="col">ID</th>
+        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
+        <th scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Datum & Uhrzeit</th>
         </tr>
@@ -147,7 +152,6 @@
       </table>
     </div>
   </div>
-</div>
 <br>
 <footer class="footer">
   <div class="footer-content">

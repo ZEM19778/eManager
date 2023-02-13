@@ -32,12 +32,6 @@
         flex-direction: column;
         text-align: center;
     }
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-        border: 1px solid #ddd;
-    }
 
     th, td {
         text-align: left;
@@ -121,7 +115,7 @@
 
 
                 <input type="hidden" th:field="*{ende}"
-                       placeholder="Zeit-bis" class="form-control mb-4 col-4" r>
+                       placeholder="Zeit-bis" class="form-control mb-4 col-4">
 
                 <br>
             <p>Mitarbeiter: <input type="text" th:field="*{beantragtMitarbeiter}"

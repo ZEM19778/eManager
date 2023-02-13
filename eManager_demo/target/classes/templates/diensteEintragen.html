@@ -39,8 +39,10 @@
         border-collapse: collapse;
         border-spacing: 0;
         width: 100%;
-        border: 1px solid #ddd;
+        border: 2px solid #f48324;
+
     }
+
 
     th, td {
         text-align: left;
@@ -79,7 +81,7 @@
                 <a class="nav-link active" th:href = "@{/user/home}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" th:href = "@{/user/diensteEintragen}">Dienste</a>
+                <a class="nav-link active" th:href = "@{/user/diensteEintragen}"><b>Dienste</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href = "@{/user/kalender{wochennummer}/{jahr}(wochennummer=${temporals.wochenNummer}, jahr=${temporals.jahr})}">Kalender</a>
@@ -97,16 +99,18 @@
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Dienste eintragen</h3>
     <h2 style="color: orange">Dienste von: <span sec:authentication="name"></span></h2>
+    <hr>
     <br>
-    <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
-        <p>Deine Dienste</p>
-        <a th:href = "@{/user/diensteerstellen}" class="btn btn-primary btn-sm mb-3"> Dienst eingeben </a>
+
+        <a th:href = "@{/user/diensteerstellen}">
+            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 17px">Dienste eingeben</button></a>
+    <br><br>
 
         <div style="overflow-x:auto;" class="container">
             <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
-                <tr>
+                <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
                     <th scope="col">Datum</th>
                     <th scope="col">Addresse</th>
                     <th scope="col">Von</th>
@@ -127,7 +131,7 @@
                         <td align=center>[[${Dienste.mitarbeiter}]]</td>
                         <td align=center>[[${Dienste.dauer}]]h</td>
                         <td align="center"> <a th:href="@{/user/showFormForUpdateDienst/{id}(id=${Dienste.id})}">
-                            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 16px">Update</button></a></td>
+                            <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 17px">Update</button></a></td>
                         <td align="center"> <a th:href="@{/user/deletedienst/{id}(id=${Dienste.id})}">
                             <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 17px">Delete</button></a></td>
                     </tr>
@@ -136,7 +140,7 @@
             </table>
         </div>
     </div>
-</div>
+
 
 <br>
 <footer class="footer">
