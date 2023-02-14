@@ -102,7 +102,7 @@
 
             <p>Wo haben Sie gearbeitet?:
                 <select th:field="*{addresse}">
-                    <option th:each="course: ${listBaustelle}" th:value="${course.id}" th:text="${course.bezeichnung}" />
+                    <option th:each="course: ${listBaustelle}" th:value="${course.id}" th:text="${course.bezeichnung}"></option>
                 </select>
             </p>
             <br>

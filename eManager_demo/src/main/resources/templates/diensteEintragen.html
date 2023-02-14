@@ -39,14 +39,18 @@
         border-collapse: collapse;
         border-spacing: 0;
         width: 100%;
-        border: 2px solid #f48324;
-
     }
-
+    th {
+        border-bottom:4px solid #f48324;
+        font-size:17px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        background-color: rgba(244,131,36,0.3);
+    }
 
     th, td {
         text-align: left;
-        padding: 8px;
+        padding: 8px ;
+
     }
     .toggle {
         background-color: #f48324;
@@ -110,7 +114,7 @@
             <table>
                 <!--rules=rows; rules=cols-->
                 <thead class="thead-dark">
-                <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
+                <tr>
                     <th scope="col">Datum</th>
                     <th scope="col">Addresse</th>
                     <th scope="col">Von</th>
@@ -124,7 +128,7 @@
                 <tbody>
                 <th:block th:each="Dienste : ${listDienste} ">
                     <tr>
-                        <th scope="row" th:pattern="d">[[${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}]]</th>
+                        <td scope="row" th:pattern="d">[[${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}]]</td>
                         <td align=center>[[${Dienste.addresse.bezeichnung}]]</td>
                         <td align=center>[[${Dienste.zeitvon}]]</td>
                         <td align=center>[[${Dienste.zeitbis}]]</td>
