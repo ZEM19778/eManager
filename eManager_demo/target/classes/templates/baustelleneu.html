@@ -33,12 +33,17 @@
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 1px solid #ddd;
+  }
+  th {
+    border-bottom:4px solid #f48324;
+    font-size:17px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(244,131,36,0.3);
   }
 
   th, td {
     text-align: left;
-    padding: 8px;
+    padding: 8px ;
   }
   .toggle {
     background-color: #f48324;
@@ -95,8 +100,7 @@
   <br>
   <div style="width:90%;height:330px;border:1px solid #000; border-radius: 5px">
     <u>Legen Sie eine neuen Baustelle an!</u>
-    <br>
-    <br>
+    <br><br>
     <form action="#" th:action="@{/admin/saveBaustelle}" th:object="${baustelle}"
           method="POST">
 

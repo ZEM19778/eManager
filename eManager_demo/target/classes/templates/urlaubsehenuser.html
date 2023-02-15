@@ -41,13 +41,19 @@
         border-collapse: collapse;
         border-spacing: 0;
         width: 100%;
-        border: 1px solid #ddd;
+    }
+    th {
+        border-bottom:4px solid #f48324;
+        font-size:17px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        background-color: rgba(244,131,36,0.3);
     }
 
     th, td {
         text-align: left;
-        padding: 8px;
+        padding: 8px ;
     }
+
     .toggle {
         background-color: #f48324;
         width: 30px;
@@ -99,12 +105,11 @@
 
 <div style="box-shadow: 0 5px #ffffff; border-radius: 10px;" align="center">
     <h3 align="center">Urlaub sehen</h3>
-    <br>
-    <div style="width:90%;height:330px;border:1px solid #000; border-radius: 10px">
+    <hr><br>
         <a th:href = "@{/user/urlaubErstellen}">
             <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 19px">Urlaub beantragen</button></a>
-        <br>
-        <u>Hier sehen Sie die Urlaubstermine</u>
+        <br><u>Hier sehen Sie die Urlaubstermine</u><br>
+
         <div style="overflow-x:auto;" class="container">
             <table>
                 <!--rules=rows; rules=cols-->
@@ -135,7 +140,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
     <br>
 </div>
 

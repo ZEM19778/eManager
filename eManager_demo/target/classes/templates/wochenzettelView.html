@@ -12,13 +12,10 @@
 <style>
   footer{
     position: -ms-device-fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0;left: 0;right: 0;
     background: #111;
     height: auto;
     width: 100%;
-
     padding-top: 40px;
     color: #fff;
   }
@@ -28,6 +25,14 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
+
+    bottom: 0;
+    float: left;
+    width: 100%;
+    height: 100px; /* Height of the footer */
+    background: #111;
+    margin-top: auto;
+    clear: both;
   }
   table {
     border-collapse: collapse;
@@ -107,7 +112,7 @@
       </tr>
       </thead>
       <tbody>
-      <th:block th:each="Dienste : ${listDienste}">
+      <th:block th:each="Dienste : ${listDienste}" th:if="${temporals.isWithinWoche(Dienste.datumvon)}">
         <tr>
           <th scope="row" th:pattern="d">[[${#dates.format(Dienste.datumvon, 'dd.MMMyyyy')}]]</th>
           <td align=center>[[${Dienste.addresse.bezeichnung}]]</td>

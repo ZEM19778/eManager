@@ -33,15 +33,17 @@
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 2px solid #f48324;
-
   }
-
-
+  th {
+    border-bottom:4px solid #f48324;
+    font-size:17px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(244,131,36,0.3);
+  }
 
   th, td {
     text-align: left;
-    padding: 8px;
+    padding: 8px ;
   }
   .toggle {
     background-color: #f48324;
@@ -102,13 +104,14 @@
 
     <a th:href = "@{/admin/nachrichtenerstellen}">
       <button type="button" class="button" style="padding: 2px 10px 2px; font-size: 19px">Nachricht schreiben</button></a>
-      <br><br>
+      <br><u>Gesendete Nachrichten</u><br>
+
       <div style="overflow-x:auto;" class="container">
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
-          <th scope="col">ID</th>
+        <tr>
+          <th style="display: none" scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Sender</th>
           <th scope="col">Datum & Uhrzeit</th>
@@ -116,10 +119,9 @@
         </tr>
         </thead>
         <tbody>
-        <u>Gesendete Nachrichten</u>
         <th:block th:each="Nachrichten : ${listNachrichten} ">
           <tr>
-            <th align=center>[[${Nachrichten.id}]]</th>
+            <td style="display: none" align=center>[[${Nachrichten.id}]]</td>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
@@ -135,7 +137,7 @@
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
-        <tr style="font-size: 17px; background-color: rgba(244,131,36,0.3)">
+        <tr>
           <th scope="col">Beginn</th>
           <th scope="col">Ende</th>
           <th scope="col">Beschreibung</th>

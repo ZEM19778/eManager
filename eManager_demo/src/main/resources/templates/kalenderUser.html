@@ -175,9 +175,6 @@
                                         <p style="text-align: center" th:text="'Von: ' + ${Termin.beginn}"></p>
                                         <p style="text-align: center" th:text="'Bis: ' + ${Termin.ende}"></p>
                                         <p style="text-align: center" th:text="'Betrifft: ' + ${Termin.betrifft}"></p>
-                                        <a th:href="@{/admin/deletetermin/{id}(id=${Termin.id})}">
-                                            <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 17px">Löschen</button>
-                                        </a>
                                     </div>
                                 </div>
                             </div>

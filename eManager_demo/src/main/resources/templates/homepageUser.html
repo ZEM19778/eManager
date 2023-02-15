@@ -135,13 +135,13 @@
     <input type="submit" value="Ausloggen" /></form>
   <hr><br>
 
-  <p>Nachrichten vom Admin</p>
+  <p>Nachrichten</p>
   <div style="overflow-x:auto;" class="container">
       <table>
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
         <tr>
-          <th scope="col">ID</th>
+          <th style="display: none" scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Datum & Uhrzeit</th>
         </tr>
@@ -149,7 +149,7 @@
         <tbody>
         <th:block th:each="Nachrichten : ${listNachrichten} ">
           <tr>
-            <td scope="row">[[${Nachrichten.id}]]</td>
+            <td style="display: none" scope="row">[[${Nachrichten.id}]]</td>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
           </tr>

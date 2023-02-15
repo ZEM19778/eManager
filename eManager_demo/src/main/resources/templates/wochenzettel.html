@@ -116,7 +116,7 @@
                 <thead class="thead-dark">
                 <tr>
                 <th scope="col">Name</th>
-                    <th scope="col">Role</th>
+                    <th style="display: none" scope="col">Role</th>
                     <th scope="col">Wochenzettel</th>
                 </tr>
                 </thead>
@@ -125,7 +125,7 @@
 
                     <tr>
                         <td align=center>[[${User.username}]]</td>
-                        <td align=center>[[${User.role}]]</td>
+                        <td style="display: none" align=center>[[${User.role}]]</td>
                         <td align="center"> <a th:href="@{/admin/wochenzettelView/(user=${User.username})}">
                             <button type="button" class="button" style="padding: 1px 10px 1px; font-size: 19px">Anschauen</button>
                         </a>

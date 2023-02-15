@@ -111,7 +111,7 @@
         <!--rules=rows; rules=cols-->
         <thead class="thead-dark">
         <tr>
-          <th scope="col">ID</th>
+          <th style="display: none" scope="col">ID</th>
           <th scope="col">Nachricht</th>
           <th scope="col">Sender</th>
           <th scope="col">Datum & Uhrzeit</th>
@@ -121,7 +121,7 @@
         <tbody>
         <th:block th:each="Nachrichten : ${listNachrichten} ">
           <tr>
-            <td align=center>[[${Nachrichten.id}]]</td>
+            <td style="display: none" align=center>[[${Nachrichten.id}]]</td>
             <td align=center>[[${Nachrichten.nachricht}]]</td>
             <td align=center>[[${Nachrichten.sender}]]</td>
             <td align=center>[[${Nachrichten.datumzeit}]]</td>
